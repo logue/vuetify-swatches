@@ -1,10 +1,10 @@
-# Vuetify Swatch
+# Vuetify Swatches
 
-This project is a remake of [saintplay's vue-swatch](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
+This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
 Unlike the original version, it provides a UI based on Vuetify, such as ripple effects and dark mode.
 
-Please use in combination with [Menu Component](https://vuetifyjs.com/components/menus/).
+This library is positioned as a complement to Vuetify and provides a minimal UI. Use the[Menu Component](https://vuetifyjs.com/components/menus/) if you want to display a pop-up menu, and the [Card component](https://vuetifyjs.com/components/cards/) if you want to display a palette.
 
 ## Usage
 

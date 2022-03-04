@@ -74,8 +74,8 @@ const config: UserConfig = {
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'VSwatch',
-      fileName: format => `VSwatch.${format}.js`,
+      name: 'VSwatches',
+      fileName: format => `VSwatches.${format}.js`,
     },
     rollupOptions: {
       external: ['vue', 'vue-property-decorator', 'vuetify'],

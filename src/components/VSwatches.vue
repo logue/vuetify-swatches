@@ -37,7 +37,7 @@ import colors from 'vuetify/lib/util/colors';
   },
 })
 /** Swatch */
-export default class Swatch extends Vue {
+export default class VSwatches extends Vue {
   /** チェックアイコンの表示制御 */
   checkedVisibilty = false;
 

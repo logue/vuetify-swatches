@@ -1,7 +1,7 @@
 import _Vue, { PluginObject } from 'vue';
 
 // Import vue component
-import component from './components/Swatch.vue';
+import component from './components/VSwatches.vue';
 
 // Define typescript interfaces for installable component
 type InstallableComponent = typeof component & PluginObject<any>;
@@ -15,7 +15,7 @@ export default /* #__PURE__*/ ((): InstallableComponent => {
 
   // Attach install function executed by Vue.use()
   installable.install = (Vue: typeof _Vue) => {
-    Vue.component('VSwatch', installable);
+    Vue.component('VSwatches', installable);
   };
   return installable;
 })();

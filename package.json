@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "vuetify-swatch",
+  "name": "vuetify-swatches",
   "private": true,
   "version": "0.0.1",
   "description": "Vuetify swatch component.",
@@ -9,34 +9,34 @@
     "email": "logue@hotmail.co.jp",
     "url": "https://logue.dev/"
   },
-  "homepage": "https://github.com/logue/vuetify-swatch",
+  "homepage": "https://github.com/logue/vuetify-swatches",
   "repository": {
     "type": "git",
-    "url": "git@github.com:logue/vuetify-swatch.git"
+    "url": "git@github.com:logue/vuetify-swatches.git"
   },
   "bugs": {
-    "url": "https://github.com/logue/vuetify-swatch/issues"
+    "url": "https://github.com/logue/vuetify-swatches/issues"
   },
   "engines": {
     "node": ">=16"
   },
   "license": "MIT",
-  "main": "./dist/VSwatch.umd.js",
-  "module": "./dist/VSwatch.es.js",
+  "main": "./dist/VSwatches.umd.js",
+  "module": "./dist/VSwatches.es.js",
   "browser": {
-    "./sfc": "./src/components/Swatch.vue"
+    "./sfc": "./src/components/VSwatches.vue"
   },
   "exports": {
     ".": {
-      "import": "./dist/VSwatch.es.js",
-      "require": "./dist/VSwatch.umd.js"
+      "import": "./dist/VSwatches.es.js",
+      "require": "./dist/VSwatches.umd.js"
     }
   },
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
     "build": "vite build & vue-tsc",
-    "build:clean": "rimraf dist",
+    "build:clean": "rimraf dist && rimraf types",
     "lint": "eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint && prettier . --write",
     "lint:style": "stylelint **/*.{css,sass,scss,htm,html,vue} --fix --cache",
     "lint:markup": "vue-tsc --noEmit",

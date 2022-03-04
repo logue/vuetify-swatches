@@ -4,10 +4,15 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Swatch: typeof import('./src/components/Swatch.vue')['default']
+    VApp: typeof import('vuetify/lib')['VApp']
+    VAppBar: typeof import('vuetify/lib')['VAppBar']
     VBtn: typeof import('vuetify/lib')['VBtn']
+    VContainer: typeof import('vuetify/lib')['VContainer']
     VIcon: typeof import('vuetify/lib')['VIcon']
+    VMain: typeof import('vuetify/lib')['VMain']
     VSheet: typeof import('vuetify/lib')['VSheet']
+    VSwatches: typeof import('./src/components/VSwatches.vue')['default']
+    VToolbarTitle: typeof import('vuetify/lib')['VToolbarTitle']
   }
 }
 
