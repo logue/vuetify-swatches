@@ -1,11 +1,44 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title>Vuetify Swatch Demo</v-toolbar-title>
+      <v-app-bar-title>Vuetify Swatch Demo</v-app-bar-title>
+      <v-spacer />
+      <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+        <v-icon v-text="'mdi-invert-colors'" />
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
-        <v-swatches v-model="color" />
+        <h2>Basic</h2>
+        <pre class="grey">&lt;v-swatches v-model="color" /&gt;</pre>
+
+        <v-swatches v-model="value" />
+        <p>Result: {{ value }}</p>
+        <h2>With VMenu</h2>
+
+        <pre class="grey">
+&lt;v-menu offset-y&gt;
+  &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
+    &lt;v-btn v-bind=&quot;attrs&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot; v-on=&quot;on&quot;&gt;
+      &lt;v-icon :color=&quot;selected&quot; style=&quot;filter: invert(100%)&quot;&gt;
+        mdi-menu-down
+      &lt;/v-icon&gt;
+    &lt;/v-btn&gt;
+  &lt;/template&gt;
+  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
+&lt;/v-menu&gt;</pre
+        >
+        <v-menu offset-y>
+          <template #activator="{ on, attrs }">
+            <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
+              <v-icon :color="selected" style="filter: invert(100%)">
+                mdi-menu-down
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-swatches v-model="selected" :swatches="palette" />
+        </v-menu>
+        <p>Result: {{ selected }}</p>
       </v-container>
     </v-main>
   </v-app>
@@ -14,7 +47,16 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import { VContainer, VAppBar, VMain, VApp } from 'vuetify/lib';
+import {
+  VContainer,
+  VAppBar,
+  VAppBarTitle,
+  VBtn,
+  VMain,
+  VMenu,
+  VApp,
+  VSpacer,
+} from 'vuetify/lib';
 import VSwatches from '@/components/VSwatches.vue';
 
 export default Vue.extend({
@@ -22,12 +64,59 @@ export default Vue.extend({
     VSwatches,
     VApp,
     VAppBar,
+    VAppBarTitle,
+    VBtn,
     VMain,
+    VMenu,
     VContainer,
+    VSpacer,
   },
   data() {
     return {
-      color: '#FFFFFF',
+      value: '#ffffff',
+      selected: '#ffffff',
+      palette: [
+        [
+          '#ffb7b7',
+          '#ffdbb7',
+          '#ffffb7',
+          '#b7ffb7',
+          '#b7ffff',
+          '#b7b7ff',
+          '#ffb7ff',
+          '#ffffff',
+        ],
+        [
+          '#ff5555',
+          '#ffa555',
+          '#ffff55',
+          '#55ff55',
+          '#55ffff',
+          '#5555ff',
+          '#ff55ff',
+          '#aaaaaa',
+        ],
+        [
+          '#ff0000',
+          '#ff7f00',
+          '#ffff00',
+          '#00ff00',
+          '#00ffff',
+          '#0000ff',
+          '#ff00ff',
+          '#555555',
+        ],
+        [
+          '#7f0000',
+          '#7f4c00',
+          '#7f7f00',
+          '#007f00',
+          '#007f7f',
+          '#00007f',
+          '#7f007f',
+          '#000000',
+        ],
+      ],
     };
   },
   watch: {},

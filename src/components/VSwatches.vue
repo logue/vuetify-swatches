@@ -1,5 +1,5 @@
 <template>
-  <v-sheet>
+  <v-sheet class="v-swatches">
     <div v-for="(colors, rows) in palette" :key="rows">
       <v-btn
         v-for="color in colors"
@@ -45,6 +45,7 @@ export default class VSwatches extends Vue {
   @PropSync('swatches', {
     type: Array,
     default: () => [
+      [colors.shades.black, colors.shades.white],
       [
         colors.red.base,
         colors.pink.base,
@@ -65,14 +66,7 @@ export default class VSwatches extends Vue {
         colors.orange.base,
         colors.deepOrange.base,
       ],
-      [
-        colors.brown.base,
-        colors.blueGrey.base,
-        colors.grey.base,
-        colors.shades.black,
-        colors.shades.white,
-        colors.shades.transparent,
-      ],
+      [colors.brown.base, colors.blueGrey.base, colors.grey.base],
     ],
   })
   palette!: string[] | string[][];
