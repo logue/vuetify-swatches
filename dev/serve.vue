@@ -4,19 +4,22 @@
       <v-app-bar-title>Vuetify Swatch Demo</v-app-bar-title>
       <v-spacer />
       <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
-        <v-icon v-text="'mdi-invert-colors'" />
+        <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
         <h2>Basic</h2>
-        <pre class="grey">&lt;v-swatches v-model="color" /&gt;</pre>
+        <code-mirror :lang="cmLang" :extensions="cmExt" readonly>
+          <pre>&lt;v-swatches v-model="color" /&gt;</pre>
+        </code-mirror>
 
         <v-swatches v-model="value" />
         <p>Result: {{ value }}</p>
         <h2>With VMenu</h2>
 
-        <pre class="grey">
+        <code-mirror :lang="cmLang" :extensions="cmExt" readonly>
+          <pre>
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
     &lt;v-btn v-bind=&quot;attrs&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot; v-on=&quot;on&quot;&gt;
@@ -27,7 +30,9 @@
   &lt;/template&gt;
   &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
 &lt;/v-menu&gt;</pre
-        >
+          >
+        </code-mirror>
+
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
@@ -57,10 +62,15 @@ import {
   VApp,
   VSpacer,
 } from 'vuetify/lib';
+import { basicSetup } from '@codemirror/basic-setup';
+import { html } from '@codemirror/lang-html';
+import CodeMirror from 'vue-codemirror6';
+
 import VSwatches from '@/components/VSwatches.vue';
 
 export default Vue.extend({
   components: {
+    CodeMirror,
     VSwatches,
     VApp,
     VAppBar,
@@ -75,6 +85,8 @@ export default Vue.extend({
     return {
       value: '#ffffff',
       selected: '#ffffff',
+      cmLang: html(),
+      cmExt: [basicSetup],
       palette: [
         [
           '#ffb7b7',

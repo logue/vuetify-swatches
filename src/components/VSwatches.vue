@@ -30,6 +30,7 @@ import { VSheet, VIcon, VBtn } from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
 
 @Component({
+  name: 'VSwatches',
   components: {
     VSheet,
     VBtn,

@@ -1,6 +1,12 @@
 # Vuetify Swatches
 
-![anime](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
+[![jsdelivr CDN](https://data.jsdelivr.com/v1/package/npm/vuetify-swatches/badge)](https://www.jsdelivr.com/package/npm/vuetify-swatches)
+[![NPM Downloads](https://img.shields.io/npm/dm/vuetify-swatches.svg?style=flat)](https://www.npmjs.com/package/vuetify-swatches)
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/vuetify-swatches/file/README.md)
+[![npm version](https://img.shields.io/npm/v/vuetify-swatches.svg)](https://www.npmjs.com/package/vuetify-swatches)
+[![Open in Gitpod](https://shields.io/badge/Open%20in-Gitpod-green?logo=Gitpod)](https://gitpod.io/#https://github.com/logue/vuetify-swatches)
+
+![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
@@ -12,25 +18,99 @@ This library is positioned as a complement to Vuetify and provides a minimal UI.
 
 In this example, the selected color is assigned to `selected`.
 
-The method of specifying `swatches` is the same as [nested-color of Vue Swatches](https://saintplay.github.io/vue-swatches/examples/#nested-colors).
-
 ```vue
-<v-swatches v-model="selected" :swatches="colors" />
+<template>
+  <v-swatches v-model="selected" />
+</template>
+
+<script>
+import Vue from 'vue';
+
+import VSwatches from '@/components/VSwatches.vue';
+
+export default Vue.extend({
+  data() {
+    return {
+      selected: '#ffffff',
+    };
+  },
+});
+</script>
 ```
+
+The method of specifying `swatches` is the same as [nested-color of Vue Swatches](https://saintplay.github.io/vue-swatches/examples/#nested-colors).
 
 If you want to make the color palette appear when you click it, combine it with VMenu.
 
 ```vue
-<v-menu offset-y>
-  <template #activator="{ on, attrs }">
-    <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
-      <v-icon :color="selected" style="filter: invert(100%)">
-        mdi-menu-down
-      </v-icon>
-    </v-btn>
-  </template>
-  <v-swatches v-model="selected" :swatches="palette" />
-</v-menu>
+<template>
+  <v-menu offset-y>
+    <template #activator="{ on, attrs }">
+      <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
+        <v-icon :color="selected" style="filter: invert(100%)">
+          mdi-menu-down
+        </v-icon>
+      </v-btn>
+    </template>
+    <v-swatches v-model="selected" :swatches="palette" />
+  </v-menu>
+</template>
+
+<script>
+import Vue from 'vue';
+
+import VSwatches from '@/components/VSwatches.vue';
+
+export default Vue.extend({
+  data() {
+    return {
+      selected: '#ffffff',
+      palette: [
+        [
+          '#ffb7b7',
+          '#ffdbb7',
+          '#ffffb7',
+          '#b7ffb7',
+          '#b7ffff',
+          '#b7b7ff',
+          '#ffb7ff',
+          '#ffffff',
+        ],
+        [
+          '#ff5555',
+          '#ffa555',
+          '#ffff55',
+          '#55ff55',
+          '#55ffff',
+          '#5555ff',
+          '#ff55ff',
+          '#aaaaaa',
+        ],
+        [
+          '#ff0000',
+          '#ff7f00',
+          '#ffff00',
+          '#00ff00',
+          '#00ffff',
+          '#0000ff',
+          '#ff00ff',
+          '#555555',
+        ],
+        [
+          '#7f0000',
+          '#7f4c00',
+          '#7f7f00',
+          '#007f00',
+          '#007f7f',
+          '#00007f',
+          '#7f007f',
+          '#000000',
+        ],
+      ],
+    };
+  },
+});
+</script>
 ```
 
 ### Options

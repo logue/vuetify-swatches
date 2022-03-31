@@ -78,10 +78,16 @@ const config: UserConfig = {
       fileName: format => `VSwatches.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', 'vue-property-decorator', 'vuetify'],
+      external: [
+        'vue',
+        'vue-class-component',
+        'vue-property-decorator',
+        'vuetify',
+      ],
       output: {
         globals: {
           vue: 'Vue',
+          'vue-class-component': 'vueClassComponent',
           'vue-property-decorator': 'vuePropertyDecorator',
           vuetify: 'Vuetify',
         },
