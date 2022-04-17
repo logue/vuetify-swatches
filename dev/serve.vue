@@ -66,7 +66,7 @@ import { basicSetup } from '@codemirror/basic-setup';
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
-import VSwatches from '@/components/VSwatches.vue';
+import VSwatches from '@/';
 
 export default Vue.extend({
   components: {

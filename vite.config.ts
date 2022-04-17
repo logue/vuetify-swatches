@@ -1,9 +1,7 @@
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
+import eslintPlugin from '@modyqyw/vite-plugin-eslint';
 import { defineConfig, type UserConfig } from 'vite';
 import stylelintPlugin from 'vite-plugin-stylelint';
 import { createVuePlugin } from 'vite-plugin-vue2';
-import eslintPlugin from 'vite-plugin-eslint';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -18,6 +16,10 @@ const config: UserConfig = {
           __dirname,
           './node_modules/vue/dist/vue.runtime.esm.js'
         ),
+      },
+      {
+        find: 'vuetify',
+        replacement: path.resolve(__dirname, './node_modules/vuetify'),
       },
       {
         // vue @ shortcut fix
@@ -47,6 +49,7 @@ const config: UserConfig = {
     }),
     // unplugin-vue-components
     // https://github.com/antfu/unplugin-vue-components
+    /*
     Components({
       // generate `components.d.ts` global declarations
       dts: true,
@@ -58,16 +61,13 @@ const config: UserConfig = {
         VuetifyResolver(),
       ],
     }),
+    */
     // eslint
-    // https://github.com/gxmari007/vite-plugin-eslint
-    eslintPlugin({
-      fix: true,
-    }),
+    // https://github.com/ModyQyW/vite-plugin-eslint
+    eslintPlugin(),
     // Stylelint
     // https://github.com/ModyQyW/vite-plugin-stylelint
-    stylelintPlugin({
-      fix: true,
-    }),
+    stylelintPlugin(),
   ],
   // Build Options
   // https://vitejs.dev/config/#build-options
@@ -75,20 +75,13 @@ const config: UserConfig = {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'VSwatches',
-      fileName: format => `VSwatches.${format}.js`,
+      fileName: format => `v-swatches.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        'vue',
-        'vue-class-component',
-        'vue-property-decorator',
-        'vuetify',
-      ],
+      external: ['vue', 'vuetify'],
       output: {
         globals: {
           vue: 'Vue',
-          'vue-class-component': 'vueClassComponent',
-          'vue-property-decorator': 'vuePropertyDecorator',
           vuetify: 'Vuetify',
         },
       },
