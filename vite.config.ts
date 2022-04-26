@@ -77,7 +77,7 @@ const config: UserConfig = {
       fileName: format => `v-swatches.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors'],
+      external: ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
       output: {
         exports: 'named',
         globals: {

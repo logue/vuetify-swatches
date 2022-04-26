@@ -10,7 +10,7 @@
     <v-main>
       <v-container>
         <h2>Basic</h2>
-        <code-mirror :lang="cmLang" :extensions="cmExt" readonly>
+        <code-mirror :lang="cmLang" :extensions="cmExt" :dark="cmDark" readonly>
           <pre>&lt;v-swatches v-model="color" /&gt;</pre>
         </code-mirror>
 
@@ -18,7 +18,7 @@
         <p>Result: {{ value }}</p>
         <h2>With VMenu</h2>
 
-        <code-mirror :lang="cmLang" :extensions="cmExt" readonly>
+        <code-mirror :lang="cmLang" :extensions="cmExt" :dark="cmDark" readonly>
           <pre>
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi';
+import { defineComponent, ref } from 'vue-demi';
 
 import {
   VContainer,
@@ -64,9 +64,10 @@ import {
 } from 'vuetify/lib';
 import { basicSetup } from '@codemirror/basic-setup';
 import { html } from '@codemirror/lang-html';
-import { CodeMirror } from 'vue-codemirror6';
+import CodeMirror from 'vue-codemirror6';
 
 // import VSwatches from './dist/v-swatches.es';
+import { useVuetify } from './plugins/vuetify';
 import VSwatches from '@/';
 
 export default defineComponent({
@@ -83,11 +84,13 @@ export default defineComponent({
     VSpacer,
   },
   setup() {
+    const vuetify = useVuetify();
     return {
       value: '#ffffff',
       selected: '#ffffff',
       cmLang: html(),
       cmExt: [basicSetup],
+      cmDark: ref(vuetify.theme.dark),
       palette: [
         [
           '#ffb7b7',
