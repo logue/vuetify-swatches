@@ -26,7 +26,7 @@ In this example, the selected color is assigned to `selected`.
 <script>
 import Vue from 'vue';
 
-import VSwatches from '@/components/VSwatches.vue';
+import VSwatches from 'vuetify-swatches';
 
 export default Vue.extend({
   data() {
@@ -36,6 +36,10 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+@import 'vuetify-swatches/dist/style.css';
+</style>
 ```
 
 The method of specifying `swatches` is the same as [nested-color of Vue Swatches](https://saintplay.github.io/vue-swatches/examples/#nested-colors).
@@ -59,7 +63,7 @@ If you want to make the color palette appear when you click it, combine it with 
 <script>
 import Vue from 'vue';
 
-import VSwatches from '@/components/VSwatches.vue';
+import VSwatches from 'vuetify-swatches';
 
 export default Vue.extend({
   data() {
@@ -111,6 +115,10 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+@import 'vuetify-swatches/dist/style.css';
+</style>
 ```
 
 ### Options
