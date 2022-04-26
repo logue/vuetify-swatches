@@ -12,9 +12,9 @@ import { install, App } from 'vue-demi';
 
 install();
 
-const installCodeMirror = (app: App) => {
+const installVSwatches = (app: App) => {
   app.component('VSwatches', VSwatches);
 };
 
-export { VSwatches, installCodeMirror as install };
+export { VSwatches, installVSwatches as install };
 export default VSwatches;

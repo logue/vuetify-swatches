@@ -49,8 +49,8 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
+<script>
+import { defineComponent } from 'vue-demi';
 
 import {
   VContainer,
@@ -64,11 +64,12 @@ import {
 } from 'vuetify/lib';
 import { basicSetup } from '@codemirror/basic-setup';
 import { html } from '@codemirror/lang-html';
-import CodeMirror from 'vue-codemirror6';
+import { CodeMirror } from 'vue-codemirror6';
 
+// import VSwatches from './dist/v-swatches.es';
 import VSwatches from '@/';
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     CodeMirror,
     VSwatches,
@@ -81,7 +82,7 @@ export default Vue.extend({
     VContainer,
     VSpacer,
   },
-  data() {
+  setup() {
     return {
       value: '#ffffff',
       selected: '#ffffff',
@@ -131,9 +132,5 @@ export default Vue.extend({
       ],
     };
   },
-  watch: {},
-  async beforeCreate() {},
-  created() {},
-  methods: {},
 });
 </script>

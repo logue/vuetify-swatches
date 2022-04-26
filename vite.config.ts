@@ -1,6 +1,8 @@
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import { createVuePlugin as Vue } from 'vite-plugin-vue2';
 import eslintPlugin from '@modyqyw/vite-plugin-eslint';
-import { defineConfig, UserConfig } from 'vite';
+import Components from 'unplugin-vue-components/vite';
+import { defineConfig, type UserConfig } from 'vite';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -46,6 +48,19 @@ const config: UserConfig = {
     Vue({
       target: 'esnext',
     }),
+    // unplugin-vue-components
+    // https://github.com/antfu/unplugin-vue-components
+    Components({
+      // generate `components.d.ts` global declarations
+      dts: true,
+      // auto import for directives
+      directives: true,
+      // resolvers for custom components
+      resolvers: [
+        // Vuetify
+        VuetifyResolver(),
+      ],
+    }),
     // eslint
     // https://github.com/ModyQyW/vite-plugin-eslint
     eslintPlugin(),
@@ -62,34 +77,21 @@ const config: UserConfig = {
       fileName: format => `v-swatches.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', 'vuetify'],
-      output: [
-        {
-          format: 'es',
-          esModule: true,
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-            vuetify: 'Vuetify',
-            'vue-demi': 'VueDemi',
-          },
+      external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors'],
+      output: {
+        exports: 'named',
+        globals: {
+          vue: 'Vue',
+          'vuetify/lib': 'Vuetify',
+          'vuetify/lib/util/colors': 'colors',
+          'vue-demi': 'VueDemi',
         },
-        {
-          format: 'umd',
-          inlineDynamicImports: true,
-          interop: 'esModule',
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-            vuetify: 'Vuetify',
-            'vue-demi': 'VueDemi',
-          },
-        },
-      ],
+      },
     },
     target: 'es2021',
     // Minify option
     // https://vitejs.dev/config/#build-minify
+    /*
     minify: 'terser',
     terserOptions: {
       ecma: 2020,
@@ -99,6 +101,7 @@ const config: UserConfig = {
       module: true,
       output: { comments: true, beautify: false },
     },
+    */
   },
 };
 
