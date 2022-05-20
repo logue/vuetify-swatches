@@ -1,7 +1,9 @@
-node_modules
+
+*.local
 .DS_Store
 dist
 dist-ssr
-*.local
-.eslintcache
-.stylelintcache
+node_modules
+.yarn/
+!.yarn/releases/*
+src/Meta.ts

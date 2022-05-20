@@ -3,22 +3,22 @@
     <v-app-bar app>
       <v-app-bar-title>Vuetify Swatch Demo</v-app-bar-title>
       <v-spacer />
-      <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+      <v-btn icon @click="dark = !dark">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
         <h2>Basic</h2>
-        <code-mirror :lang="cmLang" :extensions="cmExt" :dark="cmDark" readonly>
+        <code-mirror class="mb-3" :lang="cmLang" basic :dark="dark" readonly>
           <pre>&lt;v-swatches v-model="color" /&gt;</pre>
         </code-mirror>
 
-        <v-swatches v-model="value" />
-        <p>Result: {{ value }}</p>
+        <v-swatches v-model="value" class="mb-3" />
+        <v-text-field label="Result" min-width="auto" :value="value" outlined />
         <h2>With VMenu</h2>
 
-        <code-mirror :lang="cmLang" :extensions="cmExt" :dark="cmDark" readonly>
+        <code-mirror class="mb-3" :lang="cmLang" :dark="dark" basic readonly>
           <pre>
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
@@ -33,9 +33,15 @@
           >
         </code-mirror>
 
-        <v-menu offset-y>
+        <v-menu class="mb-3" offset-y>
           <template #activator="{ on, attrs }">
-            <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
+            <v-btn
+              v-bind="attrs"
+              class="mb-3"
+              min-width="auto"
+              :color="selected"
+              v-on="on"
+            >
               <v-icon :color="selected" style="filter: invert(100%)">
                 mdi-menu-down
               </v-icon>
@@ -43,26 +49,27 @@
           </template>
           <v-swatches v-model="selected" :swatches="palette" />
         </v-menu>
-        <p>Result: {{ selected }}</p>
+        <v-text-field label="Result" :value="selected" outlined />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue-demi';
+import { defineComponent, ref, watch } from 'vue-demi';
 
 import {
-  VContainer,
+  VApp,
   VAppBar,
   VAppBarTitle,
   VBtn,
+  VContainer,
+  VIcon,
   VMain,
   VMenu,
-  VApp,
   VSpacer,
+  VTextField,
 } from 'vuetify/lib';
-import { basicSetup } from '@codemirror/basic-setup';
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
@@ -78,19 +85,25 @@ export default defineComponent({
     VAppBar,
     VAppBarTitle,
     VBtn,
+    VContainer,
+    VIcon,
     VMain,
     VMenu,
-    VContainer,
     VSpacer,
+    VTextField,
   },
   setup() {
     const vuetify = useVuetify();
+
+    const dark = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    watch(dark, v => (vuetify.theme.dark = v));
+
     return {
+      dark,
       value: '#ffffff',
       selected: '#ffffff',
       cmLang: html(),
-      cmExt: [basicSetup],
-      cmDark: ref(vuetify.theme.dark),
       palette: [
         [
           '#ffb7b7',

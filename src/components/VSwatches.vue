@@ -12,12 +12,9 @@
         min-width="auto"
         @click="onSwatchClick"
       >
-        <v-icon
-          v-if="color === selected"
-          :size="iconSize"
-          :color="color"
-          v-text="icon"
-        />
+        <v-icon v-if="color === selected" :size="iconSize" :color="color">
+          {{ icon }}
+        </v-icon>
       </v-btn>
     </div>
   </v-sheet>

@@ -8,17 +8,12 @@ extends:
   - plugin:import/recommended
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:import/typescript
-  - plugin:vue/recommended
+  - plugin:vue/vue3-recommended
   - plugin:prettier-vue/recommended
   - prettier
-  - plugin:yaml/recommended
-  - plugin:vuetify/base
   - eslint-config-prettier
 plugins:
   - vue
-  - prettier
-  - vuetify
-  - yaml
   - eslint-plugin-tsdoc
   - '@typescript-eslint'
   - vuejs-accessibility
@@ -32,12 +27,14 @@ parserOptions:
 rules:
   new-cap: off
   no-invalid-this: off
+  no-irregular-whitespace: off
   no-unused-vars: warn
-  prettier/prettier: error
   require-jsdoc: warn
   valid-jsdoc: off
   vue/html-self-closing: [error, html: { void: always }]
   vue/multi-word-component-names: warn
+  import/no-named-as-default: off
+  import/no-named-as-default-member: off
 settings:
   import/resolver:
     typescript: {}
