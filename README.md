@@ -125,6 +125,7 @@ export default Vue.extend({
 
 | Variables | Type   | Default                    | Info               |
 | --------- | ------ | -------------------------- | ------------------ |
+| elevation | number | 1                          | shadow size        |
 | size      | string | 2rem                       | Swatch Button size |
 | icon      | string | mdi-checkbox-marked-circle | checked icon       |
 | icon-size | string | 1rem                       | checked icon size  |

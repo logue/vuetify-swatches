@@ -1,10 +1,10 @@
 <template>
   <v-sheet class="v-swatches">
-    <div v-for="(colors, rows) in palette" :key="rows">
+    <div v-for="(colors, rows) in swatches" :key="rows">
       <v-btn
         v-for="color in colors"
         :key="color"
-        elevation="1"
+        :elevation="elevation"
         :width="size"
         :height="size"
         :color="color"
@@ -21,7 +21,13 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, type SetupContext, type Ref } from 'vue-demi';
+import {
+  defineComponent,
+  ref,
+  type PropType,
+  type Ref,
+  type SetupContext,
+} from 'vue-demi';
 
 import { VSheet, VIcon, VBtn } from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
@@ -46,7 +52,7 @@ export default defineComponent({
     modelValue: { type: String, required: true },
     /** Swatch colors */
     swatches: {
-      type: Array as () => string[] | string[][],
+      type: Array as PropType<string[] | string[][]>,
       default: () => [
         [colors.shades.black, colors.shades.white],
         [
@@ -72,6 +78,8 @@ export default defineComponent({
         [colors.brown.base, colors.blueGrey.base, colors.grey.base],
       ],
     },
+    /** The size of the shadow of the button */
+    elevation: { type: Number, default: 1 },
     /** Swatch sized */
     size: { type: String, default: '2rem' },
     /** selected icon */
@@ -89,9 +97,6 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     /** チェックアイコンの表示制御 */
     const checkedVisibilty: Ref<boolean> = ref(false);
-
-    /** Palette */
-    const palette: Ref<string[] | string[][]> = ref(props.swatches);
 
     /** Selected color */
     const selected: Ref<string> = ref(props.modelValue);
@@ -112,7 +117,6 @@ export default defineComponent({
 
     return {
       checkedVisibilty,
-      palette,
       selected,
       onSwatchClick,
     };
