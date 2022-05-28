@@ -1,15 +1,16 @@
-import { createApp, isVue3, Vue2 } from 'vue-demi';
+import { createApp, isVue3 } from 'vue-demi';
 import vuetify from './plugins/vuetify';
 import Dev from './DemoPage.vue';
 
 if (isVue3) {
   console.info('ℹ Running as Vue3.');
-  createApp(Dev).mount('#app');
 } else {
   console.info('ℹ Running as Vue2.');
-  // @ts-ignore
-  new Vue2({
-    vuetify,
-    render: h => h(Dev),
-  }).$mount('#app');
 }
+
+const app = createApp({
+  render: h => h(Dev),
+  vuetify,
+});
+
+app.mount('#app');

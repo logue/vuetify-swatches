@@ -8,12 +8,7 @@
  */
 
 import VSwatches from './components/VSwatches.vue';
-import { install, isVue2 } from 'vue-demi';
 
-const installVSwatches = isVue2
-  ? app => {
-      app.component('VSwatches', VSwatches);
-    }
-  : install();
+const installVSwatches = app => app.component('VSwatches', VSwatches);
 
 export { VSwatches as default, installVSwatches as install };

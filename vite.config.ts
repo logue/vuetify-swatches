@@ -1,6 +1,5 @@
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import { createVuePlugin as Vue } from 'vite-plugin-vue2';
-import eslintPlugin from '@modyqyw/vite-plugin-eslint';
 import Components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
@@ -57,16 +56,13 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         // generate `components.d.ts` global declarations
         dts: true,
         // auto import for directives
-        directives: true,
+        directives: false,
         // resolvers for custom components
         resolvers: [
           // Vuetify
           VuetifyResolver(),
         ],
       }),
-      // eslint
-      // https://github.com/ModyQyW/vite-plugin-eslint
-      eslintPlugin(),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({ typescript: true, vueTsc: true }),
@@ -80,7 +76,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         name: 'VSwatches',
-        fileName: format => `v-swatches.${format}.js`,
+        fileName: format => `index.${format}.js`,
       },
       rollupOptions: {
         plugins: [
