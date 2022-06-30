@@ -8,9 +8,8 @@
         :width="size"
         :height="size"
         :color="color"
-        :value="color"
         min-width="auto"
-        @click="onSwatchClick"
+        @click="onSwatchClick(color)"
       >
         <v-icon v-if="color === selected" :size="iconSize" :color="color">
           {{ icon }}
@@ -27,21 +26,15 @@ import {
   type PropType,
   type Ref,
   type SetupContext,
-} from 'vue-demi';
+} from 'vue';
 
-import { VSheet, VIcon, VBtn } from 'vuetify/lib';
-import colors from 'vuetify/lib/util/colors';
+// eslint-disable-next-line import/no-unresolved
+import colors from 'vuetify/lib/util/colors.mjs';
 
 /** Vuetify Swatches */
 export default defineComponent({
   /** Component name */
   name: 'VSwatches',
-  /** Components */
-  components: {
-    VSheet,
-    VBtn,
-    VIcon,
-  },
   /** Model Definition */
   model: {
     prop: 'modelValue',
@@ -104,10 +97,9 @@ export default defineComponent({
     /**
      * ボタンがクリックされた
      *
-     * @param e - イベント
+     * @param value - 色
      */
-    const onSwatchClick = (e: Event) => {
-      const value = (e.target as HTMLButtonElement).value;
+    const onSwatchClick = (value: string) => {
       if (!value || selected.value === value) {
         return;
       }

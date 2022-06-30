@@ -1,5 +1,5 @@
 /**
- * Vuetify Swatches Component
+ * Vuetify3 Swatches Component
  *
  * @license MIT
  * @author Logue {@link logue@hotmail.co.jp}

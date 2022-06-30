@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app :theme="dark ? 'dark' : 'light'">
     <v-app-bar app>
-      <v-app-bar-title>Vuetify Swatch Demo</v-app-bar-title>
+      <v-app-bar-title>Vuetify3 Swatch Demo</v-app-bar-title>
       <v-spacer />
       <v-btn icon @click="dark = !dark">
         <v-icon>mdi-theme-light-dark</v-icon>
@@ -15,14 +15,19 @@
         </code-mirror>
 
         <v-swatches v-model="value" class="mb-3" />
-        <v-text-field label="Result" min-width="auto" :value="value" outlined />
+        <v-text-field
+          v-model="value"
+          label="Result"
+          min-width="auto"
+          outlined
+        />
         <h2>With VMenu</h2>
 
         <code-mirror class="mb-3" :lang="cmLang" :dark="dark" basic readonly>
           <pre>
 &lt;v-menu offset-y&gt;
-  &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
-    &lt;v-btn v-bind=&quot;attrs&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot; v-on=&quot;on&quot;&gt;
+  &lt;template #activator=&quot;{ props }&quot;&gt;
+    &lt;v-btn v-bind=&quot;props&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot;&gt;
       &lt;v-icon :color=&quot;selected&quot; style=&quot;filter: invert(100%)&quot;&gt;
         mdi-menu-down
       &lt;/v-icon&gt;
@@ -34,13 +39,12 @@
         </code-mirror>
 
         <v-menu class="mb-3" offset-y>
-          <template #activator="{ on, attrs }">
+          <template #activator="{ props }">
             <v-btn
-              v-bind="attrs"
+              v-bind="props"
               class="mb-3"
               min-width="auto"
               :color="selected"
-              v-on="on"
             >
               <v-icon :color="selected" style="filter: invert(100%)">
                 mdi-menu-down
@@ -55,54 +59,35 @@
   </v-app>
 </template>
 
-<script>
-import { defineComponent, ref, watch } from 'vue-demi';
+<script lang="ts">
+import { defineComponent, ref, type Ref } from 'vue';
 
-import {
-  VApp,
-  VAppBar,
-  VAppBarTitle,
-  VBtn,
-  VContainer,
-  VIcon,
-  VMain,
-  VMenu,
-  VSpacer,
-  VTextField,
-} from 'vuetify/lib';
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
 // import VSwatches from './dist/v-swatches.es';
 import { useVuetify } from './plugins/vuetify';
-import VSwatches from '@/';
+import VSwatches from '../src/';
 
 export default defineComponent({
   components: {
     CodeMirror,
     VSwatches,
-    VApp,
-    VAppBar,
-    VAppBarTitle,
-    VBtn,
-    VContainer,
-    VIcon,
-    VMain,
-    VMenu,
-    VSpacer,
-    VTextField,
   },
   setup() {
     const vuetify = useVuetify();
 
-    const dark = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // @ts-ignore
+    const dark: Ref<boolean> = ref(vuetify.theme.current.dark);
 
-    watch(dark, v => (vuetify.theme.dark = v));
+    const value: Ref<string> = ref('#ffffff');
+
+    const selected: Ref<string> = ref('#ffffff');
 
     return {
       dark,
-      value: '#ffffff',
-      selected: '#ffffff',
+      value,
+      selected,
       cmLang: html(),
       palette: [
         [

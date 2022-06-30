@@ -1,9 +1,8 @@
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import { createVuePlugin as Vue } from 'vite-plugin-vue2';
-import Components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
+import vuetify from 'vite-plugin-vuetify';
 import checker from 'vite-plugin-checker';
+import Vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -12,25 +11,9 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
     resolve: {
       // https://vitejs.dev/config/#resolve-alias
       alias: [
-        // make vue external
-        {
-          find: 'vue',
-          replacement: path.resolve(
-            __dirname,
-            './node_modules/vue/dist/vue.runtime.esm.js'
-          ),
-        },
-        {
-          find: 'vuetify',
-          replacement: path.resolve(__dirname, './node_modules/vuetify'),
-        },
         {
           // vue @ shortcut fix
           find: '@/',
-          replacement: `${path.resolve(__dirname, './src')}/`,
-        },
-        {
-          find: 'src/',
           replacement: `${path.resolve(__dirname, './src')}/`,
         },
       ],
@@ -45,30 +28,20 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       },
     },
     plugins: [
-      // Vue2
-      // https://github.com/underfin/vite-plugin-vue2
-      Vue({
-        target: 'esnext',
-      }),
-      // unplugin-vue-components
-      // https://github.com/antfu/unplugin-vue-components
-      Components({
-        // generate `components.d.ts` global declarations
-        dts: true,
-        // auto import for directives
-        directives: false,
-        // resolvers for custom components
-        resolvers: [
-          // Vuetify
-          VuetifyResolver(),
-        ],
+      // Vue3
+      Vue(),
+      // Vuetify Loader
+      // https://github.com/vuetifyjs/vuetify-loader
+      vuetify({
+        autoImport: false,
+        // styles: 'sass',
       }),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({ typescript: true, vueTsc: true }),
     ],
     optimizeDeps: {
-      exclude: ['vue-demi'],
+      exclude: ['vue', 'vuetify'],
     },
     // Build Options
     // https://vitejs.dev/config/#build-options
@@ -91,14 +64,13 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external: ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
+        external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors'],
         output: {
           exports: 'named',
           globals: {
             vue: 'Vue',
-            'vuetify/lib': 'Vuetify',
-            'vuetify/lib/util/colors': 'colors',
-            'vue-demi': 'VueDemi',
+            vuetify: 'Vuetify',
+            colors: 'vuetify/lib/util/colors',
           },
         },
       },

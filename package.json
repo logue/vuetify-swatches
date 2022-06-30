@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "vuetify-swatches",
-  "version": "0.0.8",
-  "description": "Color Swatch component for Vuetify.",
+  "version": "0.3.0",
+  "description": "Color Swatch component for Vuetify3.",
   "keywords": [
     "vuejs",
     "vue",
@@ -10,10 +10,11 @@
     "color-picker",
     "color-palette",
     "swatches",
-    "vue2",
+    "vue3",
     "vue-plugin",
     "vue-resource",
     "vuetify",
+    "vuetify3",
     "vuetify-components"
   ],
   "author": {
@@ -69,62 +70,55 @@
     "preview": "vite preview --config vite.config.docs.ts",
     "prepare": "husky install"
   },
-  "dependencies": {
-    "@vue/composition-api": "latest",
-    "vue-demi": "latest"
-  },
   "peerDependencies": {
-    "vue": "^2.6.14",
-    "vuetify": "^2.6.6"
+    "vue": "^3.2.37",
+    "vuetify": "^3.0.0-beta.4"
   },
   "devDependencies": {
-    "@codemirror/basic-setup": "^0.20.0",
-    "@codemirror/lang-html": "^0.20.0",
-    "@codemirror/state": "^0.20.0",
-    "@codemirror/view": "^0.20.6",
-    "@types/node": "^17.0.36",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
-    "eslint": "^8.16.0",
+    "@codemirror/lang-html": "^6.1.0",
+    "@codemirror/state": "^6.0.1",
+    "@codemirror/view": "^6.0.2",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "eslint": "^8.18.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-import-resolver-typescript": "^3.1.1",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsdoc": "^39.3.2",
+    "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-tsdoc": "^0.2.16",
-    "eslint-plugin-vue": "^9.0.1",
-    "eslint-plugin-vuejs-accessibility": "^1.1.1",
+    "eslint-plugin-vue": "^9.1.1",
+    "eslint-plugin-vuejs-accessibility": "^1.2.0",
     "eslint-plugin-vuetify": "^1.1.0",
     "eslint-plugin-yaml": "^0.5.0",
     "husky": "^8.0.1",
-    "lint-staged": "^12.4.2",
+    "lint-staged": "^13.0.3",
     "postcss-html": "^1.4.1",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "prettier-plugin-jsdoc": "^0.3.38",
     "prettier-plugin-md-nocjsp": "^1.2.0",
-    "prettier-plugin-sort-imports": "^1.6.1",
+    "prettier-plugin-sort-imports": "^1.7.0",
     "rimraf": "^3.0.2",
     "rollup-plugin-visualizer": "^5.6.0",
-    "sass": "1.32.12",
-    "stylelint": "^14.8.5",
+    "sass": "1.53.0",
+    "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended-scss": "^6.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-order": "^5.0.0",
     "stylelint-prettier": "^2.0.0",
-    "typescript": "^4.7.2",
-    "unplugin-vue-components": "^0.19.6",
-    "vite": "^2.9.9",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13",
     "vite-plugin-checker": "^0.4.6",
-    "vite-plugin-stylelint": "^2.2.3",
-    "vite-plugin-vue2": "^2.0.1",
-    "vue": "^2.6.14",
-    "vue-codemirror6": "0.1.6",
-    "vue-eslint-parser": "^9.0.2",
-    "vue-template-compiler": "^2.6.14",
-    "vue-tsc": "^0.34.17",
-    "vuetify": "^2.6.6"
+    "vite-plugin-vuetify": "^1.0.0-alpha.12",
+    "vue": "^3.2.37",
+    "vue-codemirror6": "0.6.4",
+    "vue-eslint-parser": "^9.0.3",
+    "vue-tsc": "^0.38.2",
+    "vuetify": "^3.0.0-beta.4"
   },
   "husky": {
     "hooks": {
@@ -136,5 +130,8 @@
     "*.{js,ts,json,yml,yaml,vue,htm,html}": "eslint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint",
     "*.{css,sass,scss,vue,htm,html}": "stylelint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-stylelint",
     "*": "prettier -w -u"
+  },
+  "resolutions": {
+    "prettier": "^2.7.1"
   }
 }

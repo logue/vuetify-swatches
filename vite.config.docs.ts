@@ -1,6 +1,7 @@
-import { createVuePlugin as Vue } from 'vite-plugin-vue2';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import vuetify from 'vite-plugin-vuetify';
+import Vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -10,30 +11,12 @@ const config: UserConfig = {
   resolve: {
     // https://vitejs.dev/config/#resolve-alias
     alias: [
-      // make vue external
-      {
-        find: 'vue',
-        replacement: path.resolve(
-          __dirname,
-          './node_modules/vue/dist/vue.runtime.esm.js'
-        ),
-      },
-      {
-        find: 'vuetify',
-        replacement: path.resolve(__dirname, './node_modules/vuetify'),
-      },
       {
         // vue @ shortcut fix
         find: '@/',
         replacement: `${path.resolve(__dirname, './src')}/`,
       },
-      {
-        find: 'src/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
     ],
-    // External
-    dedupe: ['vue', 'vuetify'],
   },
   // https://vitejs.dev/config/#server-options
   server: {
@@ -43,7 +26,14 @@ const config: UserConfig = {
     },
   },
   plugins: [
+    // Vue3
     Vue(),
+    // Vuetify Loader
+    // https://github.com/vuetifyjs/vuetify-loader
+    vuetify({
+      autoImport: true,
+      // styles: 'sass',
+    }),
     // vite-plugin-checker
     // https://github.com/fi3ework/vite-plugin-checker
     checker({ typescript: true, vueTsc: true }),
@@ -55,13 +45,25 @@ const config: UserConfig = {
     rollupOptions: {
       output: {
         manualChunks: {
-          vue: ['vue', 'vue-demi'],
-          vuetify: ['vuetify/lib', 'vuetify/lib/util/colors'],
+          vue: ['vue'],
+          vuetify: [
+            'vuetify',
+            'vuetify/components',
+            'vuetify/directives',
+            'vuetify/lib/styles/main.css',
+            // 'webfontloader',
+          ],
+          // materialdesignicons: ['@mdi/font/css/materialdesignicons.css'],
           codemirror: [
+            'vue-codemirror6',
+            'codemirror',
+            '@codemirror/autocomplete',
+            '@codemirror/commands',
+            '@codemirror/language',
+            '@codemirror/lint',
+            '@codemirror/search',
             '@codemirror/state',
             '@codemirror/view',
-            '@codemirror/basic-setup',
-            '@codemirror/lang-html',
           ],
         },
       },
