@@ -1,3 +1,5 @@
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import vue from '@vitejs/plugin-vue2';
@@ -10,25 +12,9 @@ const config: UserConfig = {
   resolve: {
     // https://vitejs.dev/config/#resolve-alias
     alias: [
-      // make vue external
-      {
-        find: 'vue',
-        replacement: path.resolve(
-          __dirname,
-          './node_modules/vue/dist/vue.runtime.esm.js'
-        ),
-      },
-      {
-        find: 'vuetify',
-        replacement: path.resolve(__dirname, './node_modules/vuetify'),
-      },
       {
         // vue @ shortcut fix
         find: '@/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
-      {
-        find: 'src/',
         replacement: `${path.resolve(__dirname, './src')}/`,
       },
     ],
@@ -46,6 +32,20 @@ const config: UserConfig = {
     // Vue2
     // https://github.com/vitejs/vite-plugin-vue2
     vue(),
+    // unplugin-vue-components
+    // https://github.com/antfu/unplugin-vue-components
+    Components({
+      // generate `components.d.ts` global declarations
+      // https://github.com/antfu/unplugin-vue-components#typescript
+      dts: true,
+      // auto import for directives
+      directives: false,
+      // resolvers for custom components
+      resolvers: [
+        // Vuetify
+        VuetifyResolver(),
+      ],
+    }),
     // vite-plugin-checker
     // https://github.com/fi3ework/vite-plugin-checker
     checker({ typescript: true, vueTsc: true }),
@@ -57,7 +57,7 @@ const config: UserConfig = {
     rollupOptions: {
       output: {
         manualChunks: {
-          vue: ['vue', 'vue-demi'],
+          vue: ['vue'],
           vuetify: ['vuetify/lib', 'vuetify/lib/util/colors'],
           codemirror: [
             '@codemirror/state',
