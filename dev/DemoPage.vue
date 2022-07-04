@@ -10,7 +10,14 @@
     <v-main>
       <v-container>
         <h2>Basic</h2>
-        <code-mirror class="mb-3" :lang="cmLang" basic :dark="dark" readonly>
+        <code-mirror
+          v-model="code1"
+          class="mb-3"
+          :lang="cmLang"
+          basic
+          :dark="dark"
+          readonly
+        >
           <pre>&lt;v-swatches v-model="color" /&gt;</pre>
         </code-mirror>
 
@@ -18,7 +25,14 @@
         <v-text-field label="Result" min-width="auto" :value="value" outlined />
         <h2>With VMenu</h2>
 
-        <code-mirror class="mb-3" :lang="cmLang" :dark="dark" basic readonly>
+        <code-mirror
+          v-model="code2"
+          class="mb-3"
+          :lang="cmLang"
+          :dark="dark"
+          basic
+          readonly
+        >
           <pre>
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
@@ -56,20 +70,8 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from 'vue-demi';
+import { defineComponent, ref, computed } from 'vue';
 
-import {
-  VApp,
-  VAppBar,
-  VAppBarTitle,
-  VBtn,
-  VContainer,
-  VIcon,
-  VMain,
-  VMenu,
-  VSpacer,
-  VTextField,
-} from 'vuetify/lib';
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
@@ -81,29 +83,31 @@ export default defineComponent({
   components: {
     CodeMirror,
     VSwatches,
-    VApp,
-    VAppBar,
-    VAppBarTitle,
-    VBtn,
-    VContainer,
-    VIcon,
-    VMain,
-    VMenu,
-    VSpacer,
-    VTextField,
   },
   setup() {
     const vuetify = useVuetify();
 
-    const dark = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-    watch(dark, v => (vuetify.theme.dark = v));
+    const dark = computed({
+      get: () => vuetify.theme.dark,
+      set: dark => (vuetify.theme.dark = dark),
+    });
 
     return {
       dark,
-      value: '#ffffff',
-      selected: '#ffffff',
+      value: ref('#ffffff'),
+      selected: ref('#ffffff'),
       cmLang: html(),
+      code1: '<v-swatches v-model="color" />',
+      code2: `<v-menu offset-y>
+  <template #activator="{ on, attrs }">
+    <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
+      <v-icon :color="selected" style="filter: invert(100%)">
+        mdi-menu-down
+      </v-icon>
+    </v-btn>
+  </template>
+  <v-swatches v-model="selected" :swatches="palette" />
+</v-menu>`,
       palette: [
         [
           '#ffb7b7',

@@ -27,7 +27,7 @@ import {
   type PropType,
   type Ref,
   type SetupContext,
-} from 'vue-demi';
+} from 'vue';
 
 import { VSheet, VIcon, VBtn } from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';

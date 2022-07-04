@@ -38,7 +38,7 @@ export default Vue.extend({
 </script>
 
 <style>
-@import 'vuetify-swatches/dist/style.css';
+@import 'vuetify-swatches/style.css';
 </style>
 ```
 
@@ -117,7 +117,7 @@ export default Vue.extend({
 </script>
 
 <style>
-@import 'vuetify-swatches/dist/style.css';
+@import 'vuetify-swatches/style.css';
 </style>
 ```
 

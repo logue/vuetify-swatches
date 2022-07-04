@@ -1,6 +1,5 @@
-import { getCurrentInstance } from 'vue-demi';
+import Vue, { getCurrentInstance } from 'vue';
 import Vuetify from 'vuetify/lib';
-import Vue from 'vue';
 
 Vue.use(Vuetify);
 

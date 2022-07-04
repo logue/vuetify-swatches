@@ -1,6 +1,6 @@
-import { createVuePlugin as Vue } from 'vite-plugin-vue2';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import vue from '@vitejs/plugin-vue2';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -43,7 +43,9 @@ const config: UserConfig = {
     },
   },
   plugins: [
-    Vue(),
+    // Vue2
+    // https://github.com/vitejs/vite-plugin-vue2
+    vue(),
     // vite-plugin-checker
     // https://github.com/fi3ework/vite-plugin-checker
     checker({ typescript: true, vueTsc: true }),

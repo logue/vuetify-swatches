@@ -1,10 +1,13 @@
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import { createVuePlugin as Vue } from 'vite-plugin-vue2';
 import Components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import banner from 'vite-plugin-banner';
+import vue from '@vitejs/plugin-vue2';
 import path from 'path';
+
+const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }): Promise<UserConfig> => {
@@ -29,10 +32,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
           find: '@/',
           replacement: `${path.resolve(__dirname, './src')}/`,
         },
-        {
-          find: 'src/',
-          replacement: `${path.resolve(__dirname, './src')}/`,
-        },
       ],
       // External
       dedupe: ['vue', 'vuetify'],
@@ -46,10 +45,8 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
     },
     plugins: [
       // Vue2
-      // https://github.com/underfin/vite-plugin-vue2
-      Vue({
-        target: 'esnext',
-      }),
+      // https://github.com/vitejs/vite-plugin-vue2
+      vue(),
       // unplugin-vue-components
       // https://github.com/antfu/unplugin-vue-components
       Components({
@@ -66,6 +63,19 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({ typescript: true, vueTsc: true }),
+      // vite-plugin-banner
+      // https://github.com/chengpeiquan/vite-plugin-banner
+      banner(`/**
+ * ${pkg.name}
+ *
+ * @description ${pkg.description}
+ * @author ${pkg.author.name} <${pkg.author.email}>
+ * @copyright 2022 By Masashi Yoshikawa All rights reserved.
+ * @license ${pkg.license}
+ * @version ${pkg.version}
+ * @see {@link ${pkg.homepage}}
+ */
+`),
     ],
     optimizeDeps: {
       exclude: ['vue-demi'],

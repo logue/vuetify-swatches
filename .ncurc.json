@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["vue", "vue-router", "vuex", "sass", "vue-codemirror6"]
+  "reject": ["vue", "vue-router", "vuex", "sass"]
 }
