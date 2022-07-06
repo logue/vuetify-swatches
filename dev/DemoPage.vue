@@ -1,8 +1,11 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-title>Vuetify Swatch Demo</v-app-bar-title>
+      <v-app-bar-title>Vuetify Swatches Demo</v-app-bar-title>
       <v-spacer />
+      <v-btn icon href="https://github.com/logue/vuetify-swatches">
+        <v-icon>mdi-github</v-icon>
+      </v-btn>
       <v-btn icon @click="dark = !dark">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
@@ -22,7 +25,12 @@
         </code-mirror>
 
         <v-swatches v-model="value" class="mb-3" />
-        <v-text-field label="Result" min-width="auto" :value="value" outlined />
+        <v-text-field
+          v-model="value"
+          label="Selected Color"
+          min-width="auto"
+          outlined
+        />
         <h2>With VMenu</h2>
 
         <code-mirror
@@ -63,7 +71,7 @@
           </template>
           <v-swatches v-model="selected" :swatches="palette" />
         </v-menu>
-        <v-text-field label="Result" :value="selected" outlined />
+        <v-text-field v-model="selected" label="Selected Color" outlined />
       </v-container>
     </v-main>
   </v-app>

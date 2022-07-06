@@ -10,9 +10,9 @@
         :color="color"
         :value="color"
         min-width="auto"
-        @click="onSwatchClick"
+        @click="onSwatchClick($event)"
       >
-        <v-icon v-if="color === selected" :size="iconSize" :color="color">
+        <v-icon v-if="color === modelValue" :size="iconSize" :color="color">
           {{ icon }}
         </v-icon>
       </v-btn>
@@ -49,7 +49,7 @@ export default defineComponent({
   },
   props: {
     /** Model value */
-    modelValue: { type: String, required: true },
+    modelValue: { type: String, default: '#ffffff' },
     /** Swatch colors */
     swatches: {
       type: Array as PropType<string[] | string[][]>,
@@ -95,11 +95,8 @@ export default defineComponent({
    * @param context - Context
    */
   setup(props, context: SetupContext) {
-    /** チェックアイコンの表示制御 */
+    /** Check icon visibility */
     const checkedVisibilty: Ref<boolean> = ref(false);
-
-    /** Selected color */
-    const selected: Ref<string> = ref(props.modelValue);
 
     /**
      * ボタンがクリックされた
@@ -108,16 +105,14 @@ export default defineComponent({
      */
     const onSwatchClick = (e: Event) => {
       const value = (e.target as HTMLButtonElement).value;
-      if (!value || selected.value === value) {
+      if (!value || props.modelValue === value) {
         return;
       }
-      selected.value = value;
       context.emit('update:modelValue', value);
     };
 
     return {
       checkedVisibilty,
-      selected,
       onSwatchClick,
     };
   },

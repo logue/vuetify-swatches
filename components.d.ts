@@ -12,5 +12,4 @@ declare module '@vue/runtime-core' {
     VSheet: typeof import('vuetify/lib')['VSheet']
     VSwatches: typeof import('./src/components/VSwatches.vue')['default']
   }
-
 }
