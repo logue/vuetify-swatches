@@ -74,6 +74,7 @@
     "vuetify": "^2.6.7"
   },
   "devDependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
     "@codemirror/lang-html": "^6.1.0",
     "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",

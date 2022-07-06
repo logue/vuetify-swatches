@@ -7,9 +7,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    VApp: typeof import('vuetify/lib')['VApp']
+    VAppBar: typeof import('vuetify/lib')['VAppBar']
+    VAppBarTitle: typeof import('vuetify/lib')['VAppBarTitle']
     VBtn: typeof import('vuetify/lib')['VBtn']
+    VContainer: typeof import('vuetify/lib')['VContainer']
     VIcon: typeof import('vuetify/lib')['VIcon']
+    VMain: typeof import('vuetify/lib')['VMain']
+    VMenu: typeof import('vuetify/lib')['VMenu']
     VSheet: typeof import('vuetify/lib')['VSheet']
+    VSpacer: typeof import('vuetify/lib')['VSpacer']
     VSwatches: typeof import('./src/components/VSwatches.vue')['default']
+    VTextField: typeof import('vuetify/lib')['VTextField']
   }
 }
