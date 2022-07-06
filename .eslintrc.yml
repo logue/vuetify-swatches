@@ -5,34 +5,44 @@ env:
 extends:
   - eslint:recommended
   - google
-  - plugin:import/recommended
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:import/typescript
+  - plugin:jsdoc/recommended
   - plugin:vue/recommended
-  - prettier
+  - plugin:vuejs-accessibility/recommended
+  - plugin:yaml/recommended
+  # - plugin:vuetify/base
+  - '@vue/eslint-config-prettier'
 plugins:
-  - vue
-  - eslint-plugin-tsdoc
   - '@typescript-eslint'
-  - vuejs-accessibility
+  - jsdoc
+  - tsdoc
+  - html
+  - yaml
+  - vue
 parser: vue-eslint-parser
 parserOptions:
   ecmaVersion: latest
   parser: '@typescript-eslint/parser'
   sourceType: module
   createDefaultProgram: true
-  project: ./tsconfig.json
+  project:
+    - ./tsconfig.json
 rules:
   new-cap: off
   no-invalid-this: off
-  no-irregular-whitespace: off
   no-unused-vars: warn
   require-jsdoc: warn
   valid-jsdoc: off
+  import/no-named-as-default: off
+  jsdoc/require-param-type: off
+  jsdoc/require-param: ['off', { enableRootFixer: false }]
+  jsdoc/require-returns-description: off
+  jsdoc/require-returns-type: off
+  jsdoc/require-returns: off
+  tsdoc/syntax: warn
   vue/html-self-closing: [error, html: { void: always }]
   vue/multi-word-component-names: warn
-  import/no-named-as-default: off
-  import/no-named-as-default-member: off
 settings:
   import/resolver:
     typescript: {}

@@ -1,8 +1,8 @@
 .husky/
 .vscode/
 .yarn/
-dist/
-docs/
-public/assets/
 components.d.ts
+dist/
 index.html
+public/assets/
+docs/

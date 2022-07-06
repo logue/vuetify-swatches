@@ -4,5 +4,4 @@
 dist/
 docs/
 public/assets/
-components.d.ts
-index.html
+tsconfig.node.json
