@@ -77,15 +77,15 @@
   </v-app>
 </template>
 
-<script>
-import { defineComponent, ref, computed } from 'vue';
+<script lang="ts">
+import { defineComponent, ref, computed, type Ref } from 'vue';
 
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
 // import VSwatches from './dist/v-swatches.es';
 import { useVuetify } from './plugins/vuetify';
-import VSwatches from '@/';
+import VSwatches from '@/components/VSwatches.vue';
 
 export default defineComponent({
   components: {
@@ -95,15 +95,19 @@ export default defineComponent({
   setup() {
     const vuetify = useVuetify();
 
-    const dark = computed({
+    const dark: Ref<boolean> = computed({
       get: () => vuetify.theme.dark,
       set: dark => (vuetify.theme.dark = dark),
     });
 
+    const value: Ref<string> = ref('#ffffff');
+
+    const selected: Ref<string> = ref('#ffffff');
+
     return {
       dark,
-      value: ref('#ffffff'),
-      selected: ref('#ffffff'),
+      value,
+      selected,
       cmLang: html(),
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>

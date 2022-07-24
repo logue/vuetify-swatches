@@ -29,7 +29,7 @@ import {
   type SetupContext,
 } from 'vue';
 
-import { VSheet, VIcon, VBtn } from 'vuetify/lib';
+import { VSheet, VIcon, VBtn } from 'vuetify/lib/components';
 import colors from 'vuetify/lib/util/colors';
 
 /** Vuetify Swatches */

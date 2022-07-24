@@ -1,5 +1,3 @@
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -47,19 +45,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       // Vue2
       // https://github.com/vitejs/vite-plugin-vue2
       vue(),
-      // unplugin-vue-components
-      // https://github.com/antfu/unplugin-vue-components
-      Components({
-        // generate `components.d.ts` global declarations
-        dts: true,
-        // auto import for directives
-        directives: false,
-        // resolvers for custom components
-        resolvers: [
-          // Vuetify
-          VuetifyResolver(),
-        ],
-      }),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({ typescript: true, vueTsc: true }),
@@ -101,31 +86,23 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external: ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
+        external: [
+          'vue',
+          'vue-demi',
+          'vuetify/lib/components',
+          'vuetify/lib/util/colors',
+        ],
         output: {
           exports: 'named',
           globals: {
             vue: 'Vue',
-            'vuetify/lib': 'Vuetify',
+            'vuetify/lib/components': 'Vuetify',
             'vuetify/lib/util/colors': 'colors',
             'vue-demi': 'VueDemi',
           },
         },
       },
       target: 'es2021',
-      // Minify option
-      // https://vitejs.dev/config/#build-minify
-      /*
-      minify: 'terser',
-      terserOptions: {
-        ecma: 2020,
-        parse: {},
-        compress: { drop_console: true },
-        mangle: true, // Note `mangle.properties` is `false` by default.
-        module: true,
-        output: { comments: true, beautify: false },
-      },
-      */
     },
   };
   // Export vite config
