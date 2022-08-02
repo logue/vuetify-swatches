@@ -2,8 +2,11 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
 import vuetify from 'vite-plugin-vuetify';
 import checker from 'vite-plugin-checker';
-import Vue from '@vitejs/plugin-vue';
+import banner from 'vite-plugin-banner';
+import vue from '@vitejs/plugin-vue';
 import path from 'path';
+
+const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }): Promise<UserConfig> => {
@@ -29,7 +32,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
     },
     plugins: [
       // Vue3
-      Vue(),
+      vue(),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
       vuetify({
@@ -38,7 +41,20 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       }),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
-      checker({ typescript: true, vueTsc: true }),
+      checker({ typescript: true, vueTsc: false }),
+      // vite-plugin-banner
+      // https://github.com/chengpeiquan/vite-plugin-banner
+      banner(`/**
+ * ${pkg.name}
+ *
+ * @description ${pkg.description}
+ * @author ${pkg.author.name} <${pkg.author.email}>
+ * @copyright 2022 By Masashi Yoshikawa All rights reserved.
+ * @license ${pkg.license}
+ * @version ${pkg.version}
+ * @see {@link ${pkg.homepage}}
+ */
+`),
     ],
     optimizeDeps: {
       exclude: ['vue', 'vuetify'],
@@ -76,18 +92,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       },
       target: 'es2021',
       // Minify option
-      // https://vitejs.dev/config/#build-minify
-      /*
-      minify: 'terser',
-      terserOptions: {
-        ecma: 2020,
-        parse: {},
-        compress: { drop_console: true },
-        mangle: true, // Note `mangle.properties` is `false` by default.
-        module: true,
-        output: { comments: true, beautify: false },
-      },
-      */
+      minify: 'esbuild',
     },
   };
   // Export vite config

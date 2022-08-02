@@ -8,6 +8,8 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
+This branch is for vuetify3. Not usable for production, experimental use only. Bidirectional binding (select swatch button by value) does not work due to a problem on the Vuetify3 side.
+
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
 Unlike the original version, it provides a UI based on Vuetify, such as ripple effects and dark mode.

@@ -3,6 +3,13 @@
     <v-app-bar app>
       <v-app-bar-title>Vuetify3 Swatch Demo</v-app-bar-title>
       <v-spacer />
+      <v-btn
+        icon
+        href="https://github.com/logue/vuetify-swatches"
+        target="_blank"
+      >
+        <v-icon>mdi-github</v-icon>
+      </v-btn>
       <v-btn icon @click="dark = !dark">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
@@ -28,7 +35,10 @@
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ props }&quot;&gt;
     &lt;v-btn v-bind=&quot;props&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot;&gt;
-      &lt;v-icon :color=&quot;selected&quot; style=&quot;filter: invert(100%)&quot;&gt;
+      &lt;v-icon
+        :color=&quot;selected&quot;
+        style=&quot;filter: invert(100%) grayscale(100%) contrast(100);&quot;
+      &gt;
         mdi-menu-down
       &lt;/v-icon&gt;
     &lt;/v-btn&gt;
@@ -46,14 +56,17 @@
               min-width="auto"
               :color="selected"
             >
-              <v-icon :color="selected" style="filter: invert(100%)">
+              <v-icon
+                :color="selected"
+                style="filter: invert(100%) grayscale(100%) contrast(100)"
+              >
                 mdi-menu-down
               </v-icon>
             </v-btn>
           </template>
           <v-swatches v-model="selected" :swatches="palette" />
         </v-menu>
-        <v-text-field label="Result" :value="selected" outlined />
+        <v-text-field v-model="selected" label="Result" outlined />
       </v-container>
     </v-main>
   </v-app>
