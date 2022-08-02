@@ -1,5 +1,7 @@
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 import checker from 'vite-plugin-checker';
 import banner from 'vite-plugin-banner';
 import vue from '@vitejs/plugin-vue2';
@@ -45,9 +47,25 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       // Vue2
       // https://github.com/vitejs/vite-plugin-vue2
       vue(),
+      // unplugin-vue-components
+      // https://github.com/antfu/unplugin-vue-components
+      /*
+      Components({
+        // generate `components.d.ts` global declarations
+        // https://github.com/antfu/unplugin-vue-components#typescript
+        dts: true,
+        // auto import for directives
+        directives: false,
+        // resolvers for custom components
+        resolvers: [
+          // Vuetify
+          VuetifyResolver(),
+        ],
+      }),
+      */
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
-      checker({ typescript: true, vueTsc: true }),
+      checker({ typescript: true, vueTsc: false }),
       // vite-plugin-banner
       // https://github.com/chengpeiquan/vite-plugin-banner
       banner(`/**

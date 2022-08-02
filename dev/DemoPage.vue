@@ -45,7 +45,10 @@
 &lt;v-menu offset-y&gt;
   &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
     &lt;v-btn v-bind=&quot;attrs&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot; v-on=&quot;on&quot;&gt;
-      &lt;v-icon :color=&quot;selected&quot; style=&quot;filter: invert(100%)&quot;&gt;
+      &lt;v-icon
+        :color=&quot;selected&quot;
+        style=&quot;filter: invert(100%) grayscale(100%) contrast(100)&quot;
+      &gt;
         mdi-menu-down
       &lt;/v-icon&gt;
     &lt;/v-btn&gt;
@@ -64,7 +67,10 @@
               :color="selected"
               v-on="on"
             >
-              <v-icon :color="selected" style="filter: invert(100%)">
+              <v-icon
+                :color="selected"
+                style="filter: invert(100%) grayscale(100%) contrast(100)"
+              >
                 mdi-menu-down
               </v-icon>
             </v-btn>

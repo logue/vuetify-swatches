@@ -126,7 +126,7 @@ export default defineComponent({
     margin: 0.1rem;
 
     .v-icon {
-      filter: invert(100%);
+      filter: invert(100%) grayscale(100%) contrast(100);
     }
   }
 }
