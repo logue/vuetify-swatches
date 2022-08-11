@@ -91,6 +91,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   /**
    * Setup
+   *
    * @param props  - Props
    * @param context - Context
    */
@@ -99,9 +100,9 @@ export default defineComponent({
     const checkedVisibilty: Ref<boolean> = ref(false);
 
     /**
-     * ボタンがクリックされた
+     * Swatch button clicked handler
      *
-     * @param e - イベント
+     * @param e - Event
      */
     const onSwatchClick = (e: Event) => {
       const value = (e.target as HTMLButtonElement).value;
