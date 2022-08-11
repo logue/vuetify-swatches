@@ -80,13 +80,13 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors'],
+        external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors.mjs'],
         output: {
           exports: 'named',
           globals: {
             vue: 'Vue',
             vuetify: 'Vuetify',
-            colors: 'vuetify/lib/util/colors',
+            colors: 'vuetify/lib/util/colors.mjs',
           },
         },
       },
