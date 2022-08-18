@@ -43,7 +43,7 @@ export default defineComponent({
   },
   props: {
     /** Model value */
-    modelValue: { type: String, default: '#ffffff' },
+    modelValue: { type: String, default: colors.shades.white },
     /** Swatch colors */
     swatches: {
       type: Array as PropType<string[] | string[][]>,
