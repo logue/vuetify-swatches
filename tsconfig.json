@@ -5,8 +5,8 @@
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "dist",
+    "lib": ["ESNext", "DOM"],
     "newLine": "lf",
-    "noImplicitAny": false,
     "paths": { "@/*": ["./src/*"] },
     "types": ["vite/client", "vue", "vuetify"]
   },

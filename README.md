@@ -123,12 +123,19 @@ export default Vue.extend({
 
 ### Options
 
-| Variables | Type   | Default                    | Info               |
-| --------- | ------ | -------------------------- | ------------------ |
-| elevation | number | 1                          | shadow size        |
-| size      | string | 2rem                       | Swatch Button size |
-| icon      | string | mdi-checkbox-marked-circle | checked icon       |
-| icon-size | string | 1rem                       | checked icon size  |
+| Variables | Type           | Default                                                                                  | Info                                                               |
+| --------- | -------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| size      | string         | 2rem                                                                                     | Swatch Button size                                                 |
+| icon      | string         | mdi-checkbox-marked-circle                                                               | checked icon                                                       |
+| icon-size | string         | 1rem                                                                                     | checked icon size                                                  |
+| depressed | boolean        | false                                                                                    | Removes the button box shadow.                                     |
+| disabled  | boolean        | false                                                                                    | Removes the ability to click or target the component.              |
+| elevation | number\|string | undefined                                                                                | Designates an elevation applied to the component between 0 and 24. |
+| outlined  | false          | Makes the background transparent and applies a thin border.                              |
+| plain     | false          | Removes the default background change applied when hovering over the button.             |
+| raised    | true           | Raised buttons have a box shadow that increases when clicked. This is the default style. |
+| rounded   | false          | Applies a large border radius on the button.                                             |
+| tile      | false          | Removes the component’s border-radius.                                                   |
 
 ## LICENSE
 

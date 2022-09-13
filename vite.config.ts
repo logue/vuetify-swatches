@@ -1,3 +1,5 @@
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -8,7 +10,7 @@ import path from 'path';
 const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }): Promise<UserConfig> => {
+export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
   const config: UserConfig = {
     resolve: {
       // https://vitejs.dev/config/#resolve-alias
@@ -61,6 +63,22 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
  * @see {@link ${pkg.homepage}}
  */
 `),
+      command === 'serve'
+        ? // unplugin-vue-components
+          // https://github.com/antfu/unplugin-vue-components
+          Components({
+            // generate `components.d.ts` global declarations
+            // https://github.com/antfu/unplugin-vue-components#typescript
+            dts: true,
+            // auto import for directives
+            directives: false,
+            // resolvers for custom components
+            resolvers: [
+              // Vuetify
+              VuetifyResolver(),
+            ],
+          })
+        : undefined,
     ],
     optimizeDeps: {
       exclude: ['vue-demi'],
@@ -71,6 +89,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         name: 'VSwatches',
+        formats: ['umd', 'es', 'iife'],
         fileName: format => `index.${format}.js`,
       },
       rollupOptions: {
@@ -103,6 +122,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         },
       },
       target: 'es2021',
+      minify: false,
     },
   };
   // Export vite config

@@ -4,15 +4,25 @@
       <v-btn
         v-for="color in colors"
         :key="color"
-        :elevation="elevation"
-        :width="size"
-        :height="size"
         :color="color"
+        :depressed="depressed"
+        :disabled="disabled"
+        :elevation="elevation"
+        :height="size"
+        :outlined="outlined"
+        :plain="plain"
+        :raised="raised"
+        :tile="tile"
         :value="color"
+        :width="size"
         min-width="auto"
         @click="onSwatchClick($event)"
       >
-        <v-icon v-if="color === modelValue" :size="iconSize" :color="color">
+        <v-icon
+          v-if="color === modelValue"
+          :size="iconSize"
+          :color="color !== 'transparent' ? color : undefined"
+        >
           {{ icon }}
         </v-icon>
       </v-btn>
@@ -54,7 +64,7 @@ export default defineComponent({
     swatches: {
       type: Array as PropType<string[] | string[][]>,
       default: () => [
-        [colors.shades.black, colors.shades.white],
+        [colors.shades.black, colors.shades.white, colors.shades.transparent],
         [
           colors.red.base,
           colors.pink.base,
@@ -78,14 +88,60 @@ export default defineComponent({
         [colors.brown.base, colors.blueGrey.base, colors.grey.base],
       ],
     },
-    /** The size of the shadow of the button */
-    elevation: { type: Number, default: 1 },
     /** Swatch sized */
     size: { type: String, default: '2rem' },
-    /** selected icon */
+    /** Selected icon */
     icon: { type: String, default: 'mdi-checkbox-marked-circle' },
     /** selected icon size */
     iconSize: { type: String, default: '1rem' },
+    /**
+     * Removes the button box shadow.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#depressed}
+     */
+    depressed: { type: Boolean, default: false },
+    /**
+     * Removes the ability to click or target the component.
+     *
+     * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-disabled}
+     */
+    disabled: { type: Boolean, default: false },
+    /**
+     * Designates an elevation applied to the component between 0 and 24.
+     *
+     * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-elevation}
+     */
+    elevation: { type: [Number, String], default: undefined },
+    /**
+     * Makes the background transparent and applies a thin border.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#outlined}
+     */
+    outlined: { type: Boolean, default: false },
+    /**
+     * Removes the default background change applied when hovering over the button.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#plain}
+     */
+    plain: { type: Boolean, default: false },
+    /**
+     * Raised buttons have a box shadow that increases when clicked. This is the default style.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#raised}
+     */
+    raised: { type: Boolean, default: true },
+    /**
+     * Applies a large border radius on the button.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#rounded}
+     */
+    rounded: { type: Boolean, default: false },
+    /**
+     * Removes the component’s border-radius.
+     *
+     * @see {@link https://vuetifyjs.com/en/components/buttons/#tile}
+     */
+    tile: { type: Boolean, default: false },
   },
   /** Emits */
   emits: ['update:modelValue'],
@@ -121,6 +177,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import 'node_modules/vuetify/src/styles/main.sass';
+
 .v-swatches {
   .v-btn {
     padding: 0 !important;
@@ -128,6 +186,20 @@ export default defineComponent({
 
     .v-icon {
       filter: invert(100%) grayscale(100%) contrast(100);
+    }
+
+    &.transparent {
+      background: linear-gradient(
+        to top right,
+        transparent 0,
+        transparent calc(50% - 0.1rem),
+        map-get($red, 'base') 50%,
+        transparent calc(50% + 0.1rem),
+        transparent
+      );
+      .v-icon {
+        filter: none;
+      }
     }
   }
 }

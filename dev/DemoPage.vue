@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-title>Vuetify Swatches Demo</v-app-bar-title>
+      <v-app-bar-title>Vuetify Swatches</v-app-bar-title>
       <v-spacer />
       <v-btn icon href="https://github.com/logue/vuetify-swatches">
         <v-icon>mdi-github</v-icon>
@@ -12,18 +12,16 @@
     </v-app-bar>
     <v-main>
       <v-container>
+        <h1>Vuetify Swatches Demo</h1>
         <h2>Basic</h2>
         <code-mirror
           v-model="code1"
-          class="mb-3"
+          :dark="dark"
           :lang="cmLang"
           basic
-          :dark="dark"
+          class="mb-3"
           readonly
-        >
-          <pre>&lt;v-swatches v-model="color" /&gt;</pre>
-        </code-mirror>
-
+        />
         <v-swatches v-model="value" class="mb-3" />
         <v-text-field
           v-model="value"
@@ -31,32 +29,16 @@
           min-width="auto"
           outlined
         />
-        <h2>With VMenu</h2>
+        <h2>With VMenu (Nested Color)</h2>
 
         <code-mirror
           v-model="code2"
-          class="mb-3"
-          :lang="cmLang"
           :dark="dark"
+          :lang="cmLang"
           basic
+          class="mb-3"
           readonly
-        >
-          <pre>
-&lt;v-menu offset-y&gt;
-  &lt;template #activator=&quot;{ on, attrs }&quot;&gt;
-    &lt;v-btn v-bind=&quot;attrs&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot; v-on=&quot;on&quot;&gt;
-      &lt;v-icon
-        :color=&quot;selected&quot;
-        style=&quot;filter: invert(100%) grayscale(100%) contrast(100)&quot;
-      &gt;
-        mdi-menu-down
-      &lt;/v-icon&gt;
-    &lt;/v-btn&gt;
-  &lt;/template&gt;
-  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
-&lt;/v-menu&gt;</pre
-          >
-        </code-mirror>
+        />
 
         <v-menu class="mb-3" offset-y>
           <template #activator="{ on, attrs }">
@@ -85,12 +67,11 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, type Ref } from 'vue';
+import { useVuetify } from './plugins/vuetify';
 
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
-// import VSwatches from './dist/v-swatches.es';
-import { useVuetify } from './plugins/vuetify';
 import VSwatches from '@/components/VSwatches.vue';
 
 export default defineComponent({
@@ -110,11 +91,13 @@ export default defineComponent({
 
     const selected: Ref<string> = ref('#ffffff');
 
+    const cmLang = html();
+
     return {
       dark,
       value,
       selected,
-      cmLang: html(),
+      cmLang,
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>
   <template #activator="{ on, attrs }">
