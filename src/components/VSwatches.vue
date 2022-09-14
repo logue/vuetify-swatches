@@ -177,7 +177,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import 'node_modules/vuetify/src/styles/main.sass';
+@import 'node_modules/vuetify/src/styles/styles';
 
 .v-swatches {
   .v-btn {
@@ -190,7 +190,7 @@ export default defineComponent({
 
     &.transparent {
       background: linear-gradient(
-        to top right,
+        to top left,
         transparent 0,
         transparent calc(50% - 0.1rem),
         map-get($red, 'base') 50%,

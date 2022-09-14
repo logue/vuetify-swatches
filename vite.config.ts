@@ -122,7 +122,10 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         },
       },
       target: 'es2021',
-      minify: false,
+      minify: 'esbuild',
+    },
+    esbuild: {
+      drop: command === 'serve' ? [] : ['console'],
     },
   };
   // Export vite config

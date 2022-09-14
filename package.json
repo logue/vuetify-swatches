@@ -102,7 +102,7 @@
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^39.3.6",
-    "eslint-plugin-tsdoc": "^0.2.16",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "eslint-plugin-vue": "^9.4.0",
     "eslint-plugin-vuejs-accessibility": "^1.2.0",
     "eslint-plugin-vuetify": "^1.1.0",
