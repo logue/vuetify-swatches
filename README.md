@@ -21,23 +21,17 @@ This library is positioned as a complement to Vuetify and provides a minimal UI.
 In this example, the selected color is assigned to `selected`.
 
 ```vue
-<template>
-  <v-swatches v-model="selected" />
-</template>
-
-<script>
-import Vue from 'vue';
+<script setup lang="ts">
+import { ref, type Ref } from 'vue';
 
 import VSwatches from 'vuetify-swatches';
 
-export default Vue.extend({
-  data() {
-    return {
-      selected: '#ffffff',
-    };
-  },
-});
+const selected: Ref<string> = ref('#ffffff');
 </script>
+
+<template>
+  <v-swatches v-model="selected" />
+</template>
 
 <style>
 @import 'vuetify-swatches/dist/style.css';
@@ -49,11 +43,64 @@ The method of specifying `swatches` is the same as [nested-color of Vue Swatches
 If you want to make the color palette appear when you click it, combine it with VMenu.
 
 ```vue
+<script setup lang="ts">
+import { ref, type Ref } from 'vue';
+
+import VSwatches from 'vuetify-swatches';
+
+const palette: Ref<string[] | string[][]> = ref([
+  [
+    '#ffb7b7',
+    '#ffdbb7',
+    '#ffffb7',
+    '#b7ffb7',
+    '#b7ffff',
+    '#b7b7ff',
+    '#ffb7ff',
+    '#ffffff',
+  ],
+  [
+    '#ff5555',
+    '#ffa555',
+    '#ffff55',
+    '#55ff55',
+    '#55ffff',
+    '#5555ff',
+    '#ff55ff',
+    '#aaaaaa',
+  ],
+  [
+    '#ff0000',
+    '#ff7f00',
+    '#ffff00',
+    '#00ff00',
+    '#00ffff',
+    '#0000ff',
+    '#ff00ff',
+    '#555555',
+  ],
+  [
+    '#7f0000',
+    '#7f4c00',
+    '#7f7f00',
+    '#007f00',
+    '#007f7f',
+    '#00007f',
+    '#7f007f',
+    '#000000',
+  ],
+]);
+const selected: Ref<string> = ref('#ffffff');
+</script>
+
 <template>
   <v-menu offset-y>
-    <template #activator="{ on, attrs }">
-      <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
-        <v-icon :color="selected" style="filter: invert(100%)">
+    <template #activator="{ props }">
+      <v-btn v-bind="props" class="mb-3" min-width="auto" :color="selected">
+        <v-icon
+          :color="selected"
+          style="filter: invert(100%) grayscale(100%) contrast(100)"
+        >
           mdi-menu-down
         </v-icon>
       </v-btn>
@@ -62,62 +109,6 @@ If you want to make the color palette appear when you click it, combine it with 
   </v-menu>
 </template>
 
-<script>
-import Vue from 'vue';
-
-import VSwatches from 'vuetify-swatches';
-
-export default Vue.extend({
-  data() {
-    return {
-      selected: '#ffffff',
-      palette: [
-        [
-          '#ffb7b7',
-          '#ffdbb7',
-          '#ffffb7',
-          '#b7ffb7',
-          '#b7ffff',
-          '#b7b7ff',
-          '#ffb7ff',
-          '#ffffff',
-        ],
-        [
-          '#ff5555',
-          '#ffa555',
-          '#ffff55',
-          '#55ff55',
-          '#55ffff',
-          '#5555ff',
-          '#ff55ff',
-          '#aaaaaa',
-        ],
-        [
-          '#ff0000',
-          '#ff7f00',
-          '#ffff00',
-          '#00ff00',
-          '#00ffff',
-          '#0000ff',
-          '#ff00ff',
-          '#555555',
-        ],
-        [
-          '#7f0000',
-          '#7f4c00',
-          '#7f7f00',
-          '#007f00',
-          '#007f7f',
-          '#00007f',
-          '#7f007f',
-          '#000000',
-        ],
-      ],
-    };
-  },
-});
-</script>
-
 <style>
 @import 'vuetify-swatches/dist/style.css';
 </style>
@@ -125,12 +116,16 @@ export default Vue.extend({
 
 ### Options
 
-| Variables | Type   | Default                    | Info               |
-| --------- | ------ | -------------------------- | ------------------ |
-| elevation | number | 1                          | shadow size        |
-| size      | string | 2rem                       | Swatch Button size |
-| icon      | string | mdi-checkbox-marked-circle | checked icon       |
-| icon-size | string | 1rem                       | checked icon size  |
+| Variables | Type           | Default                    | Info                                                                       |
+| --------- | -------------- | -------------------------- | -------------------------------------------------------------------------- |
+| size      | string         | 2rem                       | Swatch Button size                                                         |
+| icon      | string         | mdi-checkbox-marked-circle | checked icon                                                               |
+| icon-size | string         | 1rem                       | checked icon size                                                          |
+| disabled  | boolean        | false                      | Removes the ability to click or target the component.                      |
+| rounded   | number\|string | undefined                  | Applies a large border radius on the button.                               |
+| variant   | string [^1]    | undefined                  | The variant prop gives you easy access to several different button styles. |
+
+[^1] Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
 
 ## LICENSE
 

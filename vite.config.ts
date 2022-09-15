@@ -9,7 +9,7 @@ import path from 'path';
 const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }): Promise<UserConfig> => {
+export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
   const config: UserConfig = {
     resolve: {
       // https://vitejs.dev/config/#resolve-alias
@@ -65,6 +65,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         name: 'VSwatches',
+        formats: ['umd', 'es', 'iife'],
         fileName: format => `index.${format}.js`,
       },
       rollupOptions: {
@@ -93,6 +94,9 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       target: 'es2021',
       // Minify option
       minify: 'esbuild',
+    },
+    esbuild: {
+      drop: command == 'serve' ? [] : ['console'],
     },
   };
   // Export vite config
