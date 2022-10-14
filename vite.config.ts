@@ -1,10 +1,10 @@
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
-import vuetify from 'vite-plugin-vuetify';
-import checker from 'vite-plugin-checker';
+import { fileURLToPath } from 'url';
+import { visualizer } from 'rollup-plugin-visualizer';
 import banner from 'vite-plugin-banner';
+import checker from 'vite-plugin-checker';
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import vuetify from 'vite-plugin-vuetify';
 
 const pkg = require('./package.json');
 
@@ -12,14 +12,10 @@ const pkg = require('./package.json');
 export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
   const config: UserConfig = {
     resolve: {
-      // https://vitejs.dev/config/#resolve-alias
-      alias: [
-        {
-          // vue @ shortcut fix
-          find: '@/',
-          replacement: `${path.resolve(__dirname, './src')}/`,
-        },
-      ],
+      // https://vitejs.dev/config/shared-options.html#resolve-alias
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
       // External
       dedupe: ['vue', 'vuetify'],
     },
@@ -63,7 +59,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
     // https://vitejs.dev/config/#build-options
     build: {
       lib: {
-        entry: path.resolve(__dirname, 'src/index.ts'),
+        entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
         name: 'VSwatches',
         formats: ['umd', 'es', 'iife'],
         fileName: format => `index.${format}.js`,
@@ -87,16 +83,15 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           globals: {
             vue: 'Vue',
             vuetify: 'Vuetify',
-            colors: 'vuetify/lib/util/colors.mjs',
+            'vuetify/lib/util/colors.mjs': 'colors',
           },
         },
       },
-      target: 'es2021',
-      // Minify option
-      minify: 'esbuild',
+      target: 'esnext',
+      minify: false,
     },
     esbuild: {
-      drop: command == 'serve' ? [] : ['console'],
+      drop: command === 'serve' ? [] : ['console'],
     },
   };
   // Export vite config

@@ -1,22 +1,20 @@
 import { defineConfig, type UserConfig } from 'vite';
+import { fileURLToPath } from 'url';
 import checker from 'vite-plugin-checker';
-import vuetify from 'vite-plugin-vuetify';
 import Vue from '@vitejs/plugin-vue';
-import path from 'path';
+import vuetify from 'vite-plugin-vuetify';
 
 // https://vitejs.dev/config/
 const config: UserConfig = {
   base: './',
   // Resolver
   resolve: {
-    // https://vitejs.dev/config/#resolve-alias
-    alias: [
-      {
-        // vue @ shortcut fix
-        find: '@/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
-    ],
+    // https://vitejs.dev/config/shared-options.html#resolve-alias
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+    // External
+    dedupe: ['vue', 'vuetify'],
   },
   // https://vitejs.dev/config/#server-options
   server: {
@@ -64,6 +62,8 @@ const config: UserConfig = {
             '@codemirror/search',
             '@codemirror/state',
             '@codemirror/view',
+            // Add the following as needed.
+            '@codemirror/lang-html',
           ],
         },
       },
