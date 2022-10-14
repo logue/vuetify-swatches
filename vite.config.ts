@@ -112,7 +112,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         },
       },
       target: 'esnext',
-      minify: 'esbuild',
+      minify: false,
     },
     esbuild: {
       drop: command === 'serve' ? [] : ['console'],

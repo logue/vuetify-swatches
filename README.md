@@ -13,7 +13,9 @@ This project is a remake of [saintplay's vue-swatches](https://saintplay.github.
 
 Unlike the original version, it provides a UI based on Vuetify, such as ripple effects and dark mode.
 
-This library is positioned as a complement to Vuetify and provides a minimal UI. Use the[Menu Component](https://vuetifyjs.com/components/menus/) if you want to display a pop-up menu, and the [Card component](https://vuetifyjs.com/components/cards/) if you want to display a palette.
+This library is positioned as a complement to Vuetify and provides a minimal UI. Use the [Menu Component](https://vuetifyjs.com/components/menus/) if you want to display a pop-up menu, and the [Card component](https://vuetifyjs.com/components/cards/) if you want to display a palette.
+
+For Vuetify3, please use the [next branch](https://github.com/logue/vuetify-swatches/tree/next).
 
 ## Usage
 
@@ -124,19 +126,19 @@ export default Vue.extend({
 
 ### Options
 
-| Variables | Type           | Default                                                                                  | Info                                                               |
-| --------- | -------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| size      | string         | 2rem                                                                                     | Swatch Button size                                                 |
-| icon      | string         | mdi-checkbox-marked-circle                                                               | checked icon                                                       |
-| icon-size | string         | 1rem                                                                                     | checked icon size                                                  |
-| depressed | boolean        | false                                                                                    | Removes the button box shadow.                                     |
-| disabled  | boolean        | false                                                                                    | Removes the ability to click or target the component.              |
-| elevation | number\|string | undefined                                                                                | Designates an elevation applied to the component between 0 and 24. |
-| outlined  | false          | Makes the background transparent and applies a thin border.                              |
-| plain     | false          | Removes the default background change applied when hovering over the button.             |
-| raised    | true           | Raised buttons have a box shadow that increases when clicked. This is the default style. |
-| rounded   | false          | Applies a large border radius on the button.                                             |
-| tile      | false          | Removes the component’s border-radius.                                                   |
+| Variables | Type           | Default                    | Info                                                                                     |
+| --------- | -------------- | -------------------------- | ---------------------------------------------------------------------------------------- |
+| size      | string         | 2rem                       | Swatch Button size                                                                       |
+| icon      | string         | mdi-checkbox-marked-circle | checked icon                                                                             |
+| icon-size | string         | 1rem                       | checked icon size                                                                        |
+| depressed | boolean        | false                      | Removes the button box shadow.                                                           |
+| disabled  | boolean        | false                      | Removes the ability to click or target the component.                                    |
+| elevation | number\|string | undefined                  | Designates an elevation applied to the component between 0 and 24.                       |
+| outlined  | boolean        | false                      | Makes the background transparent and applies a thin border.                              |
+| plain     | boolean        | false                      | Removes the default background change applied when hovering over the button.             |
+| raised    | boolean        | true                       | Raised buttons have a box shadow that increases when clicked. This is the default style. |
+| rounded   | boolean        | false                      | Applies a large border radius on the button.                                             |
+| tile      | boolean        | false                      | Removes the component’s border-radius.                                                   |
 
 ## LICENSE
 
