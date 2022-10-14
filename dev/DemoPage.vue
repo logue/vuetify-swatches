@@ -17,7 +17,7 @@
         <code-mirror
           v-model="code1"
           :dark="dark"
-          :lang="cmLang"
+          :lang="html()"
           basic
           class="mb-3"
           readonly
@@ -34,7 +34,7 @@
         <code-mirror
           v-model="code2"
           :dark="dark"
-          :lang="cmLang"
+          :lang="html()"
           basic
           class="mb-3"
           readonly
@@ -91,13 +91,11 @@ export default defineComponent({
 
     const selected: Ref<string> = ref('#ffffff');
 
-    const cmLang = html();
-
     return {
       dark,
       value,
       selected,
-      cmLang,
+      html,
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>
   <template #activator="{ on, attrs }">

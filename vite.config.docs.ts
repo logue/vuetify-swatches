@@ -1,23 +1,25 @@
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
 import { defineConfig, type UserConfig } from 'vite';
+import { fileURLToPath } from 'url';
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import checker from 'vite-plugin-checker';
+import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
-import path from 'path';
 
 // https://vitejs.dev/config/
 const config: UserConfig = {
   base: './',
   // Resolver
   resolve: {
-    // https://vitejs.dev/config/#resolve-alias
-    alias: [
-      {
-        // vue @ shortcut fix
-        find: '@/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
-    ],
+    // https://vitejs.dev/config/shared-options.html#resolve-alias
+    alias: {
+      vue: fileURLToPath(
+        new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
+      ),
+      vuetify: fileURLToPath(
+        new URL('./node_modules/vuetify', import.meta.url)
+      ),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
     // External
     dedupe: ['vue', 'vuetify'],
   },
@@ -60,15 +62,21 @@ const config: UserConfig = {
           vue: ['vue'],
           vuetify: ['vuetify/lib', 'vuetify/lib/util/colors'],
           codemirror: [
+            'codemirror',
+            '@codemirror/autocomplete',
+            '@codemirror/commands',
+            '@codemirror/language',
+            '@codemirror/lint',
+            '@codemirror/search',
             '@codemirror/state',
             '@codemirror/view',
-            '@codemirror/basic-setup',
+            // Add the following as needed.
             '@codemirror/lang-html',
           ],
         },
       },
     },
-    target: 'es2021',
+    target: 'esnext',
   },
 };
 

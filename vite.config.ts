@@ -1,11 +1,11 @@
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type UserConfig } from 'vite';
-import checker from 'vite-plugin-checker';
+import { fileURLToPath } from 'url';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
+import checker from 'vite-plugin-checker';
+import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
-import path from 'path';
 
 const pkg = require('./package.json');
 
@@ -13,26 +13,16 @@ const pkg = require('./package.json');
 export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
   const config: UserConfig = {
     resolve: {
-      // https://vitejs.dev/config/#resolve-alias
-      alias: [
-        // make vue external
-        {
-          find: 'vue',
-          replacement: path.resolve(
-            __dirname,
-            './node_modules/vue/dist/vue.runtime.esm.js'
-          ),
-        },
-        {
-          find: 'vuetify',
-          replacement: path.resolve(__dirname, './node_modules/vuetify'),
-        },
-        {
-          // vue @ shortcut fix
-          find: '@/',
-          replacement: `${path.resolve(__dirname, './src')}/`,
-        },
-      ],
+      // https://vitejs.dev/config/shared-options.html#resolve-alias
+      alias: {
+        vue: fileURLToPath(
+          new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
+        ),
+        vuetify: fileURLToPath(
+          new URL('./node_modules/vuetify', import.meta.url)
+        ),
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
       // External
       dedupe: ['vue', 'vuetify'],
     },
@@ -87,7 +77,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
     // https://vitejs.dev/config/#build-options
     build: {
       lib: {
-        entry: path.resolve(__dirname, 'src/index.ts'),
+        entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
         name: 'VSwatches',
         formats: ['umd', 'es', 'iife'],
         fileName: format => `index.${format}.js`,
@@ -121,7 +111,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           },
         },
       },
-      target: 'es2021',
+      target: 'esnext',
       minify: 'esbuild',
     },
     esbuild: {
