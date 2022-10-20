@@ -1,5 +1,5 @@
 import { defineConfig, type UserConfig } from 'vite';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import checker from 'vite-plugin-checker';
 import Components from 'unplugin-vue-components/vite';
@@ -12,16 +12,8 @@ const config: UserConfig = {
   resolve: {
     // https://vitejs.dev/config/shared-options.html#resolve-alias
     alias: {
-      vue: fileURLToPath(
-        new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
-      ),
-      vuetify: fileURLToPath(
-        new URL('./node_modules/vuetify', import.meta.url)
-      ),
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    // External
-    dedupe: ['vue', 'vuetify'],
   },
   // https://vitejs.dev/config/#server-options
   server: {
@@ -77,6 +69,7 @@ const config: UserConfig = {
       },
     },
     target: 'esnext',
+    minify: 'esbuild',
   },
 };
 

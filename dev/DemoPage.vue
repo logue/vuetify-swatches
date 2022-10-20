@@ -17,7 +17,7 @@
         <code-mirror
           v-model="code1"
           :dark="dark"
-          :lang="html()"
+          :lang="cmLang"
           basic
           class="mb-3"
           readonly
@@ -34,7 +34,7 @@
         <code-mirror
           v-model="code2"
           :dark="dark"
-          :lang="html()"
+          :lang="cmLang"
           basic
           class="mb-3"
           readonly
@@ -44,9 +44,9 @@
           <template #activator="{ on, attrs }">
             <v-btn
               v-bind="attrs"
+              :color="selected"
               class="mb-3"
               min-width="auto"
-              :color="selected"
               v-on="on"
             >
               <v-icon
@@ -66,7 +66,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, type Ref } from 'vue';
+import {
+  defineComponent,
+  ref,
+  computed,
+  type Ref,
+  type WritableComputedRef,
+} from 'vue';
 import { useVuetify } from './plugins/vuetify';
 
 import { html } from '@codemirror/lang-html';
@@ -82,7 +88,7 @@ export default defineComponent({
   setup() {
     const vuetify = useVuetify();
 
-    const dark: Ref<boolean> = computed({
+    const dark: WritableComputedRef<boolean> = computed({
       get: () => vuetify.theme.dark,
       set: dark => (vuetify.theme.dark = dark),
     });
@@ -95,7 +101,7 @@ export default defineComponent({
       dark,
       value,
       selected,
-      html,
+      cmLang: html(),
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>
   <template #activator="{ on, attrs }">

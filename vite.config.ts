@@ -1,5 +1,5 @@
 import { defineConfig, type UserConfig } from 'vite';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
@@ -15,12 +15,6 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
     resolve: {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
-        vue: fileURLToPath(
-          new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
-        ),
-        vuetify: fileURLToPath(
-          new URL('./node_modules/vuetify', import.meta.url)
-        ),
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
       // External
