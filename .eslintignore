@@ -2,7 +2,5 @@
 .vscode/
 .yarn/
 dist/
-docs/
 public/assets/
-components.d.ts
-index.html
+docs/

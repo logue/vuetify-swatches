@@ -1,8 +1,9 @@
 import { defineConfig, type UserConfig } from 'vite';
-import { fileURLToPath } from 'url';
 import checker from 'vite-plugin-checker';
 import Vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
+
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 const config: UserConfig = {
@@ -68,7 +69,7 @@ const config: UserConfig = {
         },
       },
     },
-    target: 'es2021',
+    target: 'esnext',
   },
 };
 
