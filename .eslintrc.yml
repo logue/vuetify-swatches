@@ -10,15 +10,15 @@ extends:
   - plugin:jsdoc/recommended
   - plugin:vue/recommended
   - plugin:vuejs-accessibility/recommended
-  - plugin:yaml/recommended
+  # - plugin:yaml/recommended
   # - plugin:vuetify/base
   - '@vue/eslint-config-prettier'
 plugins:
   - '@typescript-eslint'
   - jsdoc
   - tsdoc
-  - html
-  - yaml
+  # - html
+  # - yaml
   - vue
 parser: vue-eslint-parser
 parserOptions:

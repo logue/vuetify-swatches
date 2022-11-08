@@ -15,8 +15,6 @@ const config: UserConfig = {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    // External
-    dedupe: ['vue', 'vuetify'],
   },
   // https://vitejs.dev/config/#server-options
   server: {
