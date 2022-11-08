@@ -10,7 +10,13 @@
     "paths": { "@/*": ["./src/*"] },
     "types": ["vite/client", "vue", "vuetify"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "components.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "vueCompilerOptions": { "target": 2.7 }

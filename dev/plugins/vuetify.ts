@@ -1,5 +1,5 @@
 import Vue, { getCurrentInstance } from 'vue';
-import type Framework from 'vuetify/lib/framework';
+import type Framework from 'vuetify/lib';
 import Vuetify from 'vuetify/lib';
 
 Vue.use(Vuetify);

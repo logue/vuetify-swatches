@@ -32,6 +32,9 @@ import Vue from 'vue';
 import VSwatches from 'vuetify-swatches';
 
 export default Vue.extend({
+  components: {
+    VSwatches,
+  },
   data() {
     return {
       selected: '#ffffff',
@@ -69,6 +72,9 @@ import Vue from 'vue';
 import VSwatches from 'vuetify-swatches';
 
 export default Vue.extend({
+  components: {
+    VSwatches,
+  },
   data() {
     return {
       selected: '#ffffff',

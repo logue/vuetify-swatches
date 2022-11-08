@@ -1,5 +1,4 @@
 import { defineConfig, type UserConfig } from 'vite';
-import { fileURLToPath } from 'url';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
@@ -7,6 +6,7 @@ import checker from 'vite-plugin-checker';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
 
+import { fileURLToPath, URL } from 'node:url';
 const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
@@ -15,12 +15,6 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
     resolve: {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
-        vue: fileURLToPath(
-          new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
-        ),
-        vuetify: fileURLToPath(
-          new URL('./node_modules/vuetify', import.meta.url)
-        ),
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
       // External

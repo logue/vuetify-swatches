@@ -72,7 +72,7 @@ import { useVuetify } from './plugins/vuetify';
 import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
-import VSwatches from '@/components/VSwatches.vue';
+import VSwatches from '@/';
 
 export default defineComponent({
   components: {

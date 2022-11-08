@@ -1,9 +1,10 @@
 import { defineConfig, type UserConfig } from 'vite';
-import { fileURLToPath } from 'url';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import checker from 'vite-plugin-checker';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
+
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 const config: UserConfig = {
@@ -12,12 +13,6 @@ const config: UserConfig = {
   resolve: {
     // https://vitejs.dev/config/shared-options.html#resolve-alias
     alias: {
-      vue: fileURLToPath(
-        new URL('./node_modules/vue/dist/vue.runtime.esm.js', import.meta.url)
-      ),
-      vuetify: fileURLToPath(
-        new URL('./node_modules/vuetify', import.meta.url)
-      ),
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
     // External
@@ -62,6 +57,7 @@ const config: UserConfig = {
           vue: ['vue'],
           vuetify: ['vuetify/lib', 'vuetify/lib/util/colors'],
           codemirror: [
+            'vue-codemirror6',
             'codemirror',
             '@codemirror/autocomplete',
             '@codemirror/commands',
@@ -77,6 +73,7 @@ const config: UserConfig = {
       },
     },
     target: 'esnext',
+    minify: 'esbuild',
   },
 };
 
