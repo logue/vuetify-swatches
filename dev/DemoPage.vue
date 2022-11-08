@@ -79,8 +79,8 @@ import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
 // import VSwatches from './dist/v-swatches.es';
-import { useVuetify } from './plugins/vuetify';
 import VSwatches from '../src/';
+import { useTheme } from 'vuetify';
 
 export default defineComponent({
   components: {
@@ -88,10 +88,10 @@ export default defineComponent({
     VSwatches,
   },
   setup() {
-    const vuetify = useVuetify();
+    const theme = useTheme();
 
     // @ts-ignore
-    const dark: Ref<boolean> = ref(vuetify.theme.current.dark);
+    const dark: Ref<boolean> = ref(theme.current.dark);
 
     const value: Ref<string> = ref('#ffffff');
 
