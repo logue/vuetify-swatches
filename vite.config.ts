@@ -16,6 +16,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
       },
       // External
       dedupe: ['vue', 'vuetify'],
@@ -38,7 +39,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       }),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
-      checker({ typescript: true, vueTsc: false }),
+      checker({ typescript: true, vueTsc: true }),
       // vite-plugin-banner
       // https://github.com/chengpeiquan/vite-plugin-banner
       banner(`/**
@@ -84,6 +85,8 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           globals: {
             vue: 'Vue',
             vuetify: 'Vuetify',
+            'vuetify/components': 'VuetifyComponents',
+            'vuetify/directives': 'VuetifyDirectives',
             'vuetify/lib/util/colors.mjs': 'colors',
           },
         },

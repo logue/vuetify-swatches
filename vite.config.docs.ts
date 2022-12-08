@@ -13,6 +13,8 @@ const config: UserConfig = {
     // https://vitejs.dev/config/shared-options.html#resolve-alias
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
+      'vuetify-swatches': fileURLToPath(new URL('./src', import.meta.url)),
     },
     // External
     dedupe: ['vue', 'vuetify'],

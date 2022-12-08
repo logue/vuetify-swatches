@@ -1,6 +1,5 @@
 import vuetify from './plugins/vuetify';
 import { createApp, h } from 'vue';
-// @ts-ignore
 import Dev from './DemoPage.vue';
 
 const app = createApp({
