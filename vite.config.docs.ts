@@ -1,5 +1,5 @@
 import { defineConfig, type UserConfig } from 'vite';
-import checker from 'vite-plugin-checker';
+import { checker } from 'vite-plugin-checker';
 import Vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 

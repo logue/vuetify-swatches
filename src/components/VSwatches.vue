@@ -3,6 +3,11 @@
 import { ref, watch, type PropType, type Ref } from 'vue';
 import colors from 'vuetify/lib/util/colors.mjs';
 
+/** Emits */
+const emits = defineEmits<{
+  (event: 'update:modelValue', value: string): void;
+}>();
+
 /** Props */
 const props = defineProps({
   /** Model value */
@@ -78,26 +83,22 @@ const props = defineProps({
   elevation: { type: [String, Number], default: undefined },
 });
 
-/** Emits */
-const emit = defineEmits(['update:modelValue']);
-
-const selected: Ref<string | undefined> = ref(props.modelValue);
+/** Selected Color */
+const selected: Ref<string> = ref(props.modelValue || colors.shades.white);
 
 /**
  * Swatch button clicked handler
  *
  * @param e - Event
  */
-const onSwatchClick = (e: Event) => {
-  console.log(e.target);
-  const value = (e.target as HTMLButtonElement).dataset.value;
-  if (!value || props.modelValue === value) {
-    return;
-  }
-  emit('update:modelValue', value);
-};
+const onSwatchClick = (e: Event) =>
+  (selected.value =
+    (e.target as HTMLButtonElement).dataset.value || colors.shades.white);
 
-watch(selected, value => console.log(value));
+watch(
+  () => selected.value,
+  s => emits('update:modelValue', s)
+);
 </script>
 
 <template>
@@ -134,25 +135,27 @@ watch(selected, value => console.log(value));
 @import '~/vuetify/lib/styles/settings';
 
 .v-swatches {
-  .v-btn {
-    padding: 0 !important;
-    margin: 0.1rem;
+  div {
+    .v-btn {
+      padding: 0 !important;
+      margin: 0.1rem;
 
-    .v-icon {
-      filter: invert(100%) grayscale(100%) contrast(100);
-    }
-
-    &.bg-trasparent {
-      background: linear-gradient(
-        to top left,
-        transparent 0,
-        transparent calc(50% - 0.1rem),
-        map-get($red, 'base') 50%,
-        transparent calc(50% + 0.1rem),
-        transparent
-      );
       .v-icon {
-        filter: none;
+        filter: invert(100%) grayscale(100%) contrast(100);
+      }
+
+      &.bg-trasparent {
+        background: linear-gradient(
+          to top left,
+          transparent 0,
+          transparent calc(50% - 0.1rem),
+          map-get($red, 'base') 50%,
+          transparent calc(50% + 0.1rem),
+          transparent
+        );
+        .v-icon {
+          filter: none;
+        }
       }
     }
   }

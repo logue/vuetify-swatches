@@ -1,7 +1,7 @@
 import { defineConfig, type UserConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { checker } from 'vite-plugin-checker';
 import banner from 'vite-plugin-banner';
-import checker from 'vite-plugin-checker';
 import vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 
