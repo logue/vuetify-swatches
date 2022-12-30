@@ -39,7 +39,7 @@ import {
   type SetupContext,
 } from 'vue-demi';
 
-import { VSheet, VIcon, VBtn } from 'vuetify/lib/components';
+import { VSheet, VIcon, VBtn } from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
 
 /** Vuetify Swatches */

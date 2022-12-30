@@ -1,6 +1,6 @@
+import { checker } from 'vite-plugin-checker';
 import { defineConfig, type UserConfig } from 'vite';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-import checker from 'vite-plugin-checker';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
 
@@ -14,6 +14,7 @@ const config: UserConfig = {
     // https://vitejs.dev/config/shared-options.html#resolve-alias
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'vuetify-swatches': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   // https://vitejs.dev/config/#server-options

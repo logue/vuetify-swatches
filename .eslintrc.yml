@@ -6,19 +6,16 @@ extends:
   - eslint:recommended
   - google
   - plugin:@typescript-eslint/eslint-recommended
+  - plugin:import/recommended
   - plugin:import/typescript
   - plugin:jsdoc/recommended
   - plugin:vue/recommended
   - plugin:vuejs-accessibility/recommended
-  # - plugin:yaml/recommended
-  # - plugin:vuetify/base
   - '@vue/eslint-config-prettier'
 plugins:
   - '@typescript-eslint'
   - jsdoc
   - tsdoc
-  # - html
-  # - yaml
   - vue
 parser: vue-eslint-parser
 parserOptions:
@@ -48,7 +45,7 @@ settings:
     typescript: {}
     alias:
       map:
-        - ['@', './src']
+        - ['@/', './src/']
       extensions:
         - .js
         - .ts

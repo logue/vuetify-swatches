@@ -1,8 +1,8 @@
+import { checker } from 'vite-plugin-checker';
 import { defineConfig, type UserConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
-import checker from 'vite-plugin-checker';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
 
@@ -16,6 +16,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+        'vuetify-swatches': fileURLToPath(new URL('./src', import.meta.url)),
       },
       // External
       dedupe: ['vue', 'vuetify'],
@@ -89,17 +90,12 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external: [
-          'vue',
-          'vue-demi',
-          'vuetify/lib/components',
-          'vuetify/lib/util/colors',
-        ],
+        external: ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
         output: {
           exports: 'named',
           globals: {
             vue: 'Vue',
-            'vuetify/lib/components': 'Vuetify',
+            'vuetify/lib': 'Vuetify',
             'vuetify/lib/util/colors': 'colors',
             'vue-demi': 'VueDemi',
           },

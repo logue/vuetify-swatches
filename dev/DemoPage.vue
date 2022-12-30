@@ -14,14 +14,7 @@
       <v-container>
         <h1>Vuetify Swatches Demo</h1>
         <h2>Basic</h2>
-        <code-mirror
-          v-model="code1"
-          :dark="dark"
-          :lang="cmLang"
-          basic
-          class="mb-3"
-          readonly
-        />
+        <code-mirror v-model="code1" :dark="dark" basic class="mb-3" readonly />
         <v-swatches v-model="value" class="mb-3" />
         <v-text-field
           v-model="value"
@@ -31,14 +24,7 @@
         />
         <h2>With VMenu (Nested Color)</h2>
 
-        <code-mirror
-          v-model="code2"
-          :dark="dark"
-          :lang="cmLang"
-          basic
-          class="mb-3"
-          readonly
-        />
+        <code-mirror v-model="code2" :dark="dark" basic class="mb-3" readonly />
 
         <v-menu class="mb-3" offset-y>
           <template #activator="{ on, attrs }">
@@ -75,7 +61,7 @@ import {
 } from 'vue';
 import { useVuetify } from './plugins/vuetify';
 
-import { html } from '@codemirror/lang-html';
+// import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
 
 import VSwatches from '@/';
@@ -101,7 +87,7 @@ export default defineComponent({
       dark,
       value,
       selected,
-      cmLang: html(),
+      // cmLang: html(),
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>
   <template #activator="{ on, attrs }">

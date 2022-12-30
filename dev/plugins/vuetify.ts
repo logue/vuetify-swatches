@@ -1,5 +1,4 @@
 import Vue, { getCurrentInstance } from 'vue';
-import type Framework from 'vuetify/lib';
 import Vuetify from 'vuetify/lib';
 
 Vue.use(Vuetify);
@@ -7,7 +6,7 @@ Vue.use(Vuetify);
 export default new Vuetify();
 
 /** Get vuetify instance (For Composition api) */
-export function useVuetify(): Framework {
+export function useVuetify() {
   /** Get Instance */
   const instance = getCurrentInstance();
   if (!instance) {
