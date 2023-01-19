@@ -39,19 +39,12 @@ import {
   type SetupContext,
 } from 'vue-demi';
 
-import { VSheet, VIcon, VBtn } from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
 
 /** Vuetify Swatches */
 export default defineComponent({
   /** Component name */
   name: 'VSwatches',
-  /** Components */
-  components: {
-    VSheet,
-    VBtn,
-    VIcon,
-  },
   /** Model Definition */
   model: {
     prop: 'modelValue',

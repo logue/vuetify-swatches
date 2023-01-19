@@ -61,10 +61,10 @@ import {
 } from 'vue';
 import { useVuetify } from './plugins/vuetify';
 
-// import { html } from '@codemirror/lang-html';
 import CodeMirror from 'vue-codemirror6';
+// import { html } from '@codemirror/lang-html';
 
-import VSwatches from '@/';
+import VSwatches from 'vuetify-swatches';
 
 export default defineComponent({
   components: {
@@ -87,7 +87,7 @@ export default defineComponent({
       dark,
       value,
       selected,
-      // cmLang: html(),
+      // lang: html,
       code1: '<v-swatches v-model="color" />',
       code2: `<v-menu offset-y>
   <template #activator="{ on, attrs }">

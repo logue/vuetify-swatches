@@ -3,23 +3,27 @@ import { defineConfig, type UserConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
-import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue2';
+import Components from 'unplugin-vue-components/vite';
 
 import { fileURLToPath, URL } from 'node:url';
+import fs from 'node:fs';
+
 const pkg = require('./package.json');
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
+export default defineConfig(async ({ mode, command }): Promise<UserConfig> => {
   const config: UserConfig = {
+    base: './',
+    publicDir: command === 'serve' ? 'public' : false,
+    // Resolver
     resolve: {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
         'vuetify-swatches': fileURLToPath(new URL('./src', import.meta.url)),
       },
-      // External
-      dedupe: ['vue', 'vuetify'],
     },
     // https://vitejs.dev/config/#server-options
     server: {
@@ -34,7 +38,13 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       vue(),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
-      checker({ typescript: true, vueTsc: false }),
+      checker({
+        typescript: true,
+        vueTsc: true,
+        eslint: {
+          lintCommand: 'eslint',
+        },
+      }),
       // vite-plugin-banner
       // https://github.com/chengpeiquan/vite-plugin-banner
       banner(`/**
@@ -42,41 +52,48 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
  *
  * @description ${pkg.description}
  * @author ${pkg.author.name} <${pkg.author.email}>
- * @copyright 2022 By Masashi Yoshikawa All rights reserved.
+ * @copyright 2022-2023 By Masashi Yoshikawa All rights reserved.
  * @license ${pkg.license}
  * @version ${pkg.version}
  * @see {@link ${pkg.homepage}}
  */
 `),
-      command === 'serve'
-        ? // unplugin-vue-components
-          // https://github.com/antfu/unplugin-vue-components
-          Components({
-            // generate `components.d.ts` global declarations
-            // https://github.com/antfu/unplugin-vue-components#typescript
-            dts: true,
-            // auto import for directives
-            directives: false,
-            // resolvers for custom components
-            resolvers: [
-              // Vuetify
-              VuetifyResolver(),
-            ],
-          })
-        : undefined,
+      // unplugin-vue-components
+      // https://github.com/antfu/unplugin-vue-components
+      Components({
+        // generate `components.d.ts` global declarations
+        // https://github.com/antfu/unplugin-vue-components#typescript
+        dts: true,
+        // auto import for directives
+        directives: false,
+        // resolvers for custom components
+        resolvers: [
+          // Vuetify
+          VuetifyResolver(),
+        ],
+      }),
     ],
     optimizeDeps: {
-      exclude: ['vue-demi'],
+      exclude: [
+        'vue-demi',
+        // https://github.com/codemirror/dev/issues/608
+        '@codemirror/state',
+      ],
     },
     // Build Options
     // https://vitejs.dev/config/#build-options
     build: {
-      lib: {
-        entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-        name: 'VSwatches',
-        formats: ['umd', 'es', 'iife'],
-        fileName: format => `index.${format}.js`,
-      },
+      outDir: mode === 'docs' ? 'docs' : undefined,
+      lib:
+        mode === 'docs'
+          ? undefined
+          : {
+              entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+              name: 'VSwatches',
+              formats: ['umd', 'es', 'iife'],
+              fileName: format => `index.${format}.js`,
+            },
+
       rollupOptions: {
         plugins: [
           mode === 'analyze'
@@ -84,30 +101,74 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
               // https://github.com/btd/rollup-plugin-visualizer
               visualizer({
                 open: true,
-                filename: 'dist/stats.html',
-                gzipSize: true,
-                brotliSize: true,
+                filename: 'stats.html',
+                gzipSize: false,
+                brotliSize: false,
               })
             : undefined,
         ],
-        external: ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
+        external:
+          mode === 'docs'
+            ? undefined
+            : ['vue', 'vue-demi', 'vuetify/lib', 'vuetify/lib/util/colors'],
         output: {
+          esModule: true,
+          generatedCode: {
+            reservedNamesAsProps: false,
+          },
+          interop: 'compat',
+          systemNullSetters: false,
           exports: 'named',
           globals: {
-            vue: 'Vue',
+            'vue-demi': 'VueDemi',
             'vuetify/lib': 'Vuetify',
             'vuetify/lib/util/colors': 'colors',
-            'vue-demi': 'VueDemi',
+            lodash: 'lodash',
+            vue: 'Vue',
           },
+          manualChunks:
+            mode !== 'docs'
+              ? undefined
+              : {
+                  vue: ['vue'],
+                  codemirror: [
+                    'codemirror',
+                    '@codemirror/autocomplete',
+                    '@codemirror/commands',
+                    '@codemirror/language',
+                    '@codemirror/lint',
+                    '@codemirror/search',
+                    '@codemirror/state',
+                    '@codemirror/view',
+                    // Add the following as needed.
+                    '@codemirror/lang-html',
+                  ],
+                },
         },
       },
+      // Minify option
       target: 'esnext',
-      minify: false,
+      minify: mode === 'docs',
     },
     esbuild: {
       drop: command === 'serve' ? [] : ['console'],
     },
   };
+
+  // Write meta data.
+  fs.writeFileSync(
+    fileURLToPath(new URL('./src/Meta.ts', import.meta.url)),
+    `import type MetaInterface from '@/interfaces/MetaInterface';
+
+// This file is auto-generated by the build system.
+const meta: MetaInterface = {
+  version: '${pkg.version}',
+  date: '${new Date().toISOString()}',
+};
+export default meta;
+`
+  );
+
   // Export vite config
   return config;
 });

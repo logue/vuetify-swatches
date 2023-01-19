@@ -1,8 +1,9 @@
-import VSwatches from './components/VSwatches.vue';
+import VSwatches from '@/components/VSwatches.vue';
+import Meta from '@/Meta';
 
 const installVSwatches = (app: any) => app.component('VSwatches', VSwatches);
 
-export { VSwatches as default, installVSwatches as install };
+export { VSwatches as default, installVSwatches as install, Meta };
 
 // For CDN.
 // @ts-ignore

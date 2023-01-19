@@ -42,10 +42,13 @@ rules:
   vue/multi-word-component-names: warn
 settings:
   import/resolver:
-    typescript: {}
+    typescript: true
+    node: true
     alias:
       map:
-        - ['@/', './src/']
+        - ['@', './src']
+        - ['~', './node_modules']
+        - ['vuetify-swatches', './src']
       extensions:
         - .js
         - .ts
