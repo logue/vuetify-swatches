@@ -76,6 +76,13 @@ const palette = [
     <v-main>
       <v-container>
         <h2>Basic</h2>
+        <p>
+          The default palette contains 22 colors with a MaterialColor base
+          color. If
+          <code>transparent</code>
+          is specified for the color specification, a red slanted line is
+          entered.
+        </p>
         <code-mirror class="mb-3" :dark="dark" :lang="html()" basic readonly>
           <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
         </code-mirror>
@@ -87,9 +94,22 @@ const palette = [
           variant="outlined"
         />
         <h2>With VMenu</h2>
+        <p>
+          You can display a color palette in a popup in combination with
+          Vuetify's
+          <a href="https://next.vuetifyjs.com/en/components/menus/">
+            Menu Component
+          </a>
+          .
+        </p>
         <code-mirror class="mb-3" :dark="dark" :lang="html()" basic readonly>
           <pre>
 &lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+
+const selected = ref('#ffffff');
+
 const palette = [
   [
     '#ffb7b7',
@@ -135,12 +155,17 @@ const palette = [
 &lt;/script&gt;
 
 &lt;template&gt;
-  &lt;v-menu offset-y&gt;
+  &lt;v-menu&gt;
     &lt;template #activator=&quot;{ props }&quot;&gt;
-      &lt;v-btn v-bind=&quot;props&quot; min-width=&quot;auto&quot; :color=&quot;selected&quot;&gt;
+      &lt;v-btn
+        v-bind=&quot;props&quot;
+        :color=&quot;selected&quot;
+        class=&quot;mb-3&quot;
+        min-width=&quot;auto&quot;
+      &gt;
         &lt;v-icon
           :color=&quot;selected&quot;
-          style=&quot;filter: invert(100%) grayscale(100%) contrast(100);&quot;
+          style=&quot;filter: invert(100%) grayscale(100%) contrast(100)&quot;
         &gt;
           mdi-menu-down
         &lt;/v-icon&gt;
@@ -151,7 +176,6 @@ const palette = [
 &lt;/template&gt;</pre
           >
         </code-mirror>
-
         <v-menu class="mb-3">
           <template #activator="{ props }">
             <v-btn
