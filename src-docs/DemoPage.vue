@@ -14,7 +14,21 @@
       <v-container>
         <h1>Vuetify Swatches Demo</h1>
         <h2>Basic</h2>
-        <code-mirror v-model="code1" :dark="dark" basic class="mb-3" readonly />
+        <p>
+          The default palette contains 22 colors with a MaterialColor base
+          color. If
+          <code>transparent</code>
+          is specified for the color specification, a red slanted line is
+          entered.
+        </p>
+        <code-mirror
+          v-model="code1"
+          :dark="dark"
+          :lang="lang"
+          basic
+          class="mb-3"
+          readonly
+        />
         <v-swatches v-model="value" class="mb-3" />
         <v-text-field
           v-model="value"
@@ -23,9 +37,22 @@
           outlined
         />
         <h2>With VMenu (Nested Color)</h2>
-
-        <code-mirror v-model="code2" :dark="dark" basic class="mb-3" readonly />
-
+        <p>
+          You can display a color palette in a popup in combination with
+          Vuetify's
+          <a href="https://vuetifyjs.com/en/components/menus/">
+            Menu Component
+          </a>
+          .
+        </p>
+        <code-mirror
+          v-model="code2"
+          :dark="dark"
+          :lang="lang"
+          basic
+          class="mb-3"
+          readonly
+        />
         <v-menu class="mb-3" offset-y>
           <template #activator="{ on, attrs }">
             <v-btn
@@ -62,7 +89,7 @@ import {
 import { useVuetify } from './plugins/vuetify';
 
 import CodeMirror from 'vue-codemirror6';
-// import { html } from '@codemirror/lang-html';
+import { html } from '@codemirror/lang-html';
 
 import VSwatches from 'vuetify-swatches';
 
@@ -87,18 +114,87 @@ export default defineComponent({
       dark,
       value,
       selected,
-      // lang: html,
+      lang: html(),
       code1: '<v-swatches v-model="color" />',
-      code2: `<v-menu offset-y>
-  <template #activator="{ on, attrs }">
-    <v-btn v-bind="attrs" min-width="auto" :color="selected" v-on="on">
-      <v-icon :color="selected" style="filter: invert(100%)">
-        mdi-menu-down
-      </v-icon>
-    </v-btn>
-  </template>
-  <v-swatches v-model="selected" :swatches="palette" />
-</v-menu>`,
+      code2: `<template>
+  <v-menu class="mb-3" offset-y>
+    <template #activator="{ on, attrs }">
+      <v-btn
+        v-bind="attrs"
+        :color="selected"
+        class="mb-3"
+        min-width="auto"
+        v-on="on"
+      >
+        <v-icon
+          :color="selected"
+          style="filter: invert(100%) grayscale(100%) contrast(100)"
+        >
+          mdi-menu-down
+        </v-icon>
+      </v-btn>
+    </template>
+    <v-swatches v-model="selected" :swatches="palette" />
+  </v-menu>
+<\/template>
+
+<script>
+import { defineComponent, ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+
+export default defineComponent({
+  components: {
+    VSwatches,
+  },
+  setup() {
+    const selected = ref('#ffffff');
+    const palette = [
+      [
+        '#ffb7b7',
+        '#ffdbb7',
+        '#ffffb7',
+        '#b7ffb7',
+        '#b7ffff',
+        '#b7b7ff',
+        '#ffb7ff',
+        '#ffffff',
+      ],
+      [
+        '#ff5555',
+        '#ffa555',
+        '#ffff55',
+        '#55ff55',
+        '#55ffff',
+        '#5555ff',
+        '#ff55ff',
+        '#aaaaaa',
+      ],
+      [
+        '#ff0000',
+        '#ff7f00',
+        '#ffff00',
+        '#00ff00',
+        '#00ffff',
+        '#0000ff',
+        '#ff00ff',
+        '#555555',
+      ],
+      [
+        '#7f0000',
+        '#7f4c00',
+        '#7f7f00',
+        '#007f00',
+        '#007f7f',
+        '#00007f',
+        '#7f007f',
+        '#000000',
+      ],
+    ];
+
+    return { selected, palette };
+  }
+})
+<\/script>`,
       palette: [
         [
           '#ffb7b7',

@@ -34,6 +34,7 @@
 import {
   defineComponent,
   ref,
+  watch,
   type PropType,
   type Ref,
   type SetupContext,
@@ -148,18 +149,26 @@ export default defineComponent({
     /** Check icon visibility */
     const checkedVisibilty: Ref<boolean> = ref(false);
 
+    /** Selected Color */
+    const selected: Ref<string> = ref(props.modelValue);
+
     /**
      * Swatch button clicked handler
      *
      * @param e - Event
      */
-    const onSwatchClick = (e: Event) => {
+    const onSwatchClick = (e: PointerEvent) => {
       const value = (e.target as HTMLButtonElement).value;
       if (!value || props.modelValue === value) {
         return;
       }
-      context.emit('update:modelValue', value);
+      selected.value = value;
     };
+
+    watch(
+      () => selected.value,
+      value => context.emit('update:modelValue', value)
+    );
 
     return {
       checkedVisibilty,

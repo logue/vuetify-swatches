@@ -13,10 +13,10 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
-    "allowJs": true,
     "paths": {
       "@/*": ["./src/*"]
     },
     "lib": ["ESNext", "DOM"]
-  }
+  },
+  "vueCompilerOptions": { "target": 2.7 }
 }

@@ -14,5 +14,6 @@
       "@/*": ["./src/*"]
     },
     "lib": ["ESNext", "DOM"]
-  }
+  },
+  "vueCompilerOptions": { "target": 2.7 }
 }
