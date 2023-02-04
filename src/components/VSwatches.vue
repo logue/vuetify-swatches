@@ -132,7 +132,7 @@ watch(
 </template>
 
 <style lang="scss">
-@import '~/vuetify/lib/styles/settings';
+@use 'vuetify/settings';
 
 .v-swatches {
   div {
@@ -149,7 +149,7 @@ watch(
           to top left,
           transparent 0,
           transparent calc(50% - 0.1rem),
-          map-get($red, 'base') 50%,
+          map-get(settings.$red, 'base') 50%,
           transparent calc(50% + 0.1rem),
           transparent
         );

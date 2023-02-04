@@ -58,11 +58,12 @@ settings:
       - '*.tsx'
       - '*.vue'
   import/resolver:
-    typescript: {}
+    typescript: true
     alias:
       map:
         - ['@', './src']
         - ['~', './node_modules']
+        - ['vuetify-swatches', './src']
       extensions:
         - .js
         - .ts

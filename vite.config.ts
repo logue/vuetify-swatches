@@ -17,6 +17,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
+        'vuetify-swatches': fileURLToPath(new URL('./src', import.meta.url)),
       },
       // External
       dedupe: ['vue', 'vuetify'],
@@ -34,8 +35,8 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
       vuetify({
-        autoImport: false,
-        // styles: 'sass',
+        autoImport: mode === 'docs',
+        styles: 'sass',
       }),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
@@ -47,7 +48,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
  *
  * @description ${pkg.description}
  * @author ${pkg.author.name} <${pkg.author.email}>
- * @copyright 2022 By Masashi Yoshikawa All rights reserved.
+ * @copyright 2022-2023 By Masashi Yoshikawa All rights reserved.
  * @license ${pkg.license}
  * @version ${pkg.version}
  * @see {@link ${pkg.homepage}}
@@ -60,12 +61,16 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
     // Build Options
     // https://vitejs.dev/config/#build-options
     build: {
-      lib: {
-        entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-        name: 'VSwatches',
-        formats: ['umd', 'es', 'iife'],
-        fileName: format => `index.${format}.js`,
-      },
+      outDir: mode === 'docs' ? 'docs' : undefined,
+      lib:
+        mode === 'docs'
+          ? undefined
+          : {
+              entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+              name: 'VSwatches',
+              formats: ['umd', 'es', 'iife'],
+              fileName: format => `index.${format}.js`,
+            },
       rollupOptions: {
         plugins: [
           mode === 'analyze'
@@ -79,8 +84,17 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external: ['vue', 'vuetify/lib', 'vuetify/lib/util/colors.mjs'],
+        external:
+          mode === 'docs'
+            ? undefined
+            : ['vue', 'vuetify/lib', 'vuetify/lib/util/colors.mjs'],
         output: {
+          esModule: true,
+          generatedCode: {
+            reservedNamesAsProps: false,
+          },
+          interop: 'compat',
+          systemNullSetters: false,
           exports: 'named',
           globals: {
             vue: 'Vue',
@@ -89,10 +103,33 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
             'vuetify/directives': 'VuetifyDirectives',
             'vuetify/lib/util/colors.mjs': 'colors',
           },
+          manualChunks:
+            mode !== 'docs'
+              ? undefined
+              : {
+                  vue: ['vue'],
+                  vuetify: [
+                    'vuetify/components',
+                    'vuetify/directives',
+                    'vuetify/lib/util/colors.mjs',
+                  ],
+                  codemirror: [
+                    'codemirror',
+                    '@codemirror/autocomplete',
+                    '@codemirror/commands',
+                    '@codemirror/language',
+                    '@codemirror/lint',
+                    '@codemirror/search',
+                    '@codemirror/state',
+                    '@codemirror/view',
+                    // Add the following as needed.
+                    '@codemirror/lang-html',
+                  ],
+                },
         },
       },
       target: 'esnext',
-      minify: false,
+      minify: mode === 'docs',
     },
     esbuild: {
       drop: command === 'serve' ? [] : ['console'],
