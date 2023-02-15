@@ -2,7 +2,7 @@
 import { ref, type Ref } from 'vue';
 
 import CodeMirror from 'vue-codemirror6';
-import { html } from '@codemirror/lang-html';
+import { vue } from '@codemirror/lang-vue';
 
 // import VSwatches from './dist/v-swatches.es';
 import VSwatches from 'vuetify-swatches';
@@ -83,16 +83,23 @@ const palette = [
           is specified for the color specification, a red slanted line is
           entered.
         </p>
-        <code-mirror class="mb-3" :dark="dark" :lang="html()" basic readonly>
-          <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
-        </code-mirror>
-        <v-swatches v-model="value" class="mb-3" />
-        <v-text-field
-          v-model="value"
-          label="Result"
-          min-width="auto"
-          variant="outlined"
-        />
+        <v-row>
+          <v-col>
+            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+              <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
+            </code-mirror>
+          </v-col>
+          <v-col>
+            <v-swatches v-model="value" class="mb-3" />
+            <v-text-field
+              v-model="value"
+              label="Result"
+              min-width="auto"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
+
         <h2>With VMenu</h2>
         <p>
           You can display a color palette in a popup in combination with
@@ -102,8 +109,10 @@ const palette = [
           </a>
           .
         </p>
-        <code-mirror class="mb-3" :dark="dark" :lang="html()" basic readonly>
-          <pre>
+        <v-row>
+          <v-col>
+            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+              <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
 import VSwatches from 'vuetify-swatches';
@@ -174,27 +183,35 @@ const palette = [
     &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
   &lt;/v-menu&gt;
 &lt;/template&gt;</pre
-          >
-        </code-mirror>
-        <v-menu class="mb-3">
-          <template #activator="{ props }">
-            <v-btn
-              v-bind="props"
-              class="mb-3"
-              min-width="auto"
-              :color="selected"
-            >
-              <v-icon
-                :color="selected"
-                style="filter: invert(100%) grayscale(100%) contrast(100)"
               >
-                mdi-menu-down
-              </v-icon>
-            </v-btn>
-          </template>
-          <v-swatches v-model="selected" :swatches="palette" />
-        </v-menu>
-        <v-text-field v-model="selected" label="Result" variant="outlined" />
+            </code-mirror>
+          </v-col>
+          <v-col>
+            <v-menu class="mb-3">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  class="mb-3"
+                  min-width="auto"
+                  :color="selected"
+                >
+                  <v-icon
+                    :color="selected"
+                    style="filter: invert(100%) grayscale(100%) contrast(100)"
+                  >
+                    mdi-menu-down
+                  </v-icon>
+                </v-btn>
+              </template>
+              <v-swatches v-model="selected" :swatches="palette" />
+            </v-menu>
+            <v-text-field
+              v-model="selected"
+              label="Result"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>

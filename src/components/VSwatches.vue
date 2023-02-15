@@ -132,8 +132,6 @@ watch(
 </template>
 
 <style lang="scss">
-@use 'vuetify/settings';
-
 .v-swatches {
   div {
     .v-btn {
@@ -149,7 +147,7 @@ watch(
           to top left,
           transparent 0,
           transparent calc(50% - 0.1rem),
-          map-get(settings.$red, 'base') 50%,
+          rgb(var(--v-theme-error)) 50%,
           transparent calc(50% + 0.1rem),
           transparent
         );
