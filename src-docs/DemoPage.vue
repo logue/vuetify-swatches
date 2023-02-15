@@ -21,58 +21,72 @@
           is specified for the color specification, a red slanted line is
           entered.
         </p>
-        <code-mirror
-          v-model="code1"
-          :dark="dark"
-          :lang="lang"
-          basic
-          class="mb-3"
-          readonly
-        />
-        <v-swatches v-model="value" class="mb-3" />
-        <v-text-field
-          v-model="value"
-          label="Selected Color"
-          min-width="auto"
-          outlined
-        />
+
+        <v-row class="mb-3">
+          <v-col>
+            <code-mirror
+              v-model="code1"
+              :dark="dark"
+              :lang="lang"
+              basic
+              readonly
+            />
+          </v-col>
+          <v-col>
+            <v-swatches v-model="value" class="mb-3" />
+            <v-text-field
+              v-model="value"
+              label="Selected Color"
+              min-width="auto"
+              outlined
+            />
+          </v-col>
+        </v-row>
+
         <h2>With VMenu (Nested Color)</h2>
         <p>
           You can display a color palette in a popup in combination with
           Vuetify's
-          <a href="https://vuetifyjs.com/en/components/menus/">
+          <a href="https://v2.vuetifyjs.com/en/components/menus/">
             Menu Component
           </a>
           .
         </p>
-        <code-mirror
-          v-model="code2"
-          :dark="dark"
-          :lang="lang"
-          basic
-          class="mb-3"
-          readonly
-        />
-        <v-menu class="mb-3" offset-y>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              v-bind="attrs"
-              :color="selected"
-              class="mb-3"
-              min-width="auto"
-              v-on="on"
-            >
-              <v-icon
-                :color="selected"
-                style="filter: invert(100%) grayscale(100%) contrast(100)"
-              >
-                mdi-menu-down
-              </v-icon>
-            </v-btn>
-          </template>
-          <v-swatches v-model="selected" :swatches="palette" />
-        </v-menu>
-        <v-text-field v-model="selected" label="Selected Color" outlined />
+        <v-row class="mb-3">
+          <v-col>
+            <code-mirror
+              v-model="code2"
+              :dark="dark"
+              :lang="lang"
+              style="max-height: 5rem"
+              basic
+              readonly
+              wrap
+            />
+          </v-col>
+          <v-col>
+            <v-menu class="mb-3" offset-y>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  v-bind="attrs"
+                  :color="selected"
+                  class="mb-3"
+                  min-width="auto"
+                  v-on="on"
+                >
+                  <v-icon
+                    :color="selected"
+                    style="filter: invert(100%) grayscale(100%) contrast(100)"
+                  >
+                    mdi-menu-down
+                  </v-icon>
+                </v-btn>
+              </template>
+              <v-swatches v-model="selected" :swatches="palette" />
+            </v-menu>
+            <v-text-field v-model="selected" label="Selected Color" outlined />
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -89,7 +103,7 @@ import {
 import { useVuetify } from './plugins/vuetify';
 
 import CodeMirror from 'vue-codemirror6';
-import { html } from '@codemirror/lang-html';
+import { vue } from '@codemirror/lang-vue';
 
 import VSwatches from 'vuetify-swatches';
 
@@ -114,7 +128,7 @@ export default defineComponent({
       dark,
       value,
       selected,
-      lang: html(),
+      lang: vue(),
       code1: '<v-swatches v-model="color" />',
       code2: `<template>
   <v-menu class="mb-3" offset-y>

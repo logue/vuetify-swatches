@@ -131,7 +131,9 @@ export default defineConfig(async ({ mode, command }): Promise<UserConfig> => {
               ? undefined
               : {
                   vue: ['vue'],
+                  vuetify: ['vuetify/lib'],
                   codemirror: [
+                    'vue-codemirror6',
                     'codemirror',
                     '@codemirror/autocomplete',
                     '@codemirror/commands',
@@ -140,9 +142,8 @@ export default defineConfig(async ({ mode, command }): Promise<UserConfig> => {
                     '@codemirror/search',
                     '@codemirror/state',
                     '@codemirror/view',
-                    // Add the following as needed.
-                    '@codemirror/lang-html',
                   ],
+                  'codemirror-lang': ['@codemirror/lang-vue'],
                 },
         },
       },
