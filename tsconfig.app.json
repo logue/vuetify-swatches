@@ -6,7 +6,7 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
-    "outDir": "./dist",
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"]
     },
