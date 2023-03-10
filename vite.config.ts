@@ -3,6 +3,7 @@ import { defineConfig, type UserConfig } from 'vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
 import banner from 'vite-plugin-banner';
+import dts from 'vite-plugin-dts';
 import vue from '@vitejs/plugin-vue2';
 import Components from 'unplugin-vue-components/vite';
 
@@ -58,6 +59,13 @@ export default defineConfig(async ({ mode, command }): Promise<UserConfig> => {
  * @see {@link ${pkg.homepage}}
  */
 `),
+      // vite-plugin-dts
+      // https://github.com/qmhc/vite-plugin-dts
+      mode === 'docs'
+        ? undefined
+        : dts({
+            tsConfigFilePath: './tsconfig.app.json',
+          }),
       // unplugin-vue-components
       // https://github.com/antfu/unplugin-vue-components
       Components({

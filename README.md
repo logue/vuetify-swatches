@@ -9,13 +9,13 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
+This is for Vuetify2. Use latest when using with Vuetify3.
+
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
 Unlike the original version, it provides a UI based on Vuetify, such as ripple effects and dark mode.
 
 This library is positioned as a complement to Vuetify and provides a minimal UI. Use the [Menu Component](https://vuetifyjs.com/components/menus/) if you want to display a pop-up menu, and the [Card component](https://vuetifyjs.com/components/cards/) if you want to display a palette.
-
-For Vuetify3, please use the [next branch](https://github.com/logue/vuetify-swatches/tree/next).
 
 ## Usage
 
@@ -148,4 +148,4 @@ export default Vue.extend({
 
 ## LICENSE
 
-[MIT](LICENSE)
+©2022-2023 by Logue. Licensed under the [MIT License](LICENSE).
