@@ -9,7 +9,7 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
-This branch is for vuetify3. Not usable for production, experimental use only.
+This is for Vuetify3. Please use 1.0.x when using with Vuetify2.
 
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
@@ -134,4 +134,4 @@ Most props other than size and placement are the same as [v-btn](https://next.vu
 
 ## LICENSE
 
-[MIT](LICENSE)
+©2022-2023 by Logue. Licensed under the [MIT License](LICENSE).
