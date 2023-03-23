@@ -214,5 +214,12 @@ const palette = [
         </v-row>
       </v-container>
     </v-main>
+    <v-footer>
+      &copy; 2022-2023 by&thinsp;
+      <a href="http://logue.dev/">Logue</a>
+      &thinsp; . Licensed under the&thinsp;
+      <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>
+      .
+    </v-footer>
   </v-app>
 </template>

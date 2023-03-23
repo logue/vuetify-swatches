@@ -1,12 +1,13 @@
 import VSwatches from '@/components/VSwatches.vue';
 
-const installVSwatches = (app: any) => app.component('VSwatches', VSwatches);
+const installVSwatches = (app: any): void =>
+  app.component('VSwatches', VSwatches);
 
 export { VSwatches as default, installVSwatches as install };
 
 // For CDN.
-// @ts-ignore
+// @ts-expect-error
 if (typeof window !== 'undefined' && window.Vue) {
-  // @ts-ignore
+  // @ts-expect-error
   window.Vue.use(VSwatches);
 }

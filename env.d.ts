@@ -1,11 +1,6 @@
 /* eslint-disable */
 /// <reference types="vite/client" />
 
-declare module '*.vue' {
-  import Vue from 'vue';
-  export default Vue;
-}
-
 declare module 'vuetify/lib/util/colors.mjs';
 
 interface ImportMetaEnv {

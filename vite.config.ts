@@ -8,7 +8,8 @@ import vuetify from 'vite-plugin-vuetify';
 
 import { fileURLToPath, URL } from 'node:url';
 
-const pkg = require('./package.json');
+// @ts-nocheck
+import pkg from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {

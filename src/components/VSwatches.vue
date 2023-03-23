@@ -49,11 +49,11 @@ const props = defineProps({
   /**
    * The variant prop gives you easy access to several different button styles..
    *
-   * @see {@link https://next.vuetifyjs.com/en/components/buttons/#variant}
+   * @see {@link https://vuetifyjs.com/en/components/buttons/#variant}
    */
   variant: {
     type: String as PropType<
-      'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain'
+      NonNullable<'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain'>
     >,
     default: undefined,
   },
@@ -66,19 +66,19 @@ const props = defineProps({
   /**
    * Applies a large border radius on the button.
    *
-   * @see {@link https://next.vuetifyjs.com/en/components/buttons/#rounded}
+   * @see {@link https://vuetifyjs.com/en/components/buttons/#rounded}
    */
   rounded: { type: [String, Number, Boolean], default: undefined },
   /**
    * Applies border styles to component.
    *
-   * @see {@link https://next.vuetifyjs.com/en/api/v-btn/#props-border}
+   * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-border}
    */
   border: { type: [String, Number, Boolean], default: false },
   /**
    * Designates an elevation applied to the component between 0 and 24.
    *
-   * @see {@link https://next.vuetifyjs.com/en/api/v-btn/#props-elevation}
+   * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-elevation}
    */
   elevation: { type: [String, Number], default: undefined },
 });
@@ -93,7 +93,7 @@ const selected: Ref<string> = ref(props.modelValue || colors.shades.white);
  */
 const onSwatchClick = (e: Event) =>
   (selected.value =
-    (e.target as HTMLButtonElement).dataset.value || colors.shades.white);
+    (e.target as HTMLButtonElement).value || colors.shades.white);
 
 watch(
   () => selected.value,
@@ -113,7 +113,7 @@ watch(
         :disabled="props.disabled"
         :elevation="props.elevation"
         :height="props.size"
-        :data-value="color"
+        :value="color"
         :variant="props.variant"
         :width="props.size"
         min-width="auto"
