@@ -31,6 +31,8 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         allow: ['..'],
       },
     },
+    // https://vitejs.dev/config/shared-options.html#base
+    base: './',
     plugins: [
       // Vue3
       vue(),
@@ -123,6 +125,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
                     'vuetify/lib/util/colors.mjs',
                   ],
                   codemirror: [
+                    'vue-codemirror6',
                     'codemirror',
                     '@codemirror/autocomplete',
                     '@codemirror/commands',
@@ -131,9 +134,8 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
                     '@codemirror/search',
                     '@codemirror/state',
                     '@codemirror/view',
-                    // Add the following as needed.
-                    '@codemirror/lang-html',
                   ],
+                  'codemirror-lang': ['@codemirror/lang-html'],
                 },
         },
       },
