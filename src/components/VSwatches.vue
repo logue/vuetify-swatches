@@ -1,12 +1,14 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
 import { ref, watch, type PropType, type Ref } from 'vue';
+
+import { VBtn, VIcon, VSheet } from 'vuetify/components';
 import colors from 'vuetify/lib/util/colors.mjs';
 
 /** Emits */
-const emits = defineEmits<{
-  (event: 'update:modelValue', value: string): void;
-}>();
+const emits = defineEmits({
+  'update:modelValue': (value: string) => true,
+});
 
 /** Props */
 const props = defineProps({

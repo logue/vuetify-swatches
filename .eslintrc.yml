@@ -1,7 +1,6 @@
 env:
   browser: true
-  es2022: true # Vuetify recommended
-  node: true
+  es2021: true
 extends:
   - plugin:vue/vue3-recommended
   - standard-with-typescript
@@ -33,8 +32,6 @@ plugins:
   - yaml
   - vue
 rules:
-  require-jsdoc: warn
-  no-unused-vars: warn
   '@typescript-eslint/ban-ts-comment': off
   '@typescript-eslint/no-confusing-void-expression': off
   '@typescript-eslint/no-floating-promises': off
@@ -43,12 +40,6 @@ rules:
   '@typescript-eslint/strict-boolean-expressions': off
   '@typescript-eslint/triple-slash-reference': off
   import/default: off
-  tsdoc/syntax: warn
-  vue/html-self-closing:
-    - error
-    - html:
-        void: always
-  vue/multi-word-component-names: warn
 settings:
   import/parsers:
     '@typescript-eslint/parser':

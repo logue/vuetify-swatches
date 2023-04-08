@@ -38,10 +38,12 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       vue(),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
-      vuetify({
-        autoImport: mode === 'docs',
-        styles: 'sass',
-      }),
+      mode === 'docs'
+        ? vuetify({
+            autoImport: true,
+            styles: 'sass',
+          })
+        : undefined,
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({ typescript: true, vueTsc: true }),
@@ -67,11 +69,17 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           }),
     ],
     optimizeDeps: {
-      exclude: ['vue', 'vuetify'],
+      exclude: ['vue', 'vuetify/lib'],
     },
     // Build Options
     // https://vitejs.dev/config/#build-options
     build: {
+      commonjsOptions: {
+        exclude:
+          mode === 'docs'
+            ? undefined
+            : ['vuetify/lib', 'vuetify/lib/util/colors.mjs'],
+      },
       outDir: mode === 'docs' ? 'docs' : undefined,
       lib:
         mode === 'docs'
@@ -98,7 +106,15 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         external:
           mode === 'docs'
             ? undefined
-            : ['vue', 'vuetify/lib', 'vuetify/lib/util/colors.mjs'],
+            : [
+                'vue',
+                'vuetify/src',
+                'vuetify/directive/*',
+                'vuetify/lib/components/VBtn',
+                'vuetify/lib/components/VIcon',
+                'vuetify/lib/components/VSheet',
+                'vuetify/lib/util/colors.mjs',
+              ],
         output: {
           esModule: true,
           generatedCode: {
@@ -109,15 +125,14 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           exports: 'named',
           globals: {
             vue: 'Vue',
-            vuetify: 'Vuetify',
-            'vuetify/components': 'VuetifyComponents',
-            'vuetify/directives': 'VuetifyDirectives',
+            'vuetify/lib/components/VBtn': 'VBtn',
+            'vuetify/lib/components/VIcon': 'VIcon',
+            'vuetify/lib/components/VSheet': 'VSheet',
             'vuetify/lib/util/colors.mjs': 'colors',
           },
           manualChunks:
-            mode !== 'docs'
-              ? undefined
-              : {
+            mode === 'docs'
+              ? {
                   vue: ['vue'],
                   vuetify: [
                     'vuetify/components',
@@ -136,7 +151,8 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
                     '@codemirror/view',
                   ],
                   'codemirror-lang': ['@codemirror/lang-html'],
-                },
+                }
+              : undefined,
         },
       },
       target: 'esnext',
