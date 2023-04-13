@@ -43,11 +43,20 @@ const props = defineProps({
     ],
   },
   /** Swatch size */
-  size: { type: String, default: '2rem' },
+  size: {
+    type: String,
+    default: '2rem',
+  },
   /** Selected icon */
-  icon: { type: String, default: 'mdi-checkbox-marked-circle' },
+  icon: {
+    type: String,
+    default: 'mdi-checkbox-marked-circle',
+  },
   /** selected icon size */
-  iconSize: { type: String, default: '1rem' },
+  iconSize: {
+    type: String,
+    default: '1rem',
+  },
   /**
    * The variant prop gives you easy access to several different button styles..
    *
@@ -64,25 +73,37 @@ const props = defineProps({
    *
    * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-disabled}
    */
-  disabled: { type: Boolean, default: undefined },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * Applies a large border radius on the button.
    *
    * @see {@link https://vuetifyjs.com/en/components/buttons/#rounded}
    */
-  rounded: { type: [String, Number, Boolean], default: undefined },
+  rounded: {
+    type: [String, Number, Boolean],
+    default: undefined,
+  },
   /**
    * Applies border styles to component.
    *
    * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-border}
    */
-  border: { type: [String, Number, Boolean], default: false },
+  border: {
+    type: [String, Number, Boolean],
+    default: false,
+  },
   /**
    * Designates an elevation applied to the component between 0 and 24.
    *
    * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-elevation}
    */
-  elevation: { type: [String, Number], default: undefined },
+  elevation: {
+    type: [String, Number],
+    default: undefined,
+  },
 });
 
 /** Selected Color */
@@ -119,7 +140,7 @@ watch(
         :variant="props.variant"
         :width="props.size"
         min-width="auto"
-        @click="onSwatchClick($event)"
+        @click="onSwatchClick"
       >
         <v-icon
           v-if="color === modelValue"

@@ -69,7 +69,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           }),
     ],
     optimizeDeps: {
-      exclude: ['vue', 'vuetify/lib'],
+      exclude: ['vue'],
     },
     // Build Options
     // https://vitejs.dev/config/#build-options
@@ -78,17 +78,25 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         exclude:
           mode === 'docs'
             ? undefined
-            : ['vuetify/lib', 'vuetify/lib/util/colors.mjs'],
+            : [
+                'vuetify/lib',
+                'vuetify/lib/components/VBtn',
+                'vuetify/lib/components/VIcon',
+                'vuetify/lib/components/VSheet',
+                'vuetify/lib/util/colors.mjs',
+              ],
       },
       outDir: mode === 'docs' ? 'docs' : undefined,
       lib:
         mode === 'docs'
           ? undefined
           : {
-              entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+              entry: fileURLToPath(
+                new URL('./src/components/VSwatches.vue', import.meta.url)
+              ),
               name: 'VSwatches',
               formats: ['umd', 'es', 'iife'],
-              fileName: format => `index.${format}.js`,
+              fileName: format => `VSwatches.${format}.js`,
             },
       rollupOptions: {
         plugins: [
@@ -103,18 +111,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
               })
             : undefined,
         ],
-        external:
-          mode === 'docs'
-            ? undefined
-            : [
-                'vue',
-                'vuetify/src',
-                'vuetify/directive/*',
-                'vuetify/lib/components/VBtn',
-                'vuetify/lib/components/VIcon',
-                'vuetify/lib/components/VSheet',
-                'vuetify/lib/util/colors.mjs',
-              ],
+        external: mode === 'docs' ? undefined : ['vue', /^vuetify/],
         output: {
           esModule: true,
           generatedCode: {
@@ -125,9 +122,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           exports: 'named',
           globals: {
             vue: 'Vue',
-            'vuetify/lib/components/VBtn': 'VBtn',
-            'vuetify/lib/components/VIcon': 'VIcon',
-            'vuetify/lib/components/VSheet': 'VSheet',
+            'vuetify/components': 'Vuetify/components',
             'vuetify/lib/util/colors.mjs': 'colors',
           },
           manualChunks:
