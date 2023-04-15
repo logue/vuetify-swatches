@@ -91,12 +91,10 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         mode === 'docs'
           ? undefined
           : {
-              entry: fileURLToPath(
-                new URL('./src/components/VSwatches.vue', import.meta.url)
-              ),
+              entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
               name: 'VSwatches',
               formats: ['umd', 'es', 'iife'],
-              fileName: format => `VSwatches.${format}.js`,
+              fileName: format => `index.${format}.js`,
             },
       rollupOptions: {
         plugins: [
