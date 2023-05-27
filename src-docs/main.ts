@@ -1,6 +1,7 @@
-import vuetify from './plugins/vuetify';
 import { createApp, h } from 'vue';
+
 import Dev from './DemoPage.vue';
+import vuetify from './plugins/vuetify';
 
 const app = createApp({
   render: () => h(Dev),

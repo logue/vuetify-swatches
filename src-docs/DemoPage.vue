@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 
-import CodeMirror from 'vue-codemirror6';
 import { vue } from '@codemirror/lang-vue';
+import CodeMirror from 'vue-codemirror6';
 
 // import VSwatches from './dist/v-swatches.es';
-import VSwatches from 'vuetify-swatches';
 import { useTheme } from 'vuetify';
+
+import VSwatches from 'vuetify-swatches';
 
 const theme = useTheme();
 
-// @ts-ignore
 const dark: Ref<boolean> = ref(theme.current.value.dark);
 
 const value: Ref<string> = ref('#ffffff');

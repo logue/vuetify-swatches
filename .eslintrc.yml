@@ -1,6 +1,6 @@
 env:
   browser: true
-  es2021: true
+  es2022: true
 extends:
   - plugin:vue/vue3-recommended
   - standard-with-typescript
@@ -10,10 +10,7 @@ extends:
   - plugin:vuetify/base
   - plugin:yaml/recommended
   - '@vue/eslint-config-prettier'
-overrides:
-  - files:
-      - '*.html'
-    processor: vue/.vue
+overrides: []
 parser: vue-eslint-parser
 parserOptions:
   ecmaVersion: latest
@@ -23,23 +20,62 @@ parserOptions:
   project:
     - ./tsconfig.app.json
     - ./tsconfig.node.json
+    - ./tsconfig.vitest.json
   extraFileExtensions:
     - .vue
 plugins:
   - import
   - tsdoc
-  - html
   - yaml
   - vue
 rules:
-  '@typescript-eslint/ban-ts-comment': off
-  '@typescript-eslint/no-confusing-void-expression': off
-  '@typescript-eslint/no-floating-promises': off
-  '@typescript-eslint/no-invalid-void-type': off
-  '@typescript-eslint/prefer-nullish-coalescing': off
-  '@typescript-eslint/strict-boolean-expressions': off
-  '@typescript-eslint/triple-slash-reference': off
-  import/default: off
+  require-jsdoc: warn
+  no-unused-vars: warn
+  '@typescript-eslint/ban-ts-comment': off # Enable @ts-ignore etc.
+  '@typescript-eslint/consistent-type-imports': # Enable import sort order, see bellow.
+    - error
+    - prefer: type-imports
+  '@typescript-eslint/explicit-function-return-type': off # Fix for pinia
+  '@typescript-eslint/no-confusing-void-expression':
+    - error
+    - ignoreArrowShorthand: true # Allow short land for pretter
+  '@typescript-eslint/strict-boolean-expressions': off # Fix for vite import.meta.env
+  '@typescript-eslint/triple-slash-reference': off # Fix for vite env.d.ts.
+  import/default: off # Fix for Vue setup style
+  import/no-default-export: off # Fix for Vue setup style
+  import/no-unresolved:
+    - error
+    - ignore:
+        - '^virtual:' # Fix for unocss and vite.
+  import/order: # Sort Import Order. see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
+    - error
+    - groups:
+        ['builtin', 'external', 'parent', 'sibling', 'index', 'object', 'type']
+      pathGroups:
+        # Vue Core
+        - pattern: '{vue,vue-router,pinia,vite,vitest,vitest/**,@vitejs/**,@vue/**}'
+          group: external
+          position: before
+        # UI Library
+        - pattern: '{vuetify,vuetify/**}'
+          group: parent
+          position: before
+        # Internal Codes
+        - pattern: '{@/plugins/**,@/stores/**,@/router.ts,@/helpers/**,@/interfaces/**,@/types/**,@/components/**,@/views/**}'
+          group: internal
+          position: before
+      pathGroupsExcludedImportTypes:
+        - builtin
+      alphabetize:
+        order: asc
+      newlines-between: always
+  tsdoc/syntax: warn
+  vue/html-self-closing: # A tag with no content should be written like <br />.
+    - error
+    - html:
+        void: always
+  vue/multi-word-component-names: warn # Mitigate non-multiword component name errors to warnings.
+  vuetify/no-deprecated-components: warn # for Vuetify Labs Fix (v-data-tables etc.)
 settings:
   import/parsers:
     '@typescript-eslint/parser':
@@ -49,7 +85,6 @@ settings:
       - .vue
   import/resolver:
     typescript: true
-    node: true
     alias:
       map:
         - ['@', './src']
