@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
-import { ref, watch, type PropType, type Ref } from 'vue';
+import { ref, watch, type PropType, type Ref, onMounted } from 'vue';
 
 import { VBtn, VIcon, VSheet } from 'vuetify/components';
 import colors from 'vuetify/lib/util/colors.mjs';
@@ -107,7 +107,7 @@ const props = defineProps({
 });
 
 /** Selected Color */
-const selected: Ref<string> = ref(props.modelValue || colors.shades.white);
+const selected: Ref<string> = ref(colors.shades.white);
 
 /**
  * Swatch button clicked handler
@@ -122,6 +122,12 @@ watch(
   () => selected.value,
   s => emits('update:modelValue', s)
 );
+
+onMounted(() => {
+  if (props.modelValue) {
+    selected.value = props.modelValue;
+  }
+});
 </script>
 
 <template>
