@@ -37,11 +37,13 @@ export default defineConfig(({ command, mode }): UserConfig => {
     base: './',
     plugins: [
       // Vue3
+      // @ts-expect-error
       vue(),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
       mode === 'docs'
-        ? vuetify({
+        ? // @ts-expect-error
+          vuetify({
             autoImport: true,
             styles: 'sass',
           })
@@ -51,6 +53,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
       checker({ typescript: true, vueTsc: true }),
       // vite-plugin-banner
       // https://github.com/chengpeiquan/vite-plugin-banner
+      // @ts-expect-error
       banner(`/**
  * ${pkg.name}
  *
@@ -67,7 +70,9 @@ export default defineConfig(({ command, mode }): UserConfig => {
       mode === 'docs'
         ? undefined
         : dts({
-            tsConfigFilePath: './tsconfig.app.json',
+            tsconfigPath: fileURLToPath(
+              new URL('./tsconfig.app.json', import.meta.url)
+            ),
           }),
     ],
     optimizeDeps: {
