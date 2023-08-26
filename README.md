@@ -132,6 +132,30 @@ Most props other than size and placement are the same as [v-btn](https://next.vu
 
 [^1] Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
 
+### CDN Usage
+
+```html
+<!-- Vue core -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"
+/>
+<!-- Markdown wasm -->
+<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@1.4.3/dist/index.iife.min.js"></script>
+<script>
+  const { createApp } = Vue;
+  const { createVuetify } = Vuetify;
+
+  const app = createApp();
+  app.use(vuetify).component(VSwatches).mount('#app');
+</script>
+```
+
+```
+
 ## LICENSE
 
 ©2022-2023 by Logue. Licensed under the [MIT License](LICENSE).
+```

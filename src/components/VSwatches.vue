@@ -16,7 +16,7 @@ const props = defineProps({
   modelValue: { type: String, default: colors.shades.white },
   /** Swatch colors */
   swatches: {
-    type: Array as PropType<string[] | string[][]>,
+    type: Array as PropType<string[] | string[][] | Record<string, string[]>>,
     default: () => [
       [colors.shades.black, colors.shades.white, colors.shades.transparent],
       [
@@ -167,10 +167,12 @@ onMounted(() => {
       padding: 0 !important;
       margin: 0.1rem;
 
+      /** Reverse checkd mark color */
       .v-icon {
         filter: invert(100%) grayscale(100%) contrast(100);
       }
 
+      /** Add Slash */
       &.bg-trasparent {
         background: linear-gradient(
           to top left,

@@ -37,7 +37,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
     base: './',
     plugins: [
       // Vue3
-      // @ts-expect-error
       vue(),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
@@ -67,13 +66,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
 `),
       // vite-plugin-dts
       // https://github.com/qmhc/vite-plugin-dts
-      mode === 'docs'
-        ? undefined
-        : dts({
-            tsconfigPath: fileURLToPath(
-              new URL('./tsconfig.app.json', import.meta.url)
-            ),
-          }),
+      mode === 'docs' ? undefined : dts(),
     ],
     optimizeDeps: {
       exclude: ['vue'],
