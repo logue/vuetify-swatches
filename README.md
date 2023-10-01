@@ -9,7 +9,7 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
-This is for Vuetify3. Please use 1.0.x when using with Vuetify2.
+⚠ This is for Vuetify3. If you are using Vuetify2, please use 1.0.x.
 
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
@@ -117,7 +117,7 @@ const selected: Ref<string> = ref('#ffffff');
 
 ### Options
 
-Most props other than size and placement are the same as [v-btn](https://next.vuetifyjs.com/en/api/v-btn/).
+Most props other than size and placement are the same as [v-btn](https://vuetifyjs.com/en/api/v-btn/).
 
 | Variables | Type           | Default                    | Info                                                                       |
 | --------- | -------------- | -------------------------- | -------------------------------------------------------------------------- |
