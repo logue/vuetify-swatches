@@ -79,7 +79,7 @@ const palette = [
         <p>
           The default palette contains 22 colors with a MaterialColor base
           color. If
-          <code>transparent</code>
+          <v-code tag="code">transparent</v-code>
           is specified for the color specification, a red slanted line is
           entered.
         </p>

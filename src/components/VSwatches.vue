@@ -3,7 +3,28 @@
 import { ref, watch, type PropType, type Ref, onMounted } from 'vue';
 
 import { VBtn, VIcon, VSheet } from 'vuetify/components';
-import colors from 'vuetify/lib/util/colors.mjs';
+import {
+  shades,
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  lightGreen,
+  lime,
+  yellow,
+  amber,
+  orange,
+  deepOrange,
+  brown,
+  blueGrey,
+  grey,
+} from 'vuetify/lib/util/colors.mjs';
 
 /** Emits */
 const emits = defineEmits({
@@ -13,33 +34,33 @@ const emits = defineEmits({
 /** Props */
 const props = defineProps({
   /** Model value */
-  modelValue: { type: String, default: colors.shades.white },
+  modelValue: { type: String, default: shades.white },
   /** Swatch colors */
   swatches: {
     type: Array as PropType<string[] | string[][] | Record<string, string[]>>,
     default: () => [
-      [colors.shades.black, colors.shades.white, colors.shades.transparent],
+      [shades.black, shades.white, shades.transparent],
       [
-        colors.red.base,
-        colors.pink.base,
-        colors.purple.base,
-        colors.deepPurple.base,
-        colors.indigo.base,
-        colors.blue.base,
-        colors.lightBlue.base,
-        colors.cyan.base,
+        red.base,
+        pink.base,
+        purple.base,
+        deepPurple.base,
+        indigo.base,
+        blue.base,
+        lightBlue.base,
+        cyan.base,
       ],
       [
-        colors.teal.base,
-        colors.green.base,
-        colors.lightGreen.base,
-        colors.lime.base,
-        colors.yellow.base,
-        colors.amber.base,
-        colors.orange.base,
-        colors.deepOrange.base,
+        teal.base,
+        green.base,
+        lightGreen.base,
+        lime.base,
+        yellow.base,
+        amber.base,
+        orange.base,
+        deepOrange.base,
       ],
-      [colors.brown.base, colors.blueGrey.base, colors.grey.base],
+      [brown.base, blueGrey.base, grey.base],
     ],
   },
   /** Swatch size */
@@ -107,7 +128,7 @@ const props = defineProps({
 });
 
 /** Selected Color */
-const selected: Ref<string> = ref(colors.shades.white);
+const selected: Ref<string> = ref(shades.white);
 
 /**
  * Swatch button clicked handler
@@ -115,8 +136,7 @@ const selected: Ref<string> = ref(colors.shades.white);
  * @param e - Event
  */
 const onSwatchClick = (e: Event) =>
-  (selected.value =
-    (e.target as HTMLButtonElement).value || colors.shades.white);
+  (selected.value = (e.target as HTMLButtonElement).value || shades.white);
 
 watch(
   () => selected.value,
@@ -137,7 +157,7 @@ onMounted(() => {
         v-for="color in cols"
         :key="color"
         :border="props.border"
-        :class="color === colors.shades.transparent ? 'bg-trasparent' : ''"
+        :class="color === shades.transparent ? 'bg-trasparent' : ''"
         :color="color"
         :disabled="props.disabled"
         :elevation="props.elevation"
@@ -151,7 +171,7 @@ onMounted(() => {
         <v-icon
           v-if="color === modelValue"
           :size="iconSize"
-          :color="color !== colors.shades.transparent ? color : undefined"
+          :color="color !== shades.transparent ? color : undefined"
         >
           {{ props.icon }}
         </v-icon>
