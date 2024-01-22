@@ -41,24 +41,25 @@ export default defineConfig(({ command, mode }): UserConfig => {
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
       mode === 'docs'
-        ? // @ts-expect-error
-          vuetify({
+        ? vuetify({
             autoImport: true,
             styles: 'sass',
           })
         : undefined,
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
-      checker({ typescript: true, vueTsc: true }),
+      checker({
+        typescript: true,
+        // vueTsc: true,
+      }),
       // vite-plugin-banner
       // https://github.com/chengpeiquan/vite-plugin-banner
-      // @ts-expect-error
       banner(`/**
  * ${pkg.name}
  *
  * @description ${pkg.description}
  * @author ${pkg.author.name} <${pkg.author.email}>
- * @copyright 2022-2023 By Masashi Yoshikawa All rights reserved.
+ * @copyright 2022-2024 By Masashi Yoshikawa All rights reserved.
  * @license ${pkg.license}
  * @version ${pkg.version}
  * @see {@link ${pkg.homepage}}
