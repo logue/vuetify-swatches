@@ -10,7 +10,6 @@ import { checker } from 'vite-plugin-checker';
 import dts from 'vite-plugin-dts';
 import vuetify from 'vite-plugin-vuetify';
 
-// @ts-nocheck
 import pkg from './package.json';
 
 // https://vitejs.dev/config/
