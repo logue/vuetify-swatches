@@ -25,13 +25,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
       // External
       dedupe: ['vue', 'vuetify'],
     },
-    // https://vitejs.dev/config/#server-options
-    server: {
-      fs: {
-        // Allow serving files from one level up to the project root
-        allow: ['..'],
-      },
-    },
     // https://vitejs.dev/config/shared-options.html#base
     base: './',
     plugins: [
@@ -83,7 +76,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
                 'vuetify/lib/components/VBtn',
                 'vuetify/lib/components/VIcon',
                 'vuetify/lib/components/VSheet',
-                'vuetify/lib/util/colors.mjs',
+                'vuetify/util/colors',
               ],
       },
       outDir: mode === 'docs' ? 'docs' : undefined,
@@ -121,7 +114,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
           globals: {
             vue: 'Vue',
             'vuetify/components': 'Vuetify/components',
-            'vuetify/lib/util/colors.mjs': 'colors',
+            'vuetify/util/colors': 'colors',
           },
           manualChunks:
             mode === 'docs'
@@ -130,7 +123,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
                   vuetify: [
                     'vuetify/components',
                     'vuetify/directives',
-                    'vuetify/lib/util/colors.mjs',
+                    'vuetify/util/colors',
                   ],
                   codemirror: [
                     'vue-codemirror6',
@@ -149,7 +142,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
         },
       },
       target: 'esnext',
-      minify: mode === 'docs',
+      // minify: mode === 'docs',
     },
     esbuild: {
       drop: command === 'serve' ? [] : ['console'],
