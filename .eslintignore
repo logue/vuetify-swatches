@@ -1,8 +1,0 @@
-.husky/
-.vscode/
-.yarn/
-coverage/
-dist/
-docs/
-public/assets/
-tsconfig.*.json

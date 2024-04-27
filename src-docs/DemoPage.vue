@@ -3,8 +3,6 @@ import { ref, type Ref } from 'vue';
 
 import { vue } from '@codemirror/lang-vue';
 import CodeMirror from 'vue-codemirror6';
-
-// import VSwatches from './dist/v-swatches.es';
 import { useTheme } from 'vuetify';
 
 import VSwatches from 'vuetify-swatches';

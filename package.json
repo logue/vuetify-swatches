@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "vuetify-swatches",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Color Swatch component for Vuetify3.",
   "keywords": [
     "vuejs",
@@ -63,7 +63,7 @@
   "engines": {
     "yarn": ">=1.22.19"
   },
-  "packageManager": "yarn@4.1.0",
+  "packageManager": "yarn@4.1.1",
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
@@ -80,29 +80,24 @@
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "peerDependencies": {
-    "vuetify": "^3.5.6"
+    "vuetify": "^3.5.17"
   },
   "devDependencies": {
     "@codemirror/lang-vue": "0.1.2",
-    "@tsconfig/node-lts": "^20.1.1",
-    "@types/node": "^20.11.21",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
+    "@eslint/js": "^9.1.1",
+    "@tsconfig/node-lts": "^20.1.3",
+    "@types/node": "^20.12.7",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/tsconfig": "^0.5.1",
-    "eslint": "^8.57.0",
-    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint": "^9.1.1",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-html": "^8.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "eslint-plugin-vue": "^9.22.0",
-    "eslint-plugin-vuejs-accessibility": "^2.2.1",
-    "eslint-plugin-vuetify": "^2.1.1",
+    "eslint-plugin-vue": "^9.25.0",
+    "eslint-plugin-vuejs-accessibility": "^2.3.0",
+    "eslint-plugin-vuetify": "^2.4.0",
     "eslint-plugin-yaml": "^0.5.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
@@ -110,18 +105,19 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.12.0",
-    "sass": "^1.71.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.4",
+    "sass": "^1.75.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.7.1",
+    "vite": "^5.2.10",
     "vite-plugin-banner": "^0.7.1",
     "vite-plugin-checker": "^0.6.4",
-    "vite-plugin-dts": "^3.7.3",
-    "vite-plugin-vuetify": "^2.0.1",
-    "vue": "^3.4.20",
-    "vue-codemirror6": "^1.2.5",
+    "vite-plugin-dts": "^3.9.0",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue": "^3.4.25",
+    "vue-codemirror6": "^1.3.0",
     "vue-eslint-parser": "^9.4.2",
-    "vue-tsc": "^1.8.27",
-    "vuetify": "^3.5.6"
+    "vue-tsc": "^2.0.14",
+    "vuetify": "^3.5.17"
   },
   "husky": {
     "hooks": {
@@ -134,9 +130,14 @@
     "*": "prettier -w -u"
   },
   "resolutions": {
-    "http-cache-semantics": "^4.1.1",
-    "json5": "^2.2.3",
-    "semver": "^7.5.2",
-    "yaml": "^2.2.2"
+    "get-func-name": ">=2.0.2",
+    "ip": ">=2.0.1",
+    "json5": ">=2.2.3",
+    "lodash": ">=4.17.21",
+    "postcss": ">=8.4.31",
+    "semver": ">=7.5.3",
+    "tar": ">=6.2.1",
+    "vite": ">=5.0.12",
+    "yaml": ">=2.3.2"
   }
 }
