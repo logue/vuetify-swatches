@@ -7,7 +7,8 @@ import colors from 'vuetify/util/colors';
 
 /** Emits */
 const emits = defineEmits({
-  'update:modelValue': (value: string) => true,
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  'update:modelValue': (_value: string) => true,
 });
 
 /** Props */

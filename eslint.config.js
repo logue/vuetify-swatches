@@ -5,7 +5,7 @@ import configPrettier from 'eslint-config-prettier';
 import pluginImport from 'eslint-plugin-import';
 import pluginTsdoc from 'eslint-plugin-tsdoc';
 import pluginVue from 'eslint-plugin-vue';
-// import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 import pluginVuetify from 'eslint-plugin-vuetify';
 import pluginYaml from 'eslint-plugin-yaml';
 
@@ -18,23 +18,28 @@ export default tseslint.config(
     ignores: [
       '.vscode/',
       '.yarn/',
+      'coverage/',
       'dist/',
-      'docs/',
+      'eslint.config.js',
+      'pnpm-lock.yaml',
       'public/',
       'src/**/*.generated.*',
-      'eslint.config.js',
     ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   ...tseslint.configs.stylistic,
   ...pluginVue.configs['flat/recommended'],
-  // ...pluginVueA11y.configs['flat/recommended'],
+  ...pluginVueA11y.configs['flat/recommended'],
   {
     languageOptions: {
       parserOptions: {
         parser: tseslint.parser,
-        project: ['tsconfig.app.json', 'tsconfig.node.json'],
+        project: [
+          'tsconfig.app.json',
+          'tsconfig.node.json',
+          'tsconfig.vitest.json',
+        ],
         tsconfigRootDir: import.meta.dirname,
         extraFileExtensions: ['.vue'],
         ecmaVersion: 'latest',
@@ -95,8 +100,6 @@ export default tseslint.config(
       ],
       // Fix for pinia
       '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn',
       // Allow short land for pretter
       '@typescript-eslint/no-confusing-void-expression': [
         'error',
