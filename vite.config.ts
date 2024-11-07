@@ -59,7 +59,9 @@ export default defineConfig(({ command, mode }): UserConfig => {
 `),
       // vite-plugin-dts
       // https://github.com/qmhc/vite-plugin-dts
-      mode === 'docs' ? undefined : dts(),
+      mode === 'docs'
+        ? undefined
+        : dts({ tsconfigPath: './tsconfig.app.json' }),
     ],
     optimizeDeps: {
       exclude: ['vue'],
