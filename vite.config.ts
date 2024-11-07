@@ -8,7 +8,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import banner from 'vite-plugin-banner';
 import { checker } from 'vite-plugin-checker';
 import dts from 'vite-plugin-dts';
-import vuetify from 'vite-plugin-vuetify';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 import pkg from './package.json';
 
@@ -29,7 +29,12 @@ export default defineConfig(({ command, mode }): UserConfig => {
     base: './',
     plugins: [
       // Vue3
-      vue(),
+      vue({
+        template: {
+          // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin#image-loading
+          transformAssetUrls,
+        },
+      }),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
       mode === 'docs'
@@ -127,18 +132,8 @@ export default defineConfig(({ command, mode }): UserConfig => {
                     'vuetify/directives',
                     'vuetify/util/colors',
                   ],
-                  codemirror: [
-                    'vue-codemirror6',
-                    'codemirror',
-                    '@codemirror/autocomplete',
-                    '@codemirror/commands',
-                    '@codemirror/language',
-                    '@codemirror/lint',
-                    '@codemirror/search',
-                    '@codemirror/state',
-                    '@codemirror/view',
-                  ],
-                  'codemirror-lang': ['@codemirror/lang-html'],
+                  codemirror: ['vue-codemirror6'],
+                  'codemirror-lang': ['@codemirror/lang-vue'],
                 }
               : undefined,
         },
