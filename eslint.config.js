@@ -20,6 +20,7 @@ export default tseslint.config(
       '.yarn/',
       'coverage/',
       'dist/',
+      'docs/',
       'eslint.config.js',
       'pnpm-lock.yaml',
       'public/',
@@ -38,7 +39,7 @@ export default tseslint.config(
         project: [
           'tsconfig.app.json',
           'tsconfig.node.json',
-          'tsconfig.vitest.json',
+          'tsconfig.docs.json',
         ],
         tsconfigRootDir: import.meta.dirname,
         extraFileExtensions: ['.vue'],
@@ -62,11 +63,12 @@ export default tseslint.config(
       'import/resolver': {
         typescript: true,
         node: true,
-        alias: {
-          map: [
-            ['@', './src'],
-            ['~', './node_modules'],
-          ],
+        'eslint-import-resolver-custom-alias': {
+          alias: {
+            '@': './src',
+            '~': './node_modules',
+            'vuetify-swatches': './src',
+          },
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue'],
         },
       },
@@ -100,13 +102,6 @@ export default tseslint.config(
       ],
       // Fix for pinia
       '@typescript-eslint/explicit-function-return-type': 'off',
-      // Allow short land for pretter
-      '@typescript-eslint/no-confusing-void-expression': [
-        'error',
-        {
-          ignoreArrowShorthand: true,
-        },
-      ],
       // Fix for vite import.meta.env
       '@typescript-eslint/strict-boolean-expressions': 'off',
       // Fix for vite env.d.ts.
