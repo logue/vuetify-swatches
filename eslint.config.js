@@ -1,57 +1,51 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import configPrettier from 'eslint-config-prettier';
+import configPrettier from '@vue/eslint-config-prettier';
+import {
+  defineConfigWithVueTs,
+  vueTsConfigs,
+} from '@vue/eslint-config-typescript';
 
 import pluginImport from 'eslint-plugin-import';
-import pluginTsdoc from 'eslint-plugin-tsdoc';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 import pluginVuetify from 'eslint-plugin-vuetify';
-import pluginYaml from 'eslint-plugin-yaml';
+
+// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
+// import { configureVueProject } from '@vue/eslint-config-typescript'
+// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
+// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 /**
  * ESLint Config
  */
-// @ts-check
-export default tseslint.config(
+export default defineConfigWithVueTs(
   {
+    name: 'app/files-to-lint',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+  },
+  {
+    name: 'app/files-to-ignore',
     ignores: [
       '.vscode/',
       '.yarn/',
-      'coverage/',
-      'dist/',
-      'docs/',
-      'eslint.config.js',
+      '**/dist/**',
+      '**/dist-ssr/**',
+      '**/coverage/**',
+      'eslint.config.*',
       'pnpm-lock.yaml',
+      'playwright-report',
+      'test-results',
       'public/',
       'src/**/*.generated.*',
+      'docs',
     ],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.stylistic,
-  ...pluginVue.configs['flat/recommended'],
+  pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
+  vueTsConfigs.recommended,
   {
-    languageOptions: {
-      parserOptions: {
-        parser: tseslint.parser,
-        project: [
-          'tsconfig.app.json',
-          'tsconfig.node.json',
-          'tsconfig.docs.json',
-        ],
-        tsconfigRootDir: import.meta.dirname,
-        extraFileExtensions: ['.vue'],
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
     plugins: {
       import: pluginImport,
-      tsdoc: pluginTsdoc,
       vuetify: pluginVuetify,
-      yaml: pluginYaml,
     },
     settings: {
       // This will do the trick
@@ -67,7 +61,6 @@ export default tseslint.config(
           alias: {
             '@': './src',
             '~': './node_modules',
-            'vuetify-swatches': './src',
           },
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue'],
         },
@@ -146,7 +139,6 @@ export default tseslint.config(
           'newlines-between': 'always',
         },
       ],
-      'tsdoc/syntax': 'warn',
       // A tag with no content should be written like <br />.
       'vue/html-self-closing': [
         'error',

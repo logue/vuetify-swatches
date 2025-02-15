@@ -11,6 +11,8 @@ const theme = useTheme();
 
 const dark: Ref<boolean> = ref(theme.current.value.dark);
 
+const lang = vue();
+
 const value: Ref<string> = ref('#ffffff');
 
 const selected: Ref<string> = ref('#ffffff');
@@ -83,7 +85,7 @@ const palette = [
         </p>
         <v-row>
           <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
               <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
             </code-mirror>
           </v-col>
@@ -109,7 +111,7 @@ const palette = [
         </p>
         <v-row>
           <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
               <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -213,7 +215,7 @@ const palette = [
       </v-container>
     </v-main>
     <v-footer>
-      &copy; 2022-2024 by&thinsp;
+      &copy; 2022-2025 by&thinsp;
       <a href="http://logue.dev/">Logue</a>
       &thinsp; . Licensed under the&thinsp;
       <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>

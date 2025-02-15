@@ -9,13 +9,11 @@
     "./src-docs/**/*.vue"
   ],
   "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.docs.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "vue-codemirror6": ["./src/index.ts"]
+      "vuetify-swatch": ["./src/index.ts"]
     }
   }
 }

@@ -155,4 +155,4 @@ Most props other than size and placement are the same as [v-btn](https://vuetify
 
 ## LICENSE
 
-©2022-2024 by Logue. Licensed under the [MIT License](LICENSE).
+©2022-2025 by Logue. Licensed under the [MIT License](LICENSE).
