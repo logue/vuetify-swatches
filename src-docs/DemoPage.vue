@@ -63,9 +63,7 @@ const palette = [
 
 <template>
   <v-app :theme="dark ? 'dark' : 'light'">
-    <v-app-bar>
-      <v-app-bar-title>Vuetify3 Swatch Demo</v-app-bar-title>
-      <v-spacer />
+    <v-app-bar title="Vuetify3 Swatch Demo" app>
       <v-btn
         icon="mdi-github"
         href="https://github.com/logue/vuetify-swatches"
@@ -214,7 +212,7 @@ const palette = [
         </v-row>
       </v-container>
     </v-main>
-    <v-footer>
+    <v-footer app elevation="3">
       &copy; 2022-2025 by&thinsp;
       <a href="http://logue.dev/">Logue</a>
       &thinsp; . Licensed under the&thinsp;
