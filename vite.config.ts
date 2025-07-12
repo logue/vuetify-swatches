@@ -93,7 +93,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
           : {
               entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
               name: 'VSwatches',
-              formats: ['umd', 'es', 'iife'],
+              formats: ['umd', 'es', 'cjs', 'iife'],
               fileName: format => `index.${format}.js`,
             },
       rollupOptions: {
