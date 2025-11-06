@@ -4,18 +4,15 @@
   "version": "1.8.0",
   "description": "Color Swatch component for Vuetify3.",
   "keywords": [
-    "vuejs",
     "vue",
+    "vue3",
     "vue-components",
     "color-picker",
     "color-palette",
     "swatches",
-    "vue3",
     "vue-plugin",
-    "vue-resource",
     "vuetify",
-    "vuetify3",
-    "vuetify-components"
+    "vuetify3"
   ],
   "license": "MIT",
   "type": "module",
@@ -43,20 +40,13 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs.js",
-      "default": "./dist/index.es.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     },
-    "./umd": {
-      "default": "./dist/index.umd.js"
-    },
-    "./iife": {
-      "default": "./dist/index.iife.js"
-    },
-    "./dist/style.css": {
-      "import": "./dist/vuetify-swatches.css"
-    },
+    "./umd": "./dist/index.umd.js",
+    "./iife": "./dist/index.iife.js",
+    "./dist/style.css": "./dist/vuetify-swatches.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -73,12 +63,12 @@
     "dev": "vite",
     "clean": "rimraf node_modules/.vite",
     "type-check": "vue-tsc --build --force",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p type-check build-only",
     "build:analyze": "vite build --mode=analyze",
     "build:clean": "rimraf dist docs",
     "build:docs": "vite build --mode=docs",
     "build-only": "vite build",
-    "lint": "eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint && prettier . --write",
+    "lint": "eslint . --fix --cache && prettier . --write",
     "preview": "vite preview --mode=docs",
     "test": "vitest",
     "test:run": "vitest run",
@@ -136,8 +126,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,json,yml,yaml,vue,htm,html}": "eslint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint",
-    "*.{css,sass,scss,vue,htm,html}": "stylelint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-stylelint",
+    "*.{js,ts,vue}": "eslint --fix --cache",
+    "*.{css,sass,scss,vue}": "stylelint --fix --cache",
     "*": "prettier -w -u"
   },
   "resolutions": {
