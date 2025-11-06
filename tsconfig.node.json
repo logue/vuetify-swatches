@@ -1,4 +1,5 @@
 {
+  "$schema": "https://schemastore.org/tsconfig.json",
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "include": [
     "vite.config.*",
