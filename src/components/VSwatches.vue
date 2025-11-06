@@ -138,7 +138,7 @@ onMounted(() => {
         v-for="color in cols"
         :key="color"
         :border="props.border"
-        :class="color === colors.shades.transparent ? 'bg-trasparent' : ''"
+        :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
         :color="color"
         :disabled="props.disabled"
         :elevation="props.elevation"
