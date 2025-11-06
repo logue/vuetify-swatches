@@ -174,7 +174,7 @@ onMounted(() => {
       }
 
       /** Add Slash */
-      &.bg-trasparent {
+      &.bg-transparent {
         background: linear-gradient(
           to top left,
           transparent 0,
