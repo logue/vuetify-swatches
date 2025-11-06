@@ -2,8 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
-/// <reference types="vitest" />
+import { defineConfig, type LibraryFormats } from 'vite';
 
 import { visualizer } from 'rollup-plugin-visualizer';
 import banner from 'vite-plugin-banner';
@@ -94,7 +93,7 @@ export default defineConfig(({ command, mode }) => {
           : {
               entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
               name: 'VSwatches',
-              formats: ['umd', 'es', 'cjs', 'iife'] as const,
+              formats: ['umd', 'es', 'cjs', 'iife'] as LibraryFormats[],
               fileName: (format: string) => `index.${format}.js`,
             },
       rollupOptions: {

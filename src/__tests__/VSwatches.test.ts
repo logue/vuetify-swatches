@@ -262,7 +262,7 @@ describe('VSwatches', () => {
       const transparentButton = wrapper.find(
         `[value="${testColors.transparent}"]`
       );
-      expect(transparentButton.classes()).toContain('bg-trasparent');
+      expect(transparentButton.classes()).toContain('bg-transparent');
     });
 
     it('should set correct icon color when transparent color is selected', async () => {
@@ -406,7 +406,7 @@ describe('VSwatches', () => {
         },
       });
 
-      const transparentButton = wrapper.find('.bg-trasparent');
+      const transparentButton = wrapper.find('.bg-transparent');
       expect(transparentButton.exists()).toBe(true);
     });
   });
