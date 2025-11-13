@@ -1,7 +1,7 @@
 // Vuetify
-import * as directives from 'vuetify/directives';
-import * as components from 'vuetify/components';
 import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 // Styles
 import 'vuetify/styles';
 

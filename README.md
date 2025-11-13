@@ -9,7 +9,7 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
-This is for Vuetify3. Please use 1.0.x when using with Vuetify2.
+⚠ This is for Vuetify3. If you are using Vuetify2, please use 1.0.x.
 
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
 
@@ -117,7 +117,7 @@ const selected: Ref<string> = ref('#ffffff');
 
 ### Options
 
-Most props other than size and placement are the same as [v-btn](https://next.vuetifyjs.com/en/api/v-btn/).
+Most props other than size and placement are the same as [v-btn](https://vuetifyjs.com/en/api/v-btn/).
 
 | Variables | Type           | Default                    | Info                                                                       |
 | --------- | -------------- | -------------------------- | -------------------------------------------------------------------------- |
@@ -132,6 +132,27 @@ Most props other than size and placement are the same as [v-btn](https://next.vu
 
 [^1] Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
 
+### CDN Usage
+
+```html
+<!-- Vue core -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"
+/>
+<!-- Markdown wasm -->
+<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@1.4.3/dist/index.iife.min.js"></script>
+<script>
+  const { createApp } = Vue;
+  const { createVuetify } = Vuetify;
+
+  const app = createApp();
+  app.use(vuetify).component(VSwatches).mount('#app');
+</script>
+```
+
 ## LICENSE
 
-©2022-2023 by Logue. Licensed under the [MIT License](LICENSE).
+©2022-2025 by Logue. Licensed under the [MIT License](LICENSE).

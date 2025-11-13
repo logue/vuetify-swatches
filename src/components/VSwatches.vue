@@ -1,12 +1,15 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
-import { ref, watch, type PropType, type Ref } from 'vue';
-import colors from 'vuetify/lib/util/colors.mjs';
+import { ref, watch, type PropType, type Ref, onMounted } from 'vue';
+
+import { VBtn, VIcon, VSheet } from 'vuetify/components';
+import colors from 'vuetify/util/colors';
 
 /** Emits */
-const emits = defineEmits<{
-  (event: 'update:modelValue', value: string): void;
-}>();
+const emits = defineEmits({
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  'update:modelValue': (_value: string) => true,
+});
 
 /** Props */
 const props = defineProps({
@@ -14,7 +17,7 @@ const props = defineProps({
   modelValue: { type: String, default: colors.shades.white },
   /** Swatch colors */
   swatches: {
-    type: Array as PropType<string[] | string[][]>,
+    type: Array as PropType<string[] | string[][] | Record<string, string[]>>,
     default: () => [
       [colors.shades.black, colors.shades.white, colors.shades.transparent],
       [
@@ -41,19 +44,28 @@ const props = defineProps({
     ],
   },
   /** Swatch size */
-  size: { type: String, default: '2rem' },
+  size: {
+    type: String,
+    default: '2rem',
+  },
   /** Selected icon */
-  icon: { type: String, default: 'mdi-checkbox-marked-circle' },
+  icon: {
+    type: String,
+    default: 'mdi-checkbox-marked-circle',
+  },
   /** selected icon size */
-  iconSize: { type: String, default: '1rem' },
+  iconSize: {
+    type: String,
+    default: '1rem',
+  },
   /**
    * The variant prop gives you easy access to several different button styles..
    *
-   * @see {@link https://next.vuetifyjs.com/en/components/buttons/#variant}
+   * @see {@link https://vuetifyjs.com/en/components/buttons/#variant}
    */
   variant: {
     type: String as PropType<
-      'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain'
+      NonNullable<'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain'>
     >,
     default: undefined,
   },
@@ -62,29 +74,41 @@ const props = defineProps({
    *
    * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-disabled}
    */
-  disabled: { type: Boolean, default: undefined },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * Applies a large border radius on the button.
    *
-   * @see {@link https://next.vuetifyjs.com/en/components/buttons/#rounded}
+   * @see {@link https://vuetifyjs.com/en/components/buttons/#rounded}
    */
-  rounded: { type: [String, Number, Boolean], default: undefined },
+  rounded: {
+    type: [String, Number, Boolean],
+    default: undefined,
+  },
   /**
    * Applies border styles to component.
    *
-   * @see {@link https://next.vuetifyjs.com/en/api/v-btn/#props-border}
+   * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-border}
    */
-  border: { type: [String, Number, Boolean], default: false },
+  border: {
+    type: [String, Number, Boolean],
+    default: false,
+  },
   /**
    * Designates an elevation applied to the component between 0 and 24.
    *
-   * @see {@link https://next.vuetifyjs.com/en/api/v-btn/#props-elevation}
+   * @see {@link https://vuetifyjs.com/en/api/v-btn/#props-elevation}
    */
-  elevation: { type: [String, Number], default: undefined },
+  elevation: {
+    type: [String, Number],
+    default: undefined,
+  },
 });
 
 /** Selected Color */
-const selected: Ref<string> = ref(props.modelValue || colors.shades.white);
+const selected: Ref<string> = ref(colors.shades.white);
 
 /**
  * Swatch button clicked handler
@@ -93,12 +117,18 @@ const selected: Ref<string> = ref(props.modelValue || colors.shades.white);
  */
 const onSwatchClick = (e: Event) =>
   (selected.value =
-    (e.target as HTMLButtonElement).dataset.value || colors.shades.white);
+    (e.target as HTMLButtonElement).value || colors.shades.white);
 
 watch(
   () => selected.value,
   s => emits('update:modelValue', s)
 );
+
+onMounted(() => {
+  if (props.modelValue) {
+    selected.value = props.modelValue;
+  }
+});
 </script>
 
 <template>
@@ -108,16 +138,16 @@ watch(
         v-for="color in cols"
         :key="color"
         :border="props.border"
-        :class="color === colors.shades.transparent ? 'bg-trasparent' : ''"
+        :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
         :color="color"
         :disabled="props.disabled"
         :elevation="props.elevation"
         :height="props.size"
-        :data-value="color"
+        :value="color"
         :variant="props.variant"
         :width="props.size"
         min-width="auto"
-        @click="onSwatchClick($event)"
+        @click="onSwatchClick"
       >
         <v-icon
           v-if="color === modelValue"
@@ -138,11 +168,13 @@ watch(
       padding: 0 !important;
       margin: 0.1rem;
 
+      /** Reverse checkd mark color */
       .v-icon {
         filter: invert(100%) grayscale(100%) contrast(100);
       }
 
-      &.bg-trasparent {
+      /** Add Slash */
+      &.bg-transparent {
         background: linear-gradient(
           to top left,
           transparent 0,

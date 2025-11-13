@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 
-import CodeMirror from 'vue-codemirror6';
 import { vue } from '@codemirror/lang-vue';
-
-// import VSwatches from './dist/v-swatches.es';
-import VSwatches from 'vuetify-swatches';
+import CodeMirror from 'vue-codemirror6';
 import { useTheme } from 'vuetify';
+import VSwatches from 'vuetify-swatches';
 
 const theme = useTheme();
 
-// @ts-ignore
 const dark: Ref<boolean> = ref(theme.current.value.dark);
+
+const lang = vue();
 
 const value: Ref<string> = ref('#ffffff');
 
@@ -63,9 +62,7 @@ const palette = [
 
 <template>
   <v-app :theme="dark ? 'dark' : 'light'">
-    <v-app-bar>
-      <v-app-bar-title>Vuetify3 Swatch Demo</v-app-bar-title>
-      <v-spacer />
+    <v-app-bar title="Vuetify3 Swatch Demo" app>
       <v-btn
         icon="mdi-github"
         href="https://github.com/logue/vuetify-swatches"
@@ -79,13 +76,13 @@ const palette = [
         <p>
           The default palette contains 22 colors with a MaterialColor base
           color. If
-          <code>transparent</code>
+          <v-code tag="code">transparent</v-code>
           is specified for the color specification, a red slanted line is
           entered.
         </p>
         <v-row>
           <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
               <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
             </code-mirror>
           </v-col>
@@ -111,7 +108,7 @@ const palette = [
         </p>
         <v-row>
           <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="vue()" basic readonly>
+            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
               <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -214,5 +211,12 @@ const palette = [
         </v-row>
       </v-container>
     </v-main>
+    <v-footer app elevation="3">
+      &copy; 2022-2025 by&thinsp;
+      <a href="http://logue.dev/">Logue</a>
+      &thinsp; . Licensed under the&thinsp;
+      <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>
+      .
+    </v-footer>
   </v-app>
 </template>
