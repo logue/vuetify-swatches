@@ -2,9 +2,9 @@ name: NodeJS with Vite
 
 on:
   push:
-    branches: ['master']
+    branches: ["master"]
   pull_request:
-    branches: ['master']
+    branches: ["master"]
 
 jobs:
   build:
@@ -16,15 +16,30 @@ jobs:
 
     steps:
       - name: Checkout ✅
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Use Node.js ${{ matrix.node-version }} ⚡
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v6.0.0
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install pnpm 🎁
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Build 🔧
         run: |
@@ -32,7 +47,7 @@ jobs:
           pnpm run build:docs
 
       - name: Deploy to gh-pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        uses: JamesIves/github-pages-deploy-action@v4.7.4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.
