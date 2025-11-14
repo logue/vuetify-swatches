@@ -4,6 +4,7 @@ import { ref, type Ref } from 'vue';
 import { vue } from '@codemirror/lang-vue';
 import CodeMirror from 'vue-codemirror6';
 import { useTheme } from 'vuetify';
+
 import VSwatches from 'vuetify-swatches';
 
 const theme = useTheme();
@@ -95,6 +96,25 @@ const palette = [
               variant="outlined"
             />
           </v-col>
+        </v-row>
+
+        <h2>Inline</h2>
+        <p>
+          You can display the color palette inline by setting the
+          <v-code tag="code">inline</v-code>
+          prop to
+          <v-code tag="code">true</v-code>
+          .
+        </p>
+        <v-row>
+          <v-col>
+            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
+              <pre>
+&lt;v-swatches v-model=&quot;selected&quot; inline /&gt;</pre
+              >
+            </code-mirror>
+          </v-col>
+          <v-col><v-swatches v-model="value" inline /></v-col>
         </v-row>
 
         <h2>With VMenu</h2>

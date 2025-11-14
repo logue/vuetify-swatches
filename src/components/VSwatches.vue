@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
-import { ref, watch, type PropType, type Ref, onMounted } from 'vue';
+import { ref, watch, type PropType, type Ref, onMounted, computed } from 'vue';
 
 import { VBtn, VIcon, VSheet } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
@@ -58,6 +58,10 @@ const props = defineProps({
     type: String,
     default: '1rem',
   },
+  inline: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * The variant prop gives you easy access to several different button styles..
    *
@@ -107,6 +111,15 @@ const props = defineProps({
   },
 });
 
+/** for inline use. */
+const flattenSwatches: Ref<string[]> = computed(() => {
+  if (Array.isArray(props.swatches)) {
+    return props.swatches.flat(Infinity) as string[];
+  } else {
+    return Object.values(props.swatches).flat(Infinity) as string[];
+  }
+});
+
 /** Selected Color */
 const selected: Ref<string> = ref(colors.shades.white);
 
@@ -132,7 +145,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-sheet class="v-swatches">
+  <v-item-group v-if="props.inline" class="v-swatches">
+    <v-item v-for="color in flattenSwatches" :key="color">
+      <v-btn
+        :border="props.border"
+        :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
+        :color="color"
+        :disabled="props.disabled"
+        :elevation="props.elevation"
+        :height="props.size"
+        :value="color"
+        :variant="props.variant"
+        :width="props.size"
+        min-width="auto"
+        @click="onSwatchClick"
+      >
+        <v-icon
+          v-if="color === modelValue"
+          :size="iconSize"
+          :color="color !== colors.shades.transparent ? color : undefined"
+        >
+          {{ props.icon }}
+        </v-icon>
+      </v-btn>
+    </v-item>
+  </v-item-group>
+  <v-sheet v-else class="v-swatches">
     <div v-for="(cols, rows) in swatches" :key="rows">
       <v-btn
         v-for="color in cols"
@@ -163,29 +201,27 @@ onMounted(() => {
 
 <style lang="scss">
 .v-swatches {
-  div {
-    .v-btn {
-      padding: 0 !important;
-      margin: 0.1rem;
+  .v-btn {
+    padding: 0 !important;
+    margin: 0.1rem;
 
-      /** Reverse checkd mark color */
+    /** Reverse checkd mark color */
+    .v-icon {
+      filter: invert(100%) grayscale(100%) contrast(100);
+    }
+
+    /** Add Slash */
+    &.bg-transparent {
+      background: linear-gradient(
+        to top left,
+        transparent 0,
+        transparent calc(50% - 0.1rem),
+        rgb(var(--v-theme-error)) 50%,
+        transparent calc(50% + 0.1rem),
+        transparent
+      );
       .v-icon {
-        filter: invert(100%) grayscale(100%) contrast(100);
-      }
-
-      /** Add Slash */
-      &.bg-transparent {
-        background: linear-gradient(
-          to top left,
-          transparent 0,
-          transparent calc(50% - 0.1rem),
-          rgb(var(--v-theme-error)) 50%,
-          transparent calc(50% + 0.1rem),
-          transparent
-        );
-        .v-icon {
-          filter: none;
-        }
+        filter: none;
       }
     }
   }
