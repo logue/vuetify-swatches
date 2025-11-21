@@ -121,6 +121,7 @@ Most props other than size and placement are the same as [v-btn](https://vuetify
 
 | Variables | Type           | Default                    | Info                                                                       |
 | --------- | -------------- | -------------------------- | -------------------------------------------------------------------------- |
+| inline    | boolean        | false                      | All swatches will be spread out on the same row.                           |
 | size      | string         | 2rem                       | Swatch Button size                                                         |
 | icon      | string         | mdi-checkbox-marked-circle | checked icon                                                               |
 | icon-size | string         | 1rem                       | checked icon size                                                          |
@@ -130,20 +131,19 @@ Most props other than size and placement are the same as [v-btn](https://vuetify
 | elevation | number\|string | undefined                  |
 | border    | number\|string | undefined                  |
 
-[^1] Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
+[^1]: Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
 
 ### CDN Usage
 
 ```html
 <!-- Vue core -->
 <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.21/dist/vuetify.min.js"></script>
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/vuetify@3.3.14/dist/vuetify.min.js"
+  href="https://cdn.jsdelivr.net/npm/vuetify@3.5.18/dist/vuetify.min.js"
 />
-<!-- Markdown wasm -->
-<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@1.4.3/dist/index.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@1.8.1/dist/index.iife.min.js"></script>
 <script>
   const { createApp } = Vue;
   const { createVuetify } = Vuetify;
