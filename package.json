@@ -44,6 +44,18 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
+    "./palettes": {
+      "types": "./src/palettes/index.ts",
+      "import": "./src/palettes/index.ts"
+    },
+    "./palettes/basic": {
+      "types": "./src/palettes/basic.ts",
+      "import": "./src/palettes/basic.ts"
+    },
+    "./palettes/advanced": {
+      "types": "./src/palettes/advanced.ts",
+      "import": "./src/palettes/advanced.ts"
+    },
     "./umd": "./dist/index.umd.js",
     "./iife": "./dist/index.iife.js",
     "./dist/style.css": "./dist/vuetify-swatches.css",
@@ -51,7 +63,8 @@
   },
   "files": [
     "dist",
-    "src/components/VSwatches.vue"
+    "src/components/VSwatches.vue",
+    "src/palettes"
   ],
   "engines": {
     "node": ">=18.19.0 || >=20.6.0",

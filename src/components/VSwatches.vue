@@ -2,8 +2,10 @@
 /** Vuetify Swatches */
 import { ref, watch, type PropType, type Ref, computed } from 'vue';
 
-import { VBtn, VIcon, VItemGroup } from 'vuetify/components';
+import { VItem, VItemGroup } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
+
+import SwatchButton from './SwatchButton.vue';
 
 /** Emits */
 const emits = defineEmits({
@@ -161,66 +163,49 @@ watch(
         v-slot="{ isSelected, toggle }"
         :value="color"
       >
-        <v-btn
-          :border="props.border"
-          :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
+        <swatch-button
           :color="color"
-          :disabled="props.disabled"
-          :elevation="props.elevation"
-          :height="props.size"
+          :is-selected="isSelected"
+          :size="props.size"
+          :icon="props.icon"
+          :icon-size="props.iconSize"
           :variant="props.variant"
-          :width="props.size"
-          min-width="auto"
+          :disabled="props.disabled"
+          :rounded="props.rounded"
+          :border="props.border"
+          :elevation="props.elevation"
           @click="toggle"
-        >
-          <v-icon
-            v-if="isSelected"
-            :size="iconSize"
-            :color="color !== colors.shades.transparent ? color : undefined"
-          >
-            {{ props.icon }}
-          </v-icon>
-        </v-btn>
+        />
       </v-item>
     </template>
-    <template v-else>
-      <div v-for="(cols, rows) in normalizedSwatches" :key="rows">
-        <v-item
-          v-for="color in cols"
-          :key="color"
-          v-slot="{ isSelected, toggle }"
-          :value="color"
-        >
-          <v-btn
-            :border="props.border"
-            :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
-            :color="color"
-            :disabled="props.disabled"
-            :elevation="props.elevation"
-            :height="props.size"
-            :variant="props.variant"
-            :width="props.size"
-            min-width="auto"
-            @click="toggle"
-          >
-            <v-icon
-              v-if="isSelected"
-              :size="iconSize"
-              :color="color !== colors.shades.transparent ? color : undefined"
-            >
-              {{ props.icon }}
-            </v-icon>
-          </v-btn>
-        </v-item>
-      </div>
-    </template>
+    <div v-for="(cols, rows) in normalizedSwatches" v-else :key="rows">
+      <v-item
+        v-for="color in cols"
+        :key="color"
+        v-slot="{ isSelected, toggle }"
+        :value="color"
+      >
+        <swatch-button
+          :color="color"
+          :is-selected="isSelected"
+          :size="props.size"
+          :icon="props.icon"
+          :icon-size="props.iconSize"
+          :variant="props.variant"
+          :disabled="props.disabled"
+          :rounded="props.rounded"
+          :border="props.border"
+          :elevation="props.elevation"
+          @click="toggle"
+        />
+      </v-item>
+    </div>
   </v-item-group>
 </template>
 
 <style lang="scss">
 .v-swatches {
   .v-btn {
-    padding: 0 !important;
     margin: 0.1rem;
 
     /** Reverse checkd mark color */

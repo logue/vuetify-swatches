@@ -126,11 +126,11 @@ Most props other than size and placement are the same as [v-btn](https://vuetify
 | icon-size | string         | 1rem                       | checked icon size                                                          |
 | disabled  | boolean        | false                      | Removes the ability to click or target the component.                      |
 | rounded   | number\|string | undefined                  | Applies a large border radius on the button.                               |
-| variant   | string [^1]    | undefined                  | The variant prop gives you easy access to several different button styles. |
-| elevation | number\|string | undefined                  |
-| border    | number\|string | undefined                  |
+| variant   | Variant [^1]   | undefined                  | The variant prop gives you easy access to several different button styles. |
+| elevation | number\|string | undefined                  |                                                                            |
+| border    | number\|string | undefined                  |                                                                            |
 
-[^1] Available variants are: elevated(default), flat, tonal, outlined, text, and plain.
+[^1]: <https://vuetifyjs.com/api/v-btn/#props-variant>
 
 ### CDN Usage
 
