@@ -5,6 +5,7 @@ import { vue } from '@codemirror/lang-vue';
 import CodeMirror from 'vue-codemirror6';
 import { useTheme } from 'vuetify';
 
+import { basicPalette, advancedPalette } from '@/presets';
 import VSwatches from 'vuetify-swatches';
 
 const theme = useTheme();
@@ -13,9 +14,10 @@ const dark: Ref<boolean> = ref(theme.current.value.dark);
 
 const lang = vue();
 
-const value: Ref<string> = ref('#ffffff');
-
-const selected: Ref<string> = ref('#ffffff');
+const color1: Ref<string> = ref('#ffffff');
+const color2: Ref<string> = ref('#ffffff');
+const color3: Ref<string> = ref('#ffffff');
+const color4: Ref<string> = ref('#ffffff');
 
 const palette = [
   [
@@ -73,66 +75,107 @@ const palette = [
     </v-app-bar>
     <v-main>
       <v-container>
-        <h2>Basic</h2>
-        <p>
-          The default palette contains 22 colors with a MaterialColor base
-          color. If
-          <v-code tag="code">transparent</v-code>
-          is specified for the color specification, a red slanted line is
-          entered.
-        </p>
-        <v-row>
-          <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
-              <pre>&lt;v-swatches v-model=&quot;selected&quot; /&gt;</pre>
-            </code-mirror>
-          </v-col>
-          <v-col>
-            <v-swatches v-model="value" class="mb-3" />
-            <v-text-field
-              v-model="value"
-              label="Result"
-              min-width="auto"
-              variant="outlined"
-            />
-          </v-col>
-        </v-row>
-
-        <h2>Inline</h2>
-        <p>
-          You can display the color palette inline by setting the
-          <v-code tag="code">inline</v-code>
-          prop to
-          <v-code tag="code">true</v-code>
-          .
-        </p>
-        <v-row>
-          <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
-              <pre>
-&lt;v-swatches v-model=&quot;selected&quot; inline /&gt;</pre
+        <section>
+          <h2>Basic</h2>
+          <p>
+            The colors available in the Material Design color system are
+            provided as a preset. You can use it by importing
+            <v-code tag="code">basicPalette</v-code>
+            from
+            <v-code tag="code">vuetify-swatches/presets</v-code>
+            .
+          </p>
+          <v-row>
+            <v-col>
+              <code-mirror
+                class="mb-3"
+                :dark="dark"
+                :lang="lang"
+                basic
+                readonly
               >
-            </code-mirror>
-          </v-col>
-          <v-col>
-            This is inline swatches:
-            <v-swatches v-model="value" inline />
-          </v-col>
-        </v-row>
+                <pre>
+&lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+import { basicPalette } from 'vuetify-swatches/presets';
 
-        <h2>With VMenu</h2>
-        <p>
-          You can display a color palette in a popup in combination with
-          Vuetify's
-          <a href="https://next.vuetifyjs.com/en/components/menus/">
-            Menu Component
-          </a>
-          .
-        </p>
-        <v-row>
-          <v-col>
-            <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
-              <pre>
+const selected = ref('#ffffff');
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;basicPalette&quot; /&gt;
+&lt;/template&gt;</pre
+                >
+              </code-mirror>
+            </v-col>
+            <v-col>
+              <v-swatches
+                v-model="color1"
+                :swatches="basicPalette"
+                class="mb-3"
+              />
+              <v-text-field v-model="color1" label="Result" />
+            </v-col>
+          </v-row>
+        </section>
+        <section>
+          <h2>Inline</h2>
+          <p>
+            You can display the color palette inline by setting the
+            <v-code tag="code">inline</v-code>
+            prop to
+            <v-code tag="code">true</v-code>
+            .
+          </p>
+          <v-row>
+            <v-col>
+              <code-mirror
+                class="mb-3"
+                :dark="dark"
+                :lang="lang"
+                basic
+                readonly
+              >
+                <pre>
+&lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+import { basicPalette } from 'vuetify-swatches/presets';
+
+const selected = ref('#ffffff');
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;basicPalette&quot; inline /&gt;
+&lt;/template&gt;</pre
+                >
+              </code-mirror>
+            </v-col>
+            <v-col>
+              This is inline swatches:
+              <v-swatches v-model="color2" :swatches="basicPalette" inline />
+              <v-text-field v-model="color2" inline label="Result" />
+            </v-col>
+          </v-row>
+        </section>
+
+        <section>
+          <h2>Custom Color</h2>
+          <p>
+            You can set any color you like by specifying a hex code or RGB value
+            in addition to the base colors of the Material Color system.
+          </p>
+          <v-row>
+            <v-col>
+              <code-mirror
+                class="mb-3"
+                :dark="dark"
+                :lang="lang"
+                basic
+                readonly
+              >
+                <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
 import VSwatches from 'vuetify-swatches';
@@ -184,6 +227,53 @@ const palette = [
 &lt;/script&gt;
 
 &lt;template&gt;
+  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
+&lt;/template&gt;</pre
+                >
+              </code-mirror>
+            </v-col>
+            <v-col>
+              <v-swatches v-model="color3" :swatches="palette" class="mb-3" />
+              <v-text-field v-model="color3" label="Result" />
+            </v-col>
+          </v-row>
+        </section>
+        <section>
+          <h2>With VMenu and advanced palette combination</h2>
+          <p>
+            You can display a color palette in a popup in combination with
+            Vuetify's
+            <a href="https://next.vuetifyjs.com/en/components/menus/">
+              Menu Component
+            </a>
+            .
+          </p>
+          <v-alert type="info" class="mb-3" variant="tonal">
+            From v2, you need wrap
+            <v-code>v-card</v-code>
+            around
+            <v-code>v-swatches</v-code>
+            .
+          </v-alert>
+          <v-row>
+            <v-col>
+              <code-mirror
+                class="mb-3"
+                :dark="dark"
+                :lang="lang"
+                basic
+                readonly
+              >
+                <pre>
+&lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+import { advancedPalette } from 'vuetify-swatches/presets';
+
+const selected = ref('#ffffff');
+&lt;/script&gt;
+
+&lt;template&gt;
   &lt;v-menu&gt;
     &lt;template #activator=&quot;{ props }&quot;&gt;
       &lt;v-btn
@@ -200,38 +290,39 @@ const palette = [
         &lt;/v-icon&gt;
       &lt;/v-btn&gt;
     &lt;/template&gt;
-    &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
+    &lt;v-card title="Select a color"&gt;
+      &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;advancedPalette&quot; /&gt;
+    &lt;/v-card&gt;
   &lt;/v-menu&gt;
 &lt;/template&gt;</pre
-              >
-            </code-mirror>
-          </v-col>
-          <v-col>
-            <v-menu class="mb-3">
-              <template #activator="{ props }">
-                <v-btn
-                  v-bind="props"
-                  class="mb-3"
-                  min-width="auto"
-                  :color="selected"
                 >
-                  <v-icon
-                    :color="selected"
-                    style="filter: invert(100%) grayscale(100%) contrast(100)"
+              </code-mirror>
+            </v-col>
+            <v-col>
+              <v-menu class="mb-3">
+                <template #activator="{ props }">
+                  <v-btn
+                    v-bind="props"
+                    class="mb-3"
+                    min-width="auto"
+                    :color="color4"
                   >
-                    mdi-menu-down
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-swatches v-model="selected" :swatches="palette" />
-            </v-menu>
-            <v-text-field
-              v-model="selected"
-              label="Result"
-              variant="outlined"
-            />
-          </v-col>
-        </v-row>
+                    <v-icon
+                      :color="color4"
+                      style="filter: invert(100%) grayscale(100%) contrast(100)"
+                    >
+                      mdi-menu-down
+                    </v-icon>
+                  </v-btn>
+                </template>
+                <v-card title="Select a color">
+                  <v-swatches v-model="color4" :swatches="advancedPalette" />
+                </v-card>
+              </v-menu>
+              <v-text-field v-model="color4" label="Result" />
+            </v-col>
+          </v-row>
+        </section>
       </v-container>
     </v-main>
     <v-footer app elevation="3">

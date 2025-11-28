@@ -7,6 +7,8 @@ import colors from 'vuetify/util/colors';
 
 import SwatchButton from './SwatchButton.vue';
 
+import type { Variant } from 'vuetify/lib/composables/variant.d.ts';
+
 /** Emits */
 const emits = defineEmits({
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -19,31 +21,14 @@ const props = defineProps({
   modelValue: { type: String, default: colors.shades.white },
   /** Swatch colors */
   swatches: {
-    type: Array as PropType<string[] | string[][] | Record<string, string[]>>,
-    default: () => [
-      [colors.shades.black, colors.shades.white, colors.shades.transparent],
-      [
-        colors.red.base,
-        colors.pink.base,
-        colors.purple.base,
-        colors.deepPurple.base,
-        colors.indigo.base,
-        colors.blue.base,
-        colors.lightBlue.base,
-        colors.cyan.base,
-      ],
-      [
-        colors.teal.base,
-        colors.green.base,
-        colors.lightGreen.base,
-        colors.lime.base,
-        colors.yellow.base,
-        colors.amber.base,
-        colors.orange.base,
-        colors.deepOrange.base,
-      ],
-      [colors.brown.base, colors.blueGrey.base, colors.grey.base],
-    ],
+    type: Array as PropType<
+      | string[]
+      | string[][]
+      | Record<string, string[]>
+      | readonly string[]
+      | readonly (readonly string[])[]
+    >,
+    default: () => [],
   },
   /** Swatch size */
   size: {
@@ -71,9 +56,7 @@ const props = defineProps({
    * @see {@link https://vuetifyjs.com/en/components/buttons/#variant}
    */
   variant: {
-    type: String as PropType<
-      NonNullable<'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain'>
-    >,
+    type: String as PropType<Variant>,
     default: undefined,
   },
   /**

@@ -9,6 +9,8 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
+⚠ **Version 3.x Breaking Changes**: This version includes significant architectural changes. See [CHANGELOG.md](CHANGELOG.md) for migration details.
+
 ⚠ This is for Vuetify3. If you are using Vuetify2, please use 1.0.x.
 
 This project is a remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/) with [Vuetify](https://vuetifyjs.com/).
@@ -19,19 +21,31 @@ This library is positioned as a complement to Vuetify and provides a minimal UI.
 
 ## Usage
 
-In this example, the selected color is assigned to `selected`.
+**Note**: In v2.x, the component requires a `swatches` prop to display colors. You can either provide your own color array or use the preset palettes.
+
+### Using Preset Palettes
+
+You can import pre-defined color palettes separately. This keeps your bundle size small by only importing what you need:
 
 ```vue
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 
 import VSwatches from 'vuetify-swatches';
+// Import only the palette you need
+import { basicPalette } from 'vuetify-swatches/presets/basic';
+// or
+import { advancedPalette } from 'vuetify-swatches/presets/advanced';
 
 const selected: Ref<string> = ref('#ffffff');
 </script>
 
 <template>
-  <v-swatches v-model="selected" />
+  <!-- Use the basic palette (22 colors) -->
+  <v-swatches v-model="selected" :swatches="basicPalette" />
+
+  <!-- Or use the advanced palette (~200 color variations) -->
+  <v-swatches v-model="selected" :swatches="advancedPalette" />
 </template>
 
 <style>
@@ -39,9 +53,73 @@ const selected: Ref<string> = ref('#ffffff');
 </style>
 ```
 
-The method of specifying `swatches` is the same as [nested-color of Vue Swatches](https://saintplay.github.io/vue-swatches/examples/#nested-colors).
+### Using Custom Colors
 
-If you want to make the color palette appear when you click it, combine it with VMenu.
+You can also provide your own custom color palette. The method of specifying `swatches` is the same as [nested-color of Vue Swatches](https://saintplay.github.io/vue-swatches/examples/#nested-colors).
+
+```vue
+<script setup lang="ts">
+import { ref, type Ref } from 'vue';
+
+import VSwatches from 'vuetify-swatches';
+
+const customPalette: Ref<string[][]> = ref([
+  [
+    '#ffb7b7',
+    '#ffdbb7',
+    '#ffffb7',
+    '#b7ffb7',
+    '#b7ffff',
+    '#b7b7ff',
+    '#ffb7ff',
+    '#ffffff',
+  ],
+  [
+    '#ff5555',
+    '#ffa555',
+    '#ffff55',
+    '#55ff55',
+    '#55ffff',
+    '#5555ff',
+    '#ff55ff',
+    '#aaaaaa',
+  ],
+  [
+    '#ff0000',
+    '#ff7f00',
+    '#ffff00',
+    '#00ff00',
+    '#00ffff',
+    '#0000ff',
+    '#ff00ff',
+    '#555555',
+  ],
+  [
+    '#7f0000',
+    '#7f4c00',
+    '#7f7f00',
+    '#007f00',
+    '#007f7f',
+    '#00007f',
+    '#7f007f',
+    '#000000',
+  ],
+]);
+const selected: Ref<string> = ref('#ffffff');
+</script>
+
+<template>
+  <v-swatches v-model="selected" :swatches="customPalette" />
+</template>
+
+<style>
+@import 'vuetify-swatches/dist/style.css';
+</style>
+```
+
+### Using with VMenu
+
+If you want to make the color palette appear when you click it, combine it with VMenu:
 
 ```vue
 <script setup lang="ts">
@@ -106,7 +184,9 @@ const selected: Ref<string> = ref('#ffffff');
         </v-icon>
       </v-btn>
     </template>
-    <v-swatches v-model="selected" :swatches="palette" />
+    <v-card title="Select a color:">
+      <v-swatches v-model="selected" :swatches="palette" />
+    </v-card>
   </v-menu>
 </template>
 

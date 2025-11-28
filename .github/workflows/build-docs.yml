@@ -12,21 +12,20 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [24.x]
 
     steps:
       - name: Checkout ✅
-        uses: actions/checkout@v5.0.0
-
+        uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }} ⚡
-        uses: actions/setup-node@v6.0.0
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install pnpm 🎁
         uses: pnpm/action-setup@v4
         with:
-          version: 10.22.0
+          version: 10.24.0
 
       - name: Get pnpm store directory
         shell: bash

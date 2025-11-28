@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
-import { defineConfig, type LibraryFormats } from 'vite';
+import { defineConfig, type LibraryFormats, type UserConfig } from 'vite';
 
 import { visualizer } from 'rollup-plugin-visualizer';
 import banner from 'vite-plugin-banner';
@@ -14,7 +14,11 @@ import pkg from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const config = {
+  const config: UserConfig = {
+    // https://vitejs.dev/config/shared-options.html#base
+    base: './',
+    publicDir: command === 'serve' ? 'public' : false,
+    // Resolver
     resolve: {
       // https://vitejs.dev/config/shared-options.html#resolve-alias
       alias: {
@@ -25,8 +29,6 @@ export default defineConfig(({ command, mode }) => {
       // External
       dedupe: ['vue', 'vuetify'],
     },
-    // https://vitejs.dev/config/shared-options.html#base
-    base: './',
     plugins: [
       // Vue3
       vue({
@@ -82,7 +84,8 @@ export default defineConfig(({ command, mode }) => {
                 'vuetify/lib',
                 'vuetify/lib/components/VBtn',
                 'vuetify/lib/components/VIcon',
-                'vuetify/lib/components/VSheet',
+                'vuetify/lib/components/VItem',
+                'vuetify/lib/components/VItemGroup',
                 'vuetify/util/colors',
               ],
       },

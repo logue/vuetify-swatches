@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemastore.org/package.json",
   "name": "vuetify-swatches",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "description": "Color Swatch component for Vuetify3.",
   "keywords": [
     "vue",
@@ -44,17 +44,17 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
-    "./palettes": {
-      "types": "./src/palettes/index.ts",
-      "import": "./src/palettes/index.ts"
+    "./presets": {
+      "types": "./src/presets/index.ts",
+      "import": "./src/presets/index.ts"
     },
-    "./palettes/basic": {
-      "types": "./src/palettes/basic.ts",
-      "import": "./src/palettes/basic.ts"
+    "./presets/basic": {
+      "types": "./src/presets/basic.ts",
+      "import": "./src/presets/basic.ts"
     },
-    "./palettes/advanced": {
-      "types": "./src/palettes/advanced.ts",
-      "import": "./src/palettes/advanced.ts"
+    "./presets/advanced": {
+      "types": "./src/presets/advanced.ts",
+      "import": "./src/presets/advanced.ts"
     },
     "./umd": "./dist/index.umd.js",
     "./iife": "./dist/index.iife.js",
@@ -64,7 +64,7 @@
   "files": [
     "dist",
     "src/components/VSwatches.vue",
-    "src/palettes"
+    "src/presets"
   ],
   "engines": {
     "node": ">=18.19.0 || >=20.6.0",
