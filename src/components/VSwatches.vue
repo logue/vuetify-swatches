@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
-import { ref, watch, type PropType, type Ref, onMounted, computed } from 'vue';
+import { ref, watch, type PropType, type Ref, computed } from 'vue';
 
-import { VBtn, VIcon, VSheet } from 'vuetify/components';
+import { VBtn, VIcon, VItemGroup } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
 
 /** Emits */
@@ -58,6 +58,7 @@ const props = defineProps({
     type: String,
     default: '1rem',
   },
+  /** Display swatches in a single row */
   inline: {
     type: Boolean,
     default: false,
@@ -111,92 +112,109 @@ const props = defineProps({
   },
 });
 
-/** for inline use. */
-const flattenSwatches: Ref<string[]> = computed(() => {
-  if (Array.isArray(props.swatches)) {
-    return props.swatches.flat(Infinity) as string[];
+/** Normalized swatches structure for rendering */
+const normalizedSwatches = computed(() => {
+  if (props.inline) {
+    // Inline mode: flatten all swatches into a single array
+    const flattened = Array.isArray(props.swatches)
+      ? (props.swatches.flat(Infinity) as string[])
+      : (Object.values(props.swatches).flat(Infinity) as string[]);
+    return [flattened];
   } else {
-    return Object.values(props.swatches).flat(Infinity) as string[];
+    // Grid mode: preserve the structure
+    return Array.isArray(props.swatches)
+      ? props.swatches
+      : Object.values(props.swatches);
   }
 });
 
 /** Selected Color */
 const selected: Ref<string> = ref(colors.shades.white);
 
-/**
- * Swatch button clicked handler
- *
- * @param e - Event
- */
-const onSwatchClick = (e: Event) =>
-  (selected.value =
-    (e.target as HTMLButtonElement).value || colors.shades.white);
-
 watch(
   () => selected.value,
   s => emits('update:modelValue', s)
 );
 
-onMounted(() => {
-  if (props.modelValue) {
-    selected.value = props.modelValue;
-  }
-});
+watch(
+  () => props.modelValue,
+  newValue => {
+    if (newValue) {
+      selected.value = newValue;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <v-item-group v-if="props.inline" class="v-swatches">
-    <v-item v-for="color in flattenSwatches" :key="color">
-      <v-btn
-        :border="props.border"
-        :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
-        :color="color"
-        :disabled="props.disabled"
-        :elevation="props.elevation"
-        :height="props.size"
-        :value="color"
-        :variant="props.variant"
-        :width="props.size"
-        min-width="auto"
-        @click="onSwatchClick"
-      >
-        <v-icon
-          v-if="color === modelValue"
-          :size="iconSize"
-          :color="color !== colors.shades.transparent ? color : undefined"
-        >
-          {{ props.icon }}
-        </v-icon>
-      </v-btn>
-    </v-item>
-  </v-item-group>
-  <v-sheet v-else class="v-swatches">
-    <div v-for="(cols, rows) in swatches" :key="rows">
-      <v-btn
-        v-for="color in cols"
+  <v-item-group
+    v-model="selected"
+    class="v-swatches"
+    :class="{ 'd-inline': props.inline }"
+    mandatory
+  >
+    <template v-if="props.inline">
+      <v-item
+        v-for="color in normalizedSwatches[0]"
         :key="color"
-        :border="props.border"
-        :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
-        :color="color"
-        :disabled="props.disabled"
-        :elevation="props.elevation"
-        :height="props.size"
+        v-slot="{ isSelected, toggle }"
         :value="color"
-        :variant="props.variant"
-        :width="props.size"
-        min-width="auto"
-        @click="onSwatchClick"
       >
-        <v-icon
-          v-if="color === modelValue"
-          :size="iconSize"
-          :color="color !== colors.shades.transparent ? color : undefined"
+        <v-btn
+          :border="props.border"
+          :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
+          :color="color"
+          :disabled="props.disabled"
+          :elevation="props.elevation"
+          :height="props.size"
+          :variant="props.variant"
+          :width="props.size"
+          min-width="auto"
+          @click="toggle"
         >
-          {{ props.icon }}
-        </v-icon>
-      </v-btn>
-    </div>
-  </v-sheet>
+          <v-icon
+            v-if="isSelected"
+            :size="iconSize"
+            :color="color !== colors.shades.transparent ? color : undefined"
+          >
+            {{ props.icon }}
+          </v-icon>
+        </v-btn>
+      </v-item>
+    </template>
+    <template v-else>
+      <div v-for="(cols, rows) in normalizedSwatches" :key="rows">
+        <v-item
+          v-for="color in cols"
+          :key="color"
+          v-slot="{ isSelected, toggle }"
+          :value="color"
+        >
+          <v-btn
+            :border="props.border"
+            :class="color === colors.shades.transparent ? 'bg-transparent' : ''"
+            :color="color"
+            :disabled="props.disabled"
+            :elevation="props.elevation"
+            :height="props.size"
+            :variant="props.variant"
+            :width="props.size"
+            min-width="auto"
+            @click="toggle"
+          >
+            <v-icon
+              v-if="isSelected"
+              :size="iconSize"
+              :color="color !== colors.shades.transparent ? color : undefined"
+            >
+              {{ props.icon }}
+            </v-icon>
+          </v-btn>
+        </v-item>
+      </div>
+    </template>
+  </v-item-group>
 </template>
 
 <style lang="scss">

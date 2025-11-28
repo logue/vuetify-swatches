@@ -114,7 +114,10 @@ const palette = [
               >
             </code-mirror>
           </v-col>
-          <v-col><v-swatches v-model="value" inline /></v-col>
+          <v-col>
+            This is inline swatches:
+            <v-swatches v-model="value" inline />
+          </v-col>
         </v-row>
 
         <h2>With VMenu</h2>
