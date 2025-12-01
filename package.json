@@ -45,16 +45,16 @@
       "require": "./dist/index.cjs.js"
     },
     "./presets": {
-      "types": "./src/presets/index.ts",
-      "import": "./src/presets/index.ts"
+      "types": "./dist/presets/index.d.ts",
+      "import": "./dist/presets/index.js"
     },
     "./presets/basic": {
-      "types": "./src/presets/basic.ts",
-      "import": "./src/presets/basic.ts"
+      "types": "./dist/presets/basic.d.ts",
+      "import": "./dist/presets/basic.js"
     },
     "./presets/advanced": {
-      "types": "./src/presets/advanced.ts",
-      "import": "./src/presets/advanced.ts"
+      "types": "./dist/presets/advanced.d.ts",
+      "import": "./dist/presets/advanced.js"
     },
     "./umd": "./dist/index.umd.js",
     "./iife": "./dist/index.iife.js",
@@ -63,8 +63,7 @@
   },
   "files": [
     "dist",
-    "src/components/VSwatches.vue",
-    "src/presets"
+    "src/components/VSwatches.vue"
   ],
   "engines": {
     "node": ">=18.19.0 || >=20.6.0",
@@ -76,12 +75,13 @@
     "dev": "vite",
     "clean": "rimraf node_modules/.vite",
     "type-check": "vue-tsc --build --force",
-    "build": "run-p type-check build-only",
+    "build": "run-s type-check build-only build:presets",
     "build:analyze": "vite build --mode=analyze",
     "build:clean": "rimraf dist docs",
     "build:docs": "vite build --mode=docs",
     "build-only": "vite build",
-    "lint": "eslint . --fix --cache && prettier . --write",
+    "build:presets": "vite build --config vite.config.presets.ts",
+    "lint": "eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint && prettier . --write",
     "preview": "vite preview --mode=docs",
     "test": "vitest",
     "test:run": "vitest run",
@@ -116,13 +116,13 @@
     "jsdom": "^27.2.0",
     "lint-staged": "^16.2.7",
     "npm-run-all2": "^8.0.4",
-    "prettier": "^3.7.1",
+    "prettier": "^3.7.3",
     "rimraf": "^6.1.2",
     "rollup-plugin-visualizer": "^6.0.5",
     "sass-embedded": "^1.93.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.0",
-    "vite": "^7.2.4",
+    "vite": "^7.2.6",
     "vite-plugin-banner": "^0.8.1",
     "vite-plugin-checker": "^0.11.0",
     "vite-plugin-dts": "^4.5.4",

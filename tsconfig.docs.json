@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "vuetify-swatch": ["./src/index.ts"]
+      "vuetify-swatches": ["./src/index.ts"]
     }
   }
 }
