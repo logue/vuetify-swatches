@@ -166,6 +166,24 @@ describe('VSwatches', () => {
       expect(divs.length).toBe(2); // 2 rows
     });
 
+    it('should transpose rows and columns when transpose prop is true', () => {
+      // Original: 2 rows x 3 cols
+      // Transposed: 3 rows x 2 cols
+      wrapper = mount(VSwatches, {
+        props: {
+          transpose: true,
+          swatches: customSwatches,
+        },
+      });
+
+      const divs = wrapper.findAll('.v-swatches > div');
+      expect(divs.length).toBe(3); // 3 rows after transpose
+
+      // Check first row has 2 buttons (first color from each original row)
+      const firstRowButtons = divs[0]?.findAll('.v-btn');
+      expect(firstRowButtons?.length).toBe(2);
+    });
+
     it('should apply iconSize property correctly', async () => {
       const customIconSize = '2rem';
       wrapper = mount(VSwatches, {

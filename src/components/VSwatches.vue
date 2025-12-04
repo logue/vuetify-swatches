@@ -2,6 +2,7 @@
 /** Vuetify Swatches */
 import { ref, watch, type PropType, type Ref, computed } from 'vue';
 
+import { zip } from 'es-toolkit';
 import { VItem, VItemGroup } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
 
@@ -95,22 +96,32 @@ const props = defineProps({
     type: [String, Number],
     default: undefined,
   },
+  /** Swap cols and rows */
+  transpose: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 /** Normalized swatches structure for rendering */
 const normalizedSwatches = computed(() => {
+  // Convert to array structure first
+  const baseSwatches = Array.isArray(props.swatches)
+    ? props.swatches
+    : Object.values(props.swatches);
+
+  // Apply inline mode: flatten all colors into a single row
   if (props.inline) {
-    // Inline mode: flatten all swatches into a single array
-    const flattened = Array.isArray(props.swatches)
-      ? (props.swatches.flat(Infinity) as string[])
-      : (Object.values(props.swatches).flat(Infinity) as string[]);
-    return [flattened];
-  } else {
-    // Grid mode: preserve the structure
-    return Array.isArray(props.swatches)
-      ? props.swatches
-      : Object.values(props.swatches);
+    return [baseSwatches.flat(Infinity) as string[]];
   }
+
+  // Apply transpose mode: swap rows and columns
+  if (props.transpose) {
+    return zip(...(baseSwatches as string[][])) as string[][];
+  }
+
+  // Default: preserve the original structure
+  return baseSwatches;
 });
 
 /** Selected Color */

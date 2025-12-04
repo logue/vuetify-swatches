@@ -18,6 +18,7 @@ const color1: Ref<string> = ref('#ffffff');
 const color2: Ref<string> = ref('#ffffff');
 const color3: Ref<string> = ref('#ffffff');
 const color4: Ref<string> = ref('#ffffff');
+const color5: Ref<string> = ref('#ffffff');
 
 const palette = [
   [
@@ -322,6 +323,36 @@ const selected = ref('#ffffff');
               <v-text-field v-model="color4" label="Result" />
             </v-col>
           </v-row>
+        </section>
+        <section>
+          <h2>Swap palette cols and rows (transpose)</h2>
+          <p>
+            You can transpose the swatches by setting the
+            <v-code>tag</v-code>
+            prop to
+            <v-code>transpose</v-code>
+            .
+          </p>
+          <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
+            <pre>
+&lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+const selected = ref('#ffffff');
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;advancedPalette&quot; transpose /&gt;
+&lt;/template&gt;</pre
+            >
+          </code-mirror>
+          <v-swatches
+            v-model="color5"
+            :swatches="advancedPalette"
+            transpose
+            class="mb-3"
+          />
+          <v-text-field v-model="color5" label="Result" />
         </section>
       </v-container>
     </v-main>
