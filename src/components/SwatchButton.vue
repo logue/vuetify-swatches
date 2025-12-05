@@ -77,13 +77,11 @@ const emit = defineEmits<{
   </v-tooltip>
   <v-btn
     v-else
-    :border="props.border"
-    :elevation="props.elevation"
     :height="props.size"
-    :variant="props.variant"
     :width="props.size"
     class="p-0"
     disabled
     min-width="auto"
+    variant="text"
   />
 </template>

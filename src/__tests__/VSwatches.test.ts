@@ -440,7 +440,7 @@ describe('VSwatches', () => {
     it('should disable buttons with empty color values', () => {
       const swatchesWithEmpty = [
         [testColors.red, '', testColors.blue],
-        [testColors.yellow, undefined as unknown as string, testColors.orange],
+        [testColors.yellow, undefined, testColors.orange],
       ];
 
       wrapper = mount(VSwatches, {
@@ -459,12 +459,12 @@ describe('VSwatches', () => {
       expect(disabledButtons.length).toBe(2); // Empty and undefined buttons
     });
 
-    it('should render disabled button for null color', () => {
-      const swatchesWithNull = [[testColors.red, null as unknown as string]];
+    it('should render disabled button for undefined color', () => {
+      const swatchesWithUndefined = [[testColors.red, undefined]];
 
       wrapper = mount(VSwatches, {
         props: {
-          swatches: swatchesWithNull,
+          swatches: swatchesWithUndefined,
         },
       });
 
@@ -611,8 +611,7 @@ describe('VSwatches', () => {
     it('should disable tooltip for empty color values', () => {
       const testWrapper = mount(VSwatches, {
         props: {
-          // @ts-expect-error Testing invalid color values
-          swatches: [['', testColors.red, undefined, null]],
+          swatches: [['', testColors.red, undefined, undefined]],
           tooltip: true,
         },
       });
@@ -620,7 +619,7 @@ describe('VSwatches', () => {
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
 
       // Only colors with valid values should render tooltips
-      // Empty string, undefined, and null should not render v-tooltip at all
+      // Empty string and undefined should not render v-tooltip at all
       expect(tooltips.length).toBe(1); // Only testColors.red has a tooltip
 
       // Tooltip for red color should not be disabled

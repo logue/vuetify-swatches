@@ -39,12 +39,7 @@ export default defineConfig(({ command, mode }) => {
       }),
       // Vuetify Loader
       // https://github.com/vuetifyjs/vuetify-loader
-      mode === 'docs'
-        ? vuetify({
-            autoImport: true,
-            styles: 'sass',
-          })
-        : undefined,
+      mode === 'docs' ? vuetify({ autoImport: true }) : undefined,
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({

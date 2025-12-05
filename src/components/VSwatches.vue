@@ -1,6 +1,13 @@
 <script setup lang="ts">
 /** Vuetify Swatches */
-import { ref, watch, type PropType, type Ref, computed } from 'vue';
+import {
+  computed,
+  ref,
+  watch,
+  type ComputedRef,
+  type PropType,
+  type Ref,
+} from 'vue';
 
 import { zip } from 'es-toolkit';
 import { VItem, VItemGroup } from 'vuetify/components';
@@ -24,11 +31,11 @@ const props = defineProps({
   /** Swatch colors */
   swatches: {
     type: Array as PropType<
-      | string[]
-      | string[][]
-      | Record<string, string[]>
-      | readonly string[]
-      | readonly (readonly string[])[]
+      | (string | undefined)[]
+      | (string | undefined)[][]
+      | Record<string, (string | undefined)[]>
+      | readonly (string | undefined)[]
+      | readonly (readonly (string | undefined)[])[]
     >,
     default: () => [],
   },
@@ -37,7 +44,10 @@ const props = defineProps({
     type: String,
     default: '2rem',
   },
-  /** Selected icon */
+  /**
+   * Selected icon
+   * @see {@link https://vuetifyjs.com/en/components/icons/#usage
+   */
   icon: {
     type: String,
     default: 'mdi-checkbox-marked-circle',
@@ -102,12 +112,18 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  /** Tooltip */
+  /**
+   * Tooltip
+   * @see {@link https://vuetifyjs.com/en/components/tooltips/}
+   */
   tooltip: {
     type: Boolean,
     default: false,
   },
-  /** Tooltip location */
+  /**
+   * Tooltip location
+   * @see {@link https://vuetifyjs.com/en/components/tooltips/#props-location}
+   */
   tooltipLocation: {
     type: String as PropType<Anchor>,
     default: undefined,
@@ -115,9 +131,9 @@ const props = defineProps({
 });
 
 /** Normalized swatches structure for rendering */
-const normalizedSwatches = computed(() => {
+const normalizedSwatches: ComputedRef<string[][]> = computed(() => {
   // Convert to array structure first
-  const baseSwatches = Array.isArray(props.swatches)
+  const baseSwatches: string[][] = Array.isArray(props.swatches)
     ? props.swatches
     : Object.values(props.swatches);
 
@@ -128,7 +144,7 @@ const normalizedSwatches = computed(() => {
 
   // Apply transpose mode: swap rows and columns
   if (props.transpose) {
-    return zip(...(baseSwatches as string[][])) as string[][];
+    return zip(...baseSwatches) as string[][];
   }
 
   // Default: preserve the original structure
@@ -157,8 +173,8 @@ watch(
 <template>
   <v-item-group
     v-model="selected"
-    class="v-swatches"
     :class="{ 'd-inline': props.inline }"
+    class="v-swatches"
     mandatory
   >
     <template v-if="props.inline">
@@ -169,18 +185,18 @@ watch(
         :value="color"
       >
         <swatch-button
-          :color="color"
-          :is-selected="isSelected"
-          :size="props.size"
-          :icon="props.icon"
-          :icon-size="props.iconSize"
-          :variant="props.variant"
-          :disabled="props.disabled"
-          :rounded="props.rounded"
           :border="props.border"
+          :color="color"
+          :disabled="props.disabled"
           :elevation="props.elevation"
-          :tooltip="props.tooltip"
+          :icon-size="props.iconSize"
+          :icon="props.icon"
+          :is-selected="isSelected"
+          :rounded="props.rounded"
+          :size="props.size"
           :tooltip-location="props.tooltipLocation"
+          :tooltip="props.tooltip"
+          :variant="props.variant"
           @click="toggle"
         />
       </v-item>
@@ -193,18 +209,18 @@ watch(
         :value="color"
       >
         <swatch-button
-          :color="color"
-          :is-selected="isSelected"
-          :size="props.size"
-          :icon="props.icon"
-          :icon-size="props.iconSize"
-          :variant="props.variant"
-          :disabled="props.disabled"
-          :rounded="props.rounded"
           :border="props.border"
+          :color="color"
+          :disabled="props.disabled"
           :elevation="props.elevation"
-          :tooltip="props.tooltip"
+          :icon-size="props.iconSize"
+          :icon="props.icon"
+          :is-selected="isSelected"
+          :rounded="props.rounded"
+          :size="props.size"
           :tooltip-location="props.tooltipLocation"
+          :tooltip="props.tooltip"
+          :variant="props.variant"
           @click="toggle"
         />
       </v-item>
