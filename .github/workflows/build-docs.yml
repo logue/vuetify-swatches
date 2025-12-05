@@ -2,9 +2,9 @@ name: NodeJS with Vite
 
 on:
   push:
-    branches: ['master']
+    branches: ["master"]
   pull_request:
-    branches: ['master']
+    branches: ["master"]
 
 jobs:
   build:
@@ -44,6 +44,7 @@ jobs:
         run: |
           pnpm install
           pnpm run build:docs
+          touch docs/.nojekyll
 
       - name: Deploy to gh-pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4.7.4
