@@ -112,7 +112,11 @@ const selected = ref('#ffffff');
 
 &lt;template&gt;
   &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;basicPalette&quot; /&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
                 >
               </code-mirror>
             </v-col>
@@ -155,7 +159,11 @@ const selected = ref('#ffffff');
 
 &lt;template&gt;
   &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;basicPalette&quot; inline /&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
                 >
               </code-mirror>
             </v-col>
@@ -205,7 +213,11 @@ const selected = ref('#ffffff');
     tooltip
     tooltip-location=&quot;top&quot;
   /&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
                 >
               </code-mirror>
             </v-col>
@@ -290,7 +302,11 @@ const palette = [
 
 &lt;template&gt;
   &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;palette&quot; /&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
                 >
               </code-mirror>
             </v-col>
@@ -357,7 +373,11 @@ const selected = ref('#ffffff');
       &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;advancedPalette&quot; /&gt;
     &lt;/v-card&gt;
   &lt;/v-menu&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
                 >
               </code-mirror>
             </v-col>
@@ -405,7 +425,11 @@ const selected = ref('#ffffff');
 
 &lt;template&gt;
   &lt;v-swatches v-model=&quot;selected&quot; :swatches=&quot;advancedPalette&quot; transpose /&gt;
-&lt;/template&gt;</pre
+&lt;/template&gt;
+
+&lt;style&gt;
+@import 'vuetify-swatches/dist/style.css';
+&lt;/style&gt;</pre
             >
           </code-mirror>
           <v-swatches
