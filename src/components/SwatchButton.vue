@@ -5,7 +5,7 @@ import colors from 'vuetify/util/colors';
 import type { Variant } from 'vuetify/lib/composables/variant.d.ts';
 
 interface Props {
-  color: string;
+  color?: string;
   isSelected?: boolean;
   size?: string;
   icon?: string;
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  color: undefined,
   isSelected: false,
   size: '2rem',
   icon: 'mdi-checkbox-marked-circle',
@@ -36,6 +37,18 @@ const emit = defineEmits<{
 
 <template>
   <v-btn
+    v-if="!props.color"
+    disabled
+    :border="props.border"
+    :elevation="props.elevation"
+    :height="props.size"
+    :variant="props.variant"
+    :width="props.size"
+    class="p-0"
+    min-width="auto"
+  />
+  <v-btn
+    v-else
     :border="props.border"
     :class="props.color === colors.shades.transparent ? 'bg-transparent' : ''"
     :color="props.color"

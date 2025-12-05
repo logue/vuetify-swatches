@@ -436,6 +436,45 @@ describe('VSwatches', () => {
       const buttons = wrapper.findAll('.v-btn');
       expect(buttons.length).toBe(2); // 1 + 1 = 2 colors
     });
+
+    it('should disable buttons with empty color values', () => {
+      const swatchesWithEmpty = [
+        [testColors.red, '', testColors.blue],
+        [testColors.yellow, undefined as unknown as string, testColors.orange],
+      ];
+
+      wrapper = mount(VSwatches, {
+        props: {
+          swatches: swatchesWithEmpty,
+        },
+      });
+
+      const buttons = wrapper.findAll('.v-btn');
+      expect(buttons.length).toBe(6); // All buttons should be rendered
+
+      // Check that buttons with empty values are disabled
+      const disabledButtons = buttons.filter(
+        btn => btn.attributes('disabled') !== undefined
+      );
+      expect(disabledButtons.length).toBe(2); // Empty and undefined buttons
+    });
+
+    it('should render disabled button for null color', () => {
+      const swatchesWithNull = [[testColors.red, null as unknown as string]];
+
+      wrapper = mount(VSwatches, {
+        props: {
+          swatches: swatchesWithNull,
+        },
+      });
+
+      const buttons = wrapper.findAll('.v-btn');
+      expect(buttons.length).toBe(2);
+
+      // Second button should be disabled
+      const secondButton = buttons[1];
+      expect(secondButton?.attributes('disabled')).toBeDefined();
+    });
   });
 
   describe('Accessibility Testing', () => {
