@@ -9,6 +9,7 @@ import colors from 'vuetify/util/colors';
 import SwatchButton from './SwatchButton.vue';
 
 import type { Variant } from 'vuetify/lib/composables/variant.d.ts';
+import type { Anchor } from 'vuetify/lib/util/index.d.ts';
 
 /** Emits */
 const emits = defineEmits({
@@ -101,6 +102,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  /** Tooltip */
+  tooltip: {
+    type: Boolean,
+    default: false,
+  },
+  /** Tooltip location */
+  tooltipLocation: {
+    type: String as PropType<Anchor>,
+    default: undefined,
+  },
 });
 
 /** Normalized swatches structure for rendering */
@@ -168,6 +179,8 @@ watch(
           :rounded="props.rounded"
           :border="props.border"
           :elevation="props.elevation"
+          :tooltip="props.tooltip"
+          :tooltip-location="props.tooltipLocation"
           @click="toggle"
         />
       </v-item>
@@ -190,6 +203,8 @@ watch(
           :rounded="props.rounded"
           :border="props.border"
           :elevation="props.elevation"
+          :tooltip="props.tooltip"
+          :tooltip-location="props.tooltipLocation"
           @click="toggle"
         />
       </v-item>

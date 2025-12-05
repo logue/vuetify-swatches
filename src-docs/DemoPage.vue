@@ -19,6 +19,7 @@ const color2: Ref<string> = ref('#ffffff');
 const color3: Ref<string> = ref('#ffffff');
 const color4: Ref<string> = ref('#ffffff');
 const color5: Ref<string> = ref('#ffffff');
+const color6: Ref<string> = ref('#ffffff');
 
 const palette = [
   [
@@ -162,6 +163,61 @@ const selected = ref('#ffffff');
         </section>
 
         <section>
+          <h2>Tooltip Feature</h2>
+          <p>
+            You can enable tooltips that show the color code when hovering over
+            each swatch by setting the
+            <v-code>tag</v-code>
+            prop to
+            <v-code>tooltip</v-code>
+            . You can also set the tooltip location using the
+            <v-code>tag</v-code>
+            prop
+            <v-code>tooltip-location</v-code>
+            .
+          </p>
+          <v-row>
+            <v-col>
+              <code-mirror
+                class="mb-3"
+                :dark="dark"
+                :lang="lang"
+                basic
+                readonly
+              >
+                <pre>
+&lt;script setup&gt;
+import { ref } from 'vue';
+import VSwatches from 'vuetify-swatches';
+import { basicPalette } from 'vuetify-swatches/presets';
+const selected = ref('#ffffff');
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;v-swatches
+    v-model=&quot;selected&quot;
+    :swatches=&quot;basicPalette&quot;
+    tooltip
+    tooltip-location=&quot;top&quot;
+  /&gt;
+&lt;/template&gt;</pre
+                >
+              </code-mirror>
+            </v-col>
+            <v-col>
+              <v-swatches
+                v-model="color6"
+                :swatches="basicPalette"
+                tooltip
+                tooltip-location="top"
+                class="mb-3"
+              />
+              <v-text-field v-model="color6" label="Result" />
+            </v-col>
+          </v-row>
+        </section>
+
+        <section>
           <h2>Custom Color</h2>
           <p>
             You can set any color you like by specifying a hex code or RGB value
@@ -239,6 +295,7 @@ const palette = [
             </v-col>
           </v-row>
         </section>
+
         <section>
           <h2>With VMenu and advanced palette combination</h2>
           <p>

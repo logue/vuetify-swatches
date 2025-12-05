@@ -86,6 +86,7 @@ export default defineConfig(({ command, mode }) => {
                 'vuetify/lib/components/VIcon',
                 'vuetify/lib/components/VItem',
                 'vuetify/lib/components/VItemGroup',
+                'vuetify/lib/components/VTooltip',
                 'vuetify/util/colors',
               ],
       },

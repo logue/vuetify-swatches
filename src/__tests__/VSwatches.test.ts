@@ -525,4 +525,183 @@ describe('VSwatches', () => {
       expect(transparentButton.exists()).toBe(true);
     });
   });
+
+  describe('Tooltip Testing', () => {
+    it('should set custom tooltip location', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: customSwatches,
+          tooltip: true,
+          tooltipLocation: 'bottom',
+        },
+      });
+
+      const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
+      expect(tooltips.length).toBeGreaterThan(0);
+
+      // All tooltips should have the custom location
+      tooltips.forEach(tooltip => {
+        expect(tooltip.props('location')).toBe('bottom');
+      });
+    });
+
+    it('should use default tooltip location when not specified', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColors.red]],
+          tooltip: true,
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      // When tooltipLocation is not specified, it should be undefined
+      expect(tooltip.props('location')).toBeUndefined();
+    });
+
+    it('should not render tooltip when tooltip prop is false', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: customSwatches,
+          tooltip: false,
+        },
+      });
+
+      const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
+      // v-tooltip is rendered for colors that exist, but should be disabled
+      expect(tooltips.length).toBeGreaterThan(0);
+
+      // Check that all tooltips are disabled when tooltip prop is false
+      tooltips.forEach(tooltip => {
+        expect(tooltip.props('disabled')).toBe(true);
+      });
+    });
+
+    it('should render tooltip when tooltip prop is true', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: customSwatches,
+          tooltip: true,
+        },
+      });
+
+      const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
+      expect(tooltips.length).toBeGreaterThan(0);
+
+      // All tooltips should not be disabled (for non-empty colors)
+      tooltips.forEach(tooltip => {
+        expect(tooltip.props('disabled')).toBe(false);
+      });
+    });
+
+    it('should display color value in tooltip text', () => {
+      const testColor = testColors.red;
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColor]],
+          tooltip: true,
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      expect(tooltip.props('text')).toBe(testColor);
+    });
+
+    it('should disable tooltip for empty color values', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          // @ts-expect-error Testing invalid color values
+          swatches: [['', testColors.red, undefined, null]],
+          tooltip: true,
+        },
+      });
+
+      const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
+
+      // Only colors with valid values should render tooltips
+      // Empty string, undefined, and null should not render v-tooltip at all
+      expect(tooltips.length).toBe(1); // Only testColors.red has a tooltip
+
+      // Tooltip for red color should not be disabled
+      const redTooltip = tooltips[0];
+      expect(redTooltip).toBeDefined();
+      expect(redTooltip?.props('disabled')).toBe(false);
+      expect(redTooltip?.props('text')).toBe(testColors.red);
+    });
+
+    it('should set custom tooltip location', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: customSwatches,
+          tooltip: true,
+          tooltipLocation: 'bottom',
+        },
+      });
+
+      const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
+      expect(tooltips.length).toBeGreaterThan(0);
+
+      // All tooltips should have the custom location
+      tooltips.forEach(tooltip => {
+        expect(tooltip.props('location')).toBe('bottom');
+      });
+    });
+
+    it('should support tooltip location top', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColors.red]],
+          tooltip: true,
+          tooltipLocation: 'top',
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      expect(tooltip.props('location')).toBe('top');
+    });
+
+    it('should support tooltip location bottom', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColors.red]],
+          tooltip: true,
+          tooltipLocation: 'bottom',
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      expect(tooltip.props('location')).toBe('bottom');
+    });
+
+    it('should support tooltip location left', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColors.red]],
+          tooltip: true,
+          tooltipLocation: 'left',
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      expect(tooltip.props('location')).toBe('left');
+    });
+
+    it('should support tooltip location right', () => {
+      const testWrapper = mount(VSwatches, {
+        props: {
+          swatches: [[testColors.red]],
+          tooltip: true,
+          tooltipLocation: 'right',
+        },
+      });
+
+      const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
+      expect(tooltip.exists()).toBe(true);
+      expect(tooltip.props('location')).toBe('right');
+    });
+  });
 });
