@@ -5,6 +5,7 @@ import {
 } from '@vue/eslint-config-typescript';
 
 import pluginImport from 'eslint-plugin-import';
+import pluginOxlint from 'eslint-plugin-oxlint';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 import pluginVuetify from 'eslint-plugin-vuetify';
@@ -152,5 +153,6 @@ export default defineConfigWithVueTs(
       'vue/multi-word-component-names': 'warn',
     },
   },
+  ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
   configPrettier
 );
