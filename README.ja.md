@@ -11,25 +11,26 @@
 
 ![demo](https://user-images.githubusercontent.com/480173/156681882-d3d5e868-ba9a-4a34-9e75-08272d39da64.gif)
 
-A color swatch component for Vuetify 3.
+Vuetify 3 向けのカラースウォッチコンポーネントです。
 
-This project is a Vuetify-based remake of [saintplay's vue-swatches](https://saintplay.github.io/vue-swatches/).
-It keeps the API simple while fitting naturally into Vuetify UI patterns.
+このプロジェクトは [saintplay の vue-swatches](https://saintplay.github.io/vue-swatches/) を
+[Vuetify](https://vuetifyjs.com/) ベースで再構築したものです。
+シンプルな API のまま、Vuetify の UI に自然に組み込める設計を目指しています。
 
-## Compatibility
+## 対応バージョン
 
-- `2.x`: Vuetify 3 (current)
+- `2.x`: Vuetify 3（現行）
 - `1.x`: Vuetify 2
 
-`2.x` contains breaking changes and requires the `swatches` prop.
+`2.x` は破壊的変更を含み、`swatches` プロパティが必須です。
 
-## Installation
+## インストール
 
 ```bash
 pnpm add vuetify-swatches
 ```
 
-## Quick Start
+## クイックスタート
 
 ```vue
 <script setup lang="ts">
@@ -49,19 +50,19 @@ const selected: Ref<string> = ref('#ffffff');
 </style>
 ```
 
-## Preset Palettes
+## プリセットパレット
 
-- `basicPalette`: lightweight palette for common use cases
-- `advancedPalette`: larger palette with many color variations
+- `basicPalette`: 軽量で一般的な用途向け
+- `advancedPalette`: 色バリエーションが豊富な拡張パレット
 
 ```ts
 import { basicPalette } from 'vuetify-swatches/presets/basic';
 import { advancedPalette } from 'vuetify-swatches/presets/advanced';
 ```
 
-## Custom Palette
+## カスタムパレット
 
-You can pass your own nested color array to `swatches`.
+`swatches` にはネストした配列で任意の色パレットを渡せます。
 
 ```vue
 <script setup lang="ts">
@@ -121,38 +122,38 @@ const selected: Ref<string> = ref('#ffffff');
 
 ## Props
 
-Most props (except swatch-specific options) follow [v-btn](https://vuetifyjs.com/en/api/v-btn/).
+スウォッチ固有の項目以外は、基本的に [v-btn](https://vuetifyjs.com/en/api/v-btn/) の仕様に準拠します。
 
-| Prop               | Type           | Default                      | Description                   |
-| ------------------ | -------------- | ---------------------------- | ----------------------------- |
-| `size`             | string         | `2rem`                       | Swatch button size            |
-| `icon`             | string         | `mdi-checkbox-marked-circle` | Icon shown for selected color |
-| `icon-size`        | string         | `1rem`                       | Icon size                     |
-| `disabled`         | boolean        | `false`                      | Disables interaction          |
-| `rounded`          | number\|string | `undefined`                  | Border radius                 |
-| `variant`          | Variant        | `undefined`                  | Vuetify button variant        |
-| `elevation`        | number\|string | `undefined`                  | Vuetify elevation             |
-| `border`           | number\|string | `undefined`                  | Vuetify border                |
-| `transpose`        | boolean        | `false`                      | Swap rows and columns         |
-| `tooltip`          | boolean        | `false`                      | Show color value in tooltip   |
-| `tooltip-location` | Anchor         | `undefined`                  | Tooltip location              |
+| Prop               | Type           | Default                      | 説明                         |
+| ------------------ | -------------- | ---------------------------- | ---------------------------- |
+| `size`             | string         | `2rem`                       | スウォッチボタンのサイズ     |
+| `icon`             | string         | `mdi-checkbox-marked-circle` | 選択時に表示するアイコン     |
+| `icon-size`        | string         | `1rem`                       | アイコンサイズ               |
+| `disabled`         | boolean        | `false`                      | 操作を無効化                 |
+| `rounded`          | number\|string | `undefined`                  | 角丸                         |
+| `variant`          | Variant        | `undefined`                  | Vuetify のボタンバリアント   |
+| `elevation`        | number\|string | `undefined`                  | Vuetify の elevation         |
+| `border`           | number\|string | `undefined`                  | Vuetify の border            |
+| `transpose`        | boolean        | `false`                      | 行と列を入れ替える           |
+| `tooltip`          | boolean        | `false`                      | ツールチップで色コードを表示 |
+| `tooltip-location` | Anchor         | `undefined`                  | ツールチップの表示位置       |
 
-Reference:
+参照:
 
 - Variant: <https://vuetifyjs.com/api/v-btn/#props-variant>
 - Tooltip location: <https://vuetifyjs.com/en/components/tooltips/#props-location>
 
-## Demo
+## デモ
 
-- Demo page: <https://logue.dev/vuetify-swatches>
+- デモページ: <https://logue.dev/vuetify-swatches>
 
-## License
+## ライセンス
 
 Copyright (c) 2022-2026 Logue.
-Licensed under the [MIT License](LICENSE).
+[MIT License](LICENSE) のもとで公開しています。
 
-## Sponsor
+## スポンサー
 
-If this project helps your work, consider sponsoring:
+このプロジェクトが役に立ったら、スポンサーとしての支援をご検討ください。
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/logue?label=Sponsor&logo=github&color=ea4aaa)](https://github.com/sponsors/logue)
