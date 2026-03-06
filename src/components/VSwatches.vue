@@ -20,7 +20,6 @@ import type { Anchor } from 'vuetify/lib/util/index.d.ts';
 
 /** Emits */
 const emits = defineEmits({
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: string) => true,
 });
 

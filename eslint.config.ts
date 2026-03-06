@@ -4,8 +4,12 @@ import {
   vueTsConfigs,
 } from '@vue/eslint-config-typescript';
 
-import pluginImport from 'eslint-plugin-import';
+import pluginVitest from '@vitest/eslint-plugin';
+import { globalIgnores } from 'eslint/config';
+import pluginImport from 'eslint-plugin-import-x';
 import pluginOxlint from 'eslint-plugin-oxlint';
+// @ts-ignore
+import pluginSecurity from 'eslint-plugin-security';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 import pluginVuetify from 'eslint-plugin-vuetify';
@@ -15,47 +19,41 @@ import pluginVuetify from 'eslint-plugin-vuetify';
 // configureVueProject({ scriptLangs: ['ts', 'tsx'] })
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
-/**
- * ESLint Config
- */
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    files: ['**/*.{vue,ts,mts,tsx}'],
   },
-  {
-    name: 'app/files-to-ignore',
-    ignores: [
-      '.vscode/',
-      '.yarn/',
-      '**/dist/**',
-      '**/dist-ssr/**',
-      '**/coverage/**',
-      'eslint.config.*',
-      'pnpm-lock.yaml',
-      'playwright-report',
-      'test-results',
-      'public/',
-      'src/**/*.generated.*',
-      'docs',
-    ],
-  },
-  pluginVue.configs['flat/recommended'],
+
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+
+  ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
   vueTsConfigs.recommended,
+  pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.typescript,
+  pluginSecurity.configs.recommended,
   {
+    name: 'Vuetify',
+    files: ['*.vue', '**/*.vue'],
     plugins: {
-      import: pluginImport,
       vuetify: pluginVuetify,
     },
+    rules: {
+      ...pluginVuetify.configs.base.rules,
+    },
+  },
+  {
     settings: {
       // This will do the trick
-      'import/parsers': {
+      'import-x/parsers': {
         espree: ['.js', '.cjs', '.mjs', '.jsx'],
         '@typescript-eslint/parser': ['.ts', '.tsx'],
         'vue-eslint-parser': ['.vue'],
       },
-      'import/resolver': {
+      'import-x/resolver': {
+        // You will also need to install and configure the TypeScript resolver
+        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
         typescript: true,
         node: true,
         'eslint-import-resolver-custom-alias': {
@@ -66,13 +64,9 @@ export default defineConfigWithVueTs(
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue'],
         },
       },
-      vite: {
-        configPath: './vite.config.ts',
-      },
     },
     rules: {
-      // ...importPlugin.configs["recommended"].rules,
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       // const lines: string[] = []; style
       '@typescript-eslint/array-type': [
         'error',
@@ -96,17 +90,33 @@ export default defineConfigWithVueTs(
       ],
       // Fix for pinia
       '@typescript-eslint/explicit-function-return-type': 'off',
+      // Exclude variables with leading underscores
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
       // Fix for vite import.meta.env
       '@typescript-eslint/strict-boolean-expressions': 'off',
       // Fix for vite env.d.ts.
       '@typescript-eslint/triple-slash-reference': 'off',
       // Fix for Vue setup style
-      'import/default': 'off',
-      // Fix for Vue setup style
-      'import/no-default-export': 'off',
+      'import-x/default': 'off',
+      // Fix for vite
+      'import-x/namespace': 'off',
+      'import-x/no-default-export': 'off',
+      'import-x/no-named-as-default-member': 'off',
+      'import-x/no-named-as-default': 'off',
       // Sort Import Order.
       // see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           groups: [
@@ -153,6 +163,12 @@ export default defineConfigWithVueTs(
       'vue/multi-word-component-names': 'warn',
     },
   },
+
+  {
+    ...pluginVitest.configs.recommended,
+    files: ['src/**/__tests__/*'],
+  },
+
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
   configPrettier
 );

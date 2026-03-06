@@ -93,9 +93,11 @@ describe('VSwatches', () => {
       // Check first color v-item
       const items = wrapper.findAllComponents({ name: 'VItem' });
       const firstItem = items[0];
-      if (firstItem) {
-        expect(firstItem.props('value')).toBe(testColors.red);
+      expect(firstItem).toBeDefined();
+      if (!firstItem) {
+        throw new Error('Expected first swatch item to exist');
       }
+      expect(firstItem.props('value')).toBe(testColors.red);
     });
 
     it('should apply size property correctly', () => {
@@ -283,9 +285,7 @@ describe('VSwatches', () => {
 
       const emitted = wrapper.emitted('update:modelValue');
       expect(emitted).toBeDefined();
-      if (emitted) {
-        expect(emitted.length).toBeGreaterThan(0);
-      }
+      expect(emitted!.length).toBeGreaterThan(0);
     });
 
     it('should emit correct value when different colors are clicked', async () => {
@@ -298,16 +298,17 @@ describe('VSwatches', () => {
       const buttons = wrapper.findAll('.v-btn');
       const redButton = buttons[0]; // First button is red
 
-      if (redButton) {
-        await redButton.trigger('click');
-        await wrapper.vm.$nextTick();
-
-        const emitted = wrapper.emitted('update:modelValue');
-        expect(emitted).toBeDefined();
-        if (emitted && emitted.length > 0) {
-          expect(emitted[0]).toEqual([testColors.red]);
-        }
+      expect(redButton).toBeDefined();
+      if (!redButton) {
+        throw new Error('Expected red button to exist');
       }
+      await redButton.trigger('click');
+      await wrapper.vm.$nextTick();
+
+      const emitted = wrapper.emitted('update:modelValue');
+      expect(emitted).toBeDefined();
+      expect(emitted!.length).toBeGreaterThan(0);
+      expect(emitted![0]).toEqual([testColors.red]);
     });
 
     it('should disable click events when disabled', async () => {
@@ -527,7 +528,7 @@ describe('VSwatches', () => {
   });
 
   describe('Tooltip Testing', () => {
-    it('should set custom tooltip location', () => {
+    it('should set custom tooltip location for duplicate scenario', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: customSwatches,
@@ -555,8 +556,8 @@ describe('VSwatches', () => {
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
       expect(tooltip.exists()).toBe(true);
-      // When tooltipLocation is not specified, it should be undefined
-      expect(tooltip.props('location')).toBeUndefined();
+      // When tooltipLocation is not specified, it should be end by default
+      expect(tooltip.props('location')).toBe('end'); // Vuetify's default tooltip location is 'end'
     });
 
     it('should not render tooltip when tooltip prop is false', () => {

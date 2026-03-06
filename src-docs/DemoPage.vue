@@ -67,7 +67,7 @@ const palette = [
 
 <template>
   <v-app :theme="dark ? 'dark' : 'light'">
-    <v-app-bar title="Vuetify3 Swatch Demo" app>
+    <v-app-bar title="Vuetify3 Swatch Demo">
       <v-btn
         icon="mdi-theme-light-dark"
         variant="plain"

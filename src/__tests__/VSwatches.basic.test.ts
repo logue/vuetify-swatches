@@ -198,9 +198,8 @@ describe('VSwatches Basic Functionality Tests', () => {
       expect(wrapper.props('modelValue')).toBe(newColor);
 
       const selectedButton = wrapper.find(`[value="${newColor}"]`);
-      if (selectedButton.exists()) {
-        expect(selectedButton.find('span').text()).toBe('✓');
-      }
+      expect(selectedButton.exists()).toBe(true);
+      expect(selectedButton.find('span').text()).toBe('✓');
     });
 
     it('should update UI according to props changes', async () => {
