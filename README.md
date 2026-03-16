@@ -213,14 +213,14 @@ const selected: Ref<string> = ref('#ffffff');
 
 ```html
 <!-- Vue core -->
-<script src="https://cdn.jsdelivr.net/npm/vue@3.5.25/dist/vue.global.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@3.11.0/dist/vuetify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.5.30/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@4.0.2/dist/vuetify.min.js"></script>
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/vuetify@3.11.0/dist/vuetify.min.js"
+  href="https://cdn.jsdelivr.net/npm/vuetify@4.0.2/dist/vuetify.min.js"
 />
 <!-- Markdown wasm -->
-<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@2.0.3/dist/index.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify-swatches@latest/dist/index.iife.min.js"></script>
 <script>
   const { createApp } = Vue;
   const { createVuetify } = Vuetify;
@@ -230,6 +230,13 @@ const selected: Ref<string> = ref('#ffffff');
 </script>
 ```
 
-## LICENSE
+©2022-2026 by Logue.
+Licensed under the [MIT License](LICENSE).
 
-©2022-2025 by Logue. Licensed under the [MIT License](LICENSE).
+## 🎨 Crafted for Developers
+
+This library is built with a focus **modern developer experience**. Maintaining it involves constant testing and updates to ensure everything works seamlessly.
+
+If you appreciate the attention to detail in this project, a small sponsorship would go a long way in supporting my work across the Vue.js and Metaverse ecosystems.
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/logue?label=Sponsor&logo=github&color=ea4aaa)](https://github.com/sponsors/logue)
