@@ -80,8 +80,8 @@ const emit = defineEmits<{
     :height="props.size"
     :width="props.size"
     class="p-0"
-    disabled
     min-width="auto"
     variant="text"
+    disabled
   />
 </template>

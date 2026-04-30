@@ -190,9 +190,13 @@ describe('VSwatches Basic Functionality Tests', () => {
 
   describe('Reactive Data Testing', () => {
     it('should reflect modelValue changes', async () => {
-      const wrapper = mount(VSwatchesTest);
-
       const newColor = '#00FF00';
+      const wrapper = mount(VSwatchesTest, {
+        props: {
+          swatches: [['#FF0000', newColor, '#0000FF']],
+        },
+      });
+
       await wrapper.setProps({ modelValue: newColor });
 
       expect(wrapper.props('modelValue')).toBe(newColor);

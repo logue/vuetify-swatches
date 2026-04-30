@@ -95,9 +95,9 @@ const palette = [
           <v-row>
             <v-col>
               <code-mirror
-                class="mb-3"
                 :dark="dark"
                 :lang="lang"
+                class="mb-3"
                 basic
                 readonly
               >
@@ -142,9 +142,9 @@ const selected = ref('#ffffff');
           <v-row>
             <v-col>
               <code-mirror
-                class="mb-3"
                 :dark="dark"
                 :lang="lang"
+                class="mb-3"
                 basic
                 readonly
               >
@@ -170,7 +170,7 @@ const selected = ref('#ffffff');
             <v-col>
               This is inline swatches:
               <v-swatches v-model="color2" :swatches="basicPalette" inline />
-              <v-text-field v-model="color2" inline label="Result" />
+              <v-text-field v-model="color2" label="Result" inline />
             </v-col>
           </v-row>
         </section>
@@ -192,9 +192,9 @@ const selected = ref('#ffffff');
           <v-row>
             <v-col>
               <code-mirror
-                class="mb-3"
                 :dark="dark"
                 :lang="lang"
+                class="mb-3"
                 basic
                 readonly
               >
@@ -225,9 +225,9 @@ const selected = ref('#ffffff');
               <v-swatches
                 v-model="color6"
                 :swatches="basicPalette"
-                tooltip
                 tooltip-location="top"
                 class="mb-3"
+                tooltip
               />
               <v-text-field v-model="color6" label="Result" />
             </v-col>
@@ -243,9 +243,9 @@ const selected = ref('#ffffff');
           <v-row>
             <v-col>
               <code-mirror
-                class="mb-3"
                 :dark="dark"
                 :lang="lang"
+                class="mb-3"
                 basic
                 readonly
               >
@@ -337,9 +337,9 @@ const palette = [
           <v-row>
             <v-col>
               <code-mirror
-                class="mb-3"
                 :dark="dark"
                 :lang="lang"
+                class="mb-3"
                 basic
                 readonly
               >
@@ -386,9 +386,9 @@ const selected = ref('#ffffff');
                 <template #activator="{ props }">
                   <v-btn
                     v-bind="props"
+                    :color="color4"
                     class="mb-3"
                     min-width="auto"
-                    :color="color4"
                   >
                     <v-icon
                       :color="color4"
@@ -415,7 +415,7 @@ const selected = ref('#ffffff');
             <v-code>transpose</v-code>
             .
           </p>
-          <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
+          <code-mirror :dark="dark" :lang="lang" class="mb-3" basic readonly>
             <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -435,14 +435,14 @@ const selected = ref('#ffffff');
           <v-swatches
             v-model="color5"
             :swatches="advancedPalette"
-            transpose
             class="mb-3"
+            transpose
           />
           <v-text-field v-model="color5" label="Result" />
         </section>
       </v-container>
     </v-main>
-    <v-footer app elevation="3">
+    <v-footer elevation="3" app>
       &copy; 2022-2025 by&thinsp;
       <a href="http://logue.dev/">Logue</a>
       &thinsp; . Licensed under the&thinsp;

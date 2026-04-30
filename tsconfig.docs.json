@@ -10,7 +10,6 @@
   ],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.docs.tsbuildinfo",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "vuetify-swatches": ["./src/index.ts"]
