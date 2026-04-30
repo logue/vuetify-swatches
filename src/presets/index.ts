@@ -7,10 +7,10 @@
  * @example
  * ```typescript
  * // Import basic palette (lightweight)
- * import { basicPalette } from 'vuetify-swatches/palettes';
+ * import { basicPalette } from 'vuetify-swatches/presets';
  *
  * // Import advanced palette (larger)
- * import { advancedPalette } from 'vuetify-swatches/palettes';
+ * import { advancedPalette } from 'vuetify-swatches/presets';
  * ```
  */
 

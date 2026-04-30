@@ -6,6 +6,7 @@ import CodeMirror from 'vue-codemirror6';
 import { useTheme } from 'vuetify';
 
 import { basicPalette, advancedPalette } from '@/presets';
+// eslint-disable-next-line import-x/no-relative-parent-imports -- This is a demo file, and the relative import is acceptable.
 import VSwatches from 'vuetify-swatches';
 
 const theme = useTheme();

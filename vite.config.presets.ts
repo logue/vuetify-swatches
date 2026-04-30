@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     dts({
       tsconfigPath: './tsconfig.app.json',
-      outDir: 'dist/presets',
+      outDirs: 'dist/presets',
       entryRoot: 'src/presets',
     }),
   ],

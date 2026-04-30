@@ -111,30 +111,12 @@ export default defineConfig(({ command, mode }) => {
         external: mode === 'docs' ? undefined : ['vue', /^vuetify/],
         output: {
           esModule: true,
-          generatedCode: {
-            reservedNamesAsProps: false,
-          },
-          interop: 'compat' as const,
-          systemNullSetters: false,
           exports: 'named' as const,
           globals: {
             vue: 'Vue',
             'vuetify/components': 'Vuetify/components',
             'vuetify/util/colors': 'colors',
           },
-          manualChunks:
-            mode === 'docs'
-              ? {
-                  vue: ['vue'],
-                  vuetify: [
-                    'vuetify/components',
-                    'vuetify/directives',
-                    'vuetify/util/colors',
-                  ],
-                  codemirror: ['vue-codemirror6'],
-                  'codemirror-lang': ['@codemirror/lang-vue'],
-                }
-              : undefined,
         },
       },
       target: 'esnext',
@@ -145,7 +127,7 @@ export default defineConfig(({ command, mode }) => {
     },
   };
   // Write meta data.
-  // eslint-disable-next-line security/detect-non-literal-fs-filename
+  // eslint-disable-next-line security/detect-non-literal-fs-filename -- This is a build-time operation, and the file path is fixed and controlled.
   writeFileSync(
     fileURLToPath(new URL('./src/Meta.ts', import.meta.url)),
     `import type MetaInterface from './interfaces/MetaInterface';
