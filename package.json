@@ -1,6 +1,6 @@
 {
   "name": "vuetify-swatches",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Color Swatch component for Vuetify3.",
   "keywords": [
     "vue",
@@ -67,7 +67,7 @@
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "vite",
     "clean": "rimraf ./node_modules/.vite",
@@ -95,75 +95,68 @@
     "vuetify": ">=4"
   },
   "dependencies": {
-    "es-toolkit": "^1.46.1"
+    "es-toolkit": "^1.49.0"
   },
   "devDependencies": {
-    "@mdi/font": "^7.4.47",
     "@codemirror/lang-vue": "^0.1.3",
-    "@eslint-community/eslint-plugin-eslint-comments": "^4.7.1",
-    "@eslint/markdown": "^8.0.1",
-    "@playwright/test": "^1.59.1",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",
+    "@eslint/markdown": "^8.0.3",
+    "@mdi/font": "^7.4.47",
+    "@playwright/test": "^1.61.1",
     "@tsconfig/node-lts": "^24.0.0",
-    "@types/jsdom": "^28.0.1",
-    "@types/node": "^25.6.0",
-    "@vitejs/plugin-vue": "^6.0.6",
-    "@vitest/coverage-v8": "^4.1.5",
-    "@vitest/eslint-plugin": "1.6.16",
+    "@types/jsdom": "^28.0.3",
+    "@types/node": "^26.1.0",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/eslint-plugin": "1.6.20",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "@vue/eslint-config-typescript": "^14.7.0",
-    "@vue/test-utils": "^2.4.10",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "@vue/test-utils": "^2.4.11",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.1",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.6.0",
     "eslint-import-resolver-custom-alias": "^1.3.2",
-    "eslint-import-resolver-typescript": "^4.4.4",
-    "eslint-plugin-import-x": "^4.16.2",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-oxlint": "^1.62.0",
-    "eslint-plugin-playwright": "^2.10.2",
-    "eslint-plugin-security": "^4.0.0",
-    "eslint-plugin-vue": "^10.9.0",
+    "eslint-plugin-oxlint": "^1.72.0",
+    "eslint-plugin-playwright": "^2.10.4",
+    "eslint-plugin-security": "^4.0.1",
+    "eslint-plugin-vue": "^10.9.2",
     "eslint-plugin-vuejs-accessibility": "^2.5.0",
     "eslint-plugin-vuetify": "^2.7.2",
     "husky": "^9.1.7",
-    "jiti": "^2.6.1",
+    "jiti": "^2.7.0",
     "jsdom": "29.1.1",
-    "lint-staged": "^16.4.0",
-    "npm-run-all2": "^8.0.4",
-    "oxlint": "^1.62.0",
+    "lint-staged": "^17.0.8",
+    "npm-run-all2": "^9.0.2",
+    "oxlint": "^1.72.0",
     "postcss-html": "^1.8.1",
-    "prettier": "^3.8.3",
+    "prettier": "^3.9.4",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^6.1.3",
     "rollup-plugin-visualizer": "^7.0.1",
-    "sass-embedded": "^1.99.0",
-    "stylelint": "^17.9.1",
+    "sass-embedded": "^1.100.0",
+    "stylelint": "^17.14.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recommended-scss": "^17.0.1",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-order": "^8.1.1",
-    "stylelint-scss": "^7.0.0",
+    "stylelint-scss": "^7.2.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.1",
-    "vite": "^8.0.10",
+    "typescript-eslint": "^8.62.1",
+    "vite": "^8.1.3",
     "vite-plugin-banner": "^0.8.1",
-    "vite-plugin-checker": "0.13.0",
-    "vite-plugin-dts": "^5.0.0",
-    "vite-plugin-vue-devtools": "^8.1.1",
+    "vite-plugin-checker": "0.14.4",
+    "vite-plugin-dts": "^5.0.3",
+    "vite-plugin-vue-devtools": "^8.1.5",
     "vite-plugin-vuetify": "^2.1.3",
-    "vitest": "^4.1.5",
-    "vue-codemirror6": "^1.5.1",
-    "vue-tsc": "^3.2.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "vitest": "^4.1.9",
+    "vue-codemirror6": "^1.5.2",
+    "vue-tsc": "^3.3.6"
   },
   "lint-staged": {
     "*": "run-s lint:*"
-  },
-  "resolutions": {
-    "js-yaml": ">=4.1.1"
   },
   "stackblitz": {
     "startCommand": "pnpm run test:unit"

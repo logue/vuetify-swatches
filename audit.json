@@ -1,0 +1,464 @@
+{
+  "advisories": {
+    "1117870": {
+      "findings": [
+        {
+          "version": "3.1.0",
+          "paths": [
+            ".>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-html>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint-config-recommended>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint-scss>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint-config-html>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint-config-recommended>stylelint>table>ajv>fast-uri",
+            ".>stylelint-order>stylelint>table>ajv>fast-uri",
+            ".>stylelint-scss>stylelint>table>ajv>fast-uri",
+            ".>vite-plugin-checker>stylelint>table>ajv>fast-uri"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1117870,
+      "title": "fast-uri vulnerable to path traversal via percent-encoded dot segments",
+      "module_name": "fast-uri",
+      "vulnerable_versions": "<=3.1.0",
+      "patched_versions": ">=3.1.1",
+      "severity": "high",
+      "cwe": "CWE-22",
+      "github_advisory_id": "GHSA-q3j6-qgpj-74h6",
+      "url": "https://github.com/advisories/GHSA-q3j6-qgpj-74h6"
+    },
+    "1117884": {
+      "findings": [
+        {
+          "version": "3.1.0",
+          "paths": [
+            ".>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-html>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint-config-recommended>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-scss>stylelint-scss>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint-config-html>stylelint>table>ajv>fast-uri",
+            ".>stylelint-config-recommended-vue>stylelint-config-recommended>stylelint>table>ajv>fast-uri",
+            ".>stylelint-order>stylelint>table>ajv>fast-uri",
+            ".>stylelint-scss>stylelint>table>ajv>fast-uri",
+            ".>vite-plugin-checker>stylelint>table>ajv>fast-uri"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1117884,
+      "title": "fast-uri vulnerable to host confusion via percent-encoded authority delimiters",
+      "module_name": "fast-uri",
+      "vulnerable_versions": "<=3.1.1",
+      "patched_versions": ">=3.1.2",
+      "severity": "high",
+      "cwe": "CWE-436",
+      "github_advisory_id": "GHSA-v39h-62p7-jpjc",
+      "url": "https://github.com/advisories/GHSA-v39h-62p7-jpjc"
+    },
+    "1120311": {
+      "findings": [
+        {
+          "version": "5.0.5",
+          "paths": [
+            ".>@eslint-community/eslint-plugin-eslint-comments>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@eslint-community/eslint-plugin-eslint-comments>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vitest/eslint-plugin>@typescript-eslint/eslint-plugin>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-config-prettier>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-config-prettier>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-plugin-prettier>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-plugin-prettier>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-plugin-prettier>eslint-config-prettier>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-prettier>eslint-plugin-prettier>eslint-config-prettier>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>vue-eslint-parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>vue-eslint-parser>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>@typescript-eslint/parser>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>@typescript-eslint/parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>eslint-plugin-vue>@typescript-eslint/parser>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/parser>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/type-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/eslint-plugin>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/parser>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/parser>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>@typescript-eslint/utils>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>typescript-eslint>eslint>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>vue-eslint-parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>@vue/eslint-config-typescript>vue-eslint-parser>eslint>minimatch>brace-expansion",
+            ".>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>@typescript-eslint/parser>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>@typescript-eslint/parser>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>@typescript-eslint/parser>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>@eslint/config-array>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>@typescript-eslint/utils>@eslint-community/eslint-utils>eslint>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>@typescript-eslint/utils>@typescript-eslint/typescript-estree>minimatch>brace-expansion",
+            ".>eslint-import-resolver-custom-alias>eslint-plugin-import>eslint-module-utils>eslint-import-resolver-typescript>eslint-plugin-import-x>@typescript-eslint/utils>eslint>@eslint/config-array>minimatch>brace-expansion"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1120311,
+      "title": "brace-expansion: Large numeric range defeats documented `max` DoS protection",
+      "module_name": "brace-expansion",
+      "vulnerable_versions": ">=5.0.0 <5.0.6",
+      "patched_versions": ">=5.0.6",
+      "severity": "moderate",
+      "cwe": "CWE-400",
+      "github_advisory_id": "GHSA-jxxr-4gwj-5jf2",
+      "url": "https://github.com/advisories/GHSA-jxxr-4gwj-5jf2"
+    },
+    "1120607": {
+      "findings": [
+        {
+          "version": "3.0.5",
+          "paths": [".>@vue/test-utils>js-beautify>js-cookie"],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1120607,
+      "title": "JavaScript Cookie: Per-instance prototype hijack in assign() enables cookie-attribute injection",
+      "module_name": "js-cookie",
+      "vulnerable_versions": "<=3.0.5",
+      "patched_versions": ">=3.0.6",
+      "severity": "high",
+      "cwe": "CWE-1321",
+      "github_advisory_id": "GHSA-qjx8-664m-686j",
+      "url": "https://github.com/advisories/GHSA-qjx8-664m-686j"
+    },
+    "1120793": {
+      "findings": [
+        {
+          "version": "7.29.0",
+          "paths": [
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-proposal-decorators>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-proposal-decorators>@babel/helper-create-class-features-plugin>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-proposal-decorators>@babel/helper-create-class-features-plugin>@babel/helper-replace-supers>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-proposal-decorators>@babel/plugin-syntax-decorators>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-syntax-import-attributes>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-syntax-import-meta>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-transform-typescript>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-transform-typescript>@babel/helper-create-class-features-plugin>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-transform-typescript>@babel/helper-create-class-features-plugin>@babel/helper-replace-supers>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@babel/plugin-transform-typescript>@babel/plugin-syntax-typescript>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@vue/babel-plugin-jsx>@babel/plugin-syntax-jsx>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@vue/babel-plugin-jsx>@vue/babel-plugin-resolve-type>@babel/core",
+            ".>vite-plugin-vue-devtools>vite-plugin-vue-inspector>@vue/babel-plugin-jsx>@babel/core"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1120793,
+      "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
+      "module_name": "@babel/core",
+      "vulnerable_versions": "<=7.29.0",
+      "patched_versions": ">=7.29.1",
+      "severity": "low",
+      "cwe": "CWE-22, CWE-200",
+      "github_advisory_id": "GHSA-4x5r-pxfx-6jf8",
+      "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8"
+    },
+    "1121187": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121187,
+      "title": "undici vulnerable to TLS certificate validation bypass via dropped requestTls in SOCKS5 ProxyAgent",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.23.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "high",
+      "cwe": "CWE-295",
+      "github_advisory_id": "GHSA-vmh5-mc38-953g",
+      "url": "https://github.com/advisories/GHSA-vmh5-mc38-953g"
+    },
+    "1121241": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121241,
+      "title": "undici vulnerable to HTTP header injection via Set-Cookie percent-decoding",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "moderate",
+      "cwe": "CWE-93",
+      "github_advisory_id": "GHSA-p88m-4jfj-68fv",
+      "url": "https://github.com/advisories/GHSA-p88m-4jfj-68fv"
+    },
+    "1121244": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121244,
+      "title": "undici WebSocket client vulnerable to denial of service via fragment count bypass",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "high",
+      "cwe": "CWE-400, CWE-770",
+      "github_advisory_id": "GHSA-vxpw-j846-p89q",
+      "url": "https://github.com/advisories/GHSA-vxpw-j846-p89q"
+    },
+    "1121247": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121247,
+      "title": "undici vulnerable to cross-origin request routing via SOCKS5 proxy pool reuse",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.23.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "high",
+      "cwe": "CWE-346",
+      "github_advisory_id": "GHSA-hm92-r4w5-c3mj",
+      "url": "https://github.com/advisories/GHSA-hm92-r4w5-c3mj"
+    },
+    "1121249": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121249,
+      "title": "undici vulnerable to HTTP response queue poisoning via keep-alive socket reuse",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "low",
+      "cwe": "CWE-367",
+      "github_advisory_id": "GHSA-35p6-xmwp-9g52",
+      "url": "https://github.com/advisories/GHSA-35p6-xmwp-9g52"
+    },
+    "1121254": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121254,
+      "title": "undici vulnerable to Set-Cookie SameSite attribute downgrade via permissive substring matching",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "low",
+      "cwe": "CWE-183",
+      "github_advisory_id": "GHSA-g8m3-5g58-fq7m",
+      "url": "https://github.com/advisories/GHSA-g8m3-5g58-fq7m"
+    },
+    "1121428": {
+      "findings": [
+        {
+          "version": "7.25.0",
+          "paths": [
+            ".>@vitest/coverage-v8>vitest>jsdom>undici",
+            ".>@vitest/eslint-plugin>vitest>jsdom>undici",
+            ".>jsdom>undici",
+            ".>vitest>jsdom>undici"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121428,
+      "title": "undici vulnerable to cross-user information disclosure via shared cache whitespace bypass",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.28.0",
+      "patched_versions": ">=7.28.0",
+      "severity": "moderate",
+      "cwe": "CWE-524",
+      "github_advisory_id": "GHSA-pr7r-676h-xcf6",
+      "url": "https://github.com/advisories/GHSA-pr7r-676h-xcf6"
+    },
+    "1121860": {
+      "findings": [
+        {
+          "version": "4.1.1",
+          "paths": [
+            ".>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-html>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-scss>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-scss>stylelint-config-recommended>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-scss>stylelint-scss>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-vue>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-vue>stylelint-config-html>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-config-recommended-vue>stylelint-config-recommended>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-order>stylelint>cosmiconfig>js-yaml",
+            ".>stylelint-scss>stylelint>cosmiconfig>js-yaml",
+            ".>vite-plugin-checker>stylelint>cosmiconfig>js-yaml"
+          ],
+          "dev": true,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1121860,
+      "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
+      "module_name": "js-yaml",
+      "vulnerable_versions": ">=4.0.0 <=4.1.1",
+      "patched_versions": ">=4.1.2",
+      "severity": "moderate",
+      "cwe": "CWE-407",
+      "github_advisory_id": "GHSA-h67p-54hq-rp68",
+      "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68"
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 3,
+      "moderate": 4,
+      "high": 6,
+      "critical": 0
+    },
+    "dependencies": 59,
+    "devDependencies": 804,
+    "optionalDependencies": 164,
+    "totalDependencies": 956
+  }
+}

@@ -117,8 +117,7 @@ const selected = ref('#ffffff');
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-                >
+&lt;/style&gt;</pre>
               </code-mirror>
             </v-col>
             <v-col>
@@ -164,8 +163,7 @@ const selected = ref('#ffffff');
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-                >
+&lt;/style&gt;</pre>
               </code-mirror>
             </v-col>
             <v-col>
@@ -218,8 +216,7 @@ const selected = ref('#ffffff');
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-                >
+&lt;/style&gt;</pre>
               </code-mirror>
             </v-col>
             <v-col>
@@ -307,8 +304,7 @@ const palette = [
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-                >
+&lt;/style&gt;</pre>
               </code-mirror>
             </v-col>
             <v-col>
@@ -378,8 +374,7 @@ const selected = ref('#ffffff');
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-                >
+&lt;/style&gt;</pre>
               </code-mirror>
             </v-col>
             <v-col>
@@ -391,10 +386,7 @@ const selected = ref('#ffffff');
                     class="mb-3"
                     min-width="auto"
                   >
-                    <v-icon
-                      :color="color4"
-                      style="filter: invert(100%) grayscale(100%) contrast(100)"
-                    >
+                    <v-icon :color="color4" class="inverse">
                       mdi-menu-down
                     </v-icon>
                   </v-btn>
@@ -430,8 +422,7 @@ const selected = ref('#ffffff');
 
 &lt;style&gt;
 @import 'vuetify-swatches/dist/style.css';
-&lt;/style&gt;</pre
-            >
+&lt;/style&gt;</pre>
           </code-mirror>
           <v-swatches
             v-model="color5"
@@ -452,3 +443,9 @@ const selected = ref('#ffffff');
     </v-footer>
   </v-app>
 </template>
+
+<style scoped>
+.inverse {
+  filter: invert(100%) grayscale(100%) contrast(100);
+}
+</style>
