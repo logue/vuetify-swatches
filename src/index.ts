@@ -1,4 +1,5 @@
 import VSwatches from './components/VSwatches.vue';
+export { Meta } from '@/types/Meta';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- for Vue app instance typing
 const installVSwatches = (app: any): void =>
