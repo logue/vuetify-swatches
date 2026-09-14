@@ -5,5 +5,6 @@ allowBuilds:
   vue-demi: true
 overrides:
   brace-expansion: '>=5.0.9'
-minimumReleaseAgeExclude:
-  - vite@8.2.1
+# Do not enforce minimum release age for dependencies.
+# Version selection is delegated to package.json constraints.
+minimumReleaseAge: 0

@@ -1,38 +1,17 @@
-<script setup lang="ts">
+<script lang="ts" setup vapor>
 import { VBtn, VIcon, VTooltip } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
 
-import type { Variant } from 'vuetify/lib/composables/variant.d.ts';
-import type { Anchor } from 'vuetify/lib/util/index.d.ts';
+import type { SwatchButtonProps } from '@/types/SwatchButtonProps';
 
-interface Props {
-  color: string;
-  isSelected: boolean;
-  size: string;
-  icon: string;
-  iconSize: string;
-  variant: Variant;
-  disabled: boolean;
-  rounded: string | number | boolean;
-  border: string | number | boolean;
-  elevation: string | number;
-  tooltip: boolean;
-  tooltipLocation: Anchor;
-}
-
-const props = withDefaults(defineProps<Partial<Props>>(), {
-  color: undefined,
+const props = withDefaults(defineProps<Partial<SwatchButtonProps>>(), {
   isSelected: false,
   size: '2rem',
   icon: 'mdi-checkbox-marked-circle',
   iconSize: '1rem',
-  variant: undefined,
   disabled: false,
-  rounded: undefined,
   border: false,
-  elevation: undefined,
   tooltip: false,
-  tooltipLocation: undefined,
 });
 
 const emit = defineEmits<{

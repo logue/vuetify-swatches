@@ -1,4 +1,4 @@
-import { mount, VueWrapper } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import colors from 'vuetify/util/colors';
@@ -25,7 +25,7 @@ const customSwatches = [
 ];
 
 describe('VSwatches', () => {
-  let wrapper: VueWrapper<InstanceType<typeof VSwatches>>;
+  let wrapper: ReturnType<typeof mount>;
 
   beforeEach(() => {
     wrapper = mount(VSwatches, {
