@@ -1,3 +1,12 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "ms-playwright.playwright",
+    "oxc.oxc-vscode",
+    "vitest.explorer",
+    "Vue.volar",
+    "vuetifyjs.vuetify-vscode",
+    "VoidZero.vite-plus-extension-pack"
+  ],
+  "unwantedRecommendations": ["biomejs.biome", "dbaeumer.vscode-eslint"]
 }

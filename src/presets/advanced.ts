@@ -16,7 +16,7 @@ export const advancedPalette = [
     colors.red.darken1,
     colors.red.darken2,
     colors.red.darken3,
-    colors.red.darken4,
+    colors.red.darken4
   ],
   [
     colors.pink.lighten5,
@@ -28,7 +28,7 @@ export const advancedPalette = [
     colors.pink.darken1,
     colors.pink.darken2,
     colors.pink.darken3,
-    colors.pink.darken4,
+    colors.pink.darken4
   ],
   [
     colors.purple.lighten5,
@@ -40,7 +40,7 @@ export const advancedPalette = [
     colors.purple.darken1,
     colors.purple.darken2,
     colors.purple.darken3,
-    colors.purple.darken4,
+    colors.purple.darken4
   ],
   [
     colors.deepPurple.lighten5,
@@ -52,7 +52,7 @@ export const advancedPalette = [
     colors.deepPurple.darken1,
     colors.deepPurple.darken2,
     colors.deepPurple.darken3,
-    colors.deepPurple.darken4,
+    colors.deepPurple.darken4
   ],
   [
     colors.indigo.lighten5,
@@ -64,7 +64,7 @@ export const advancedPalette = [
     colors.indigo.darken1,
     colors.indigo.darken2,
     colors.indigo.darken3,
-    colors.indigo.darken4,
+    colors.indigo.darken4
   ],
   [
     colors.blue.lighten5,
@@ -76,7 +76,7 @@ export const advancedPalette = [
     colors.blue.darken1,
     colors.blue.darken2,
     colors.blue.darken3,
-    colors.blue.darken4,
+    colors.blue.darken4
   ],
   [
     colors.lightBlue.lighten5,
@@ -88,7 +88,7 @@ export const advancedPalette = [
     colors.lightBlue.darken1,
     colors.lightBlue.darken2,
     colors.lightBlue.darken3,
-    colors.lightBlue.darken4,
+    colors.lightBlue.darken4
   ],
   [
     colors.cyan.lighten5,
@@ -100,7 +100,7 @@ export const advancedPalette = [
     colors.cyan.darken1,
     colors.cyan.darken2,
     colors.cyan.darken3,
-    colors.cyan.darken4,
+    colors.cyan.darken4
   ],
   [
     colors.teal.lighten5,
@@ -112,7 +112,7 @@ export const advancedPalette = [
     colors.teal.darken1,
     colors.teal.darken2,
     colors.teal.darken3,
-    colors.teal.darken4,
+    colors.teal.darken4
   ],
   [
     colors.green.lighten5,
@@ -124,7 +124,7 @@ export const advancedPalette = [
     colors.green.darken1,
     colors.green.darken2,
     colors.green.darken3,
-    colors.green.darken4,
+    colors.green.darken4
   ],
   [
     colors.lightGreen.lighten5,
@@ -136,7 +136,7 @@ export const advancedPalette = [
     colors.lightGreen.darken1,
     colors.lightGreen.darken2,
     colors.lightGreen.darken3,
-    colors.lightGreen.darken4,
+    colors.lightGreen.darken4
   ],
   [
     colors.lime.lighten5,
@@ -148,7 +148,7 @@ export const advancedPalette = [
     colors.lime.darken1,
     colors.lime.darken2,
     colors.lime.darken3,
-    colors.lime.darken4,
+    colors.lime.darken4
   ],
   [
     colors.yellow.lighten5,
@@ -160,7 +160,7 @@ export const advancedPalette = [
     colors.yellow.darken1,
     colors.yellow.darken2,
     colors.yellow.darken3,
-    colors.yellow.darken4,
+    colors.yellow.darken4
   ],
   [
     colors.amber.lighten5,
@@ -172,7 +172,7 @@ export const advancedPalette = [
     colors.amber.darken1,
     colors.amber.darken2,
     colors.amber.darken3,
-    colors.amber.darken4,
+    colors.amber.darken4
   ],
   [
     colors.orange.lighten5,
@@ -184,7 +184,7 @@ export const advancedPalette = [
     colors.orange.darken1,
     colors.orange.darken2,
     colors.orange.darken3,
-    colors.orange.darken4,
+    colors.orange.darken4
   ],
   [
     colors.deepOrange.lighten5,
@@ -196,7 +196,7 @@ export const advancedPalette = [
     colors.deepOrange.darken1,
     colors.deepOrange.darken2,
     colors.deepOrange.darken3,
-    colors.deepOrange.darken4,
+    colors.deepOrange.darken4
   ],
   [
     colors.brown.lighten5,
@@ -208,7 +208,7 @@ export const advancedPalette = [
     colors.brown.darken1,
     colors.brown.darken2,
     colors.brown.darken3,
-    colors.brown.darken4,
+    colors.brown.darken4
   ],
   [
     colors.blueGrey.lighten5,
@@ -220,7 +220,7 @@ export const advancedPalette = [
     colors.blueGrey.darken1,
     colors.blueGrey.darken2,
     colors.blueGrey.darken3,
-    colors.blueGrey.darken4,
+    colors.blueGrey.darken4
   ],
   [
     colors.grey.lighten5,
@@ -232,6 +232,6 @@ export const advancedPalette = [
     colors.grey.darken1,
     colors.grey.darken2,
     colors.grey.darken3,
-    colors.grey.darken4,
-  ],
+    colors.grey.darken4
+  ]
 ] as const;

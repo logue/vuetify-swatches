@@ -8,5 +8,5 @@ export type Meta = {
 
 export const Meta: Meta = {
   version: __APP_VERSION__,
-  date: __BUILD_DATE__,
+  date: __BUILD_DATE__
 };

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach } from 'vitest';
 
+import { describe, it, expect, beforeEach } from 'vite-plus/test';
 import colors from 'vuetify/util/colors';
 
 import VSwatches from '../components/VSwatches.vue';
@@ -15,13 +15,13 @@ const testColors = {
   orange: colors.orange.base,
   white: colors.shades.white,
   black: colors.shades.black,
-  transparent: colors.shades.transparent,
+  transparent: colors.shades.transparent
 };
 
 // Test custom swatches
 const customSwatches = [
   [testColors.red, testColors.green, testColors.blue],
-  [testColors.yellow, testColors.purple, testColors.orange],
+  [testColors.yellow, testColors.purple, testColors.orange]
 ];
 
 describe('VSwatches', () => {
@@ -30,8 +30,8 @@ describe('VSwatches', () => {
   beforeEach(() => {
     wrapper = mount(VSwatches, {
       props: {
-        swatches: basicPalette,
-      },
+        swatches: basicPalette
+      }
     });
   });
 
@@ -44,8 +44,8 @@ describe('VSwatches', () => {
     it('should display default swatches', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
       const buttons = wrapper.findAll('.v-btn');
       expect(buttons.length).toBeGreaterThan(0);
@@ -63,17 +63,15 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           modelValue: testColor,
-          swatches: [[testColor, testColors.blue]], // Include test color in swatches
-        },
+          swatches: [[testColor, testColors.blue]] // Include test color in swatches
+        }
       });
 
       await wrapper.vm.$nextTick();
 
       // Check if selected color icon is displayed in v-item
       const items = wrapper.findAllComponents({ name: 'VItem' });
-      const selectedItem = items.find(
-        item => item.props('value') === testColor
-      );
+      const selectedItem = items.find(item => item.props('value') === testColor);
       expect(selectedItem).toBeDefined();
 
       const icon = wrapper.find('.v-icon');
@@ -83,8 +81,8 @@ describe('VSwatches', () => {
     it('should display custom swatches correctly', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const buttons = wrapper.findAll('.v-btn');
@@ -105,8 +103,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           size: customSize,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -121,8 +119,8 @@ describe('VSwatches', () => {
         props: {
           modelValue: testColors.red,
           icon: customIcon,
-          swatches: [[testColors.red]], // Include test color in swatches
-        },
+          swatches: [[testColors.red]] // Include test color in swatches
+        }
       });
 
       await wrapper.vm.$nextTick();
@@ -138,8 +136,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           inline: true,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       // Check if d-inline class is applied
@@ -155,8 +153,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           inline: false,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       // Check if d-inline class is not applied
@@ -174,8 +172,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           transpose: true,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const divs = wrapper.findAll('.v-swatches > div');
@@ -192,8 +190,8 @@ describe('VSwatches', () => {
         props: {
           modelValue: testColors.red,
           iconSize: customIconSize,
-          swatches: [[testColors.red]], // Include test color in swatches
-        },
+          swatches: [[testColors.red]] // Include test color in swatches
+        }
       });
 
       await wrapper.vm.$nextTick();
@@ -208,8 +206,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           variant: 'outlined',
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -221,8 +219,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           disabled: true,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -233,8 +231,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           rounded: 'xl',
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -246,8 +244,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           border: true,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -259,15 +257,13 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           elevation: 4,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
       // Check if elevation class is applied
-      expect(button.classes().some(cls => cls.includes('elevation'))).toBe(
-        true
-      );
+      expect(button.classes().some(cls => cls.includes('elevation'))).toBe(true);
     });
   });
 
@@ -275,8 +271,8 @@ describe('VSwatches', () => {
     it('should emit update:modelValue on swatch click', async () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -291,8 +287,8 @@ describe('VSwatches', () => {
     it('should emit correct value when different colors are clicked', async () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const buttons = wrapper.findAll('.v-btn');
@@ -315,8 +311,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           disabled: true,
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -332,8 +328,8 @@ describe('VSwatches', () => {
     it('should apply special class for transparent color', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: [[testColors.transparent, testColors.red]],
-        },
+          swatches: [[testColors.transparent, testColors.red]]
+        }
       });
 
       // Find the transparent button by checking all buttons
@@ -346,8 +342,8 @@ describe('VSwatches', () => {
       wrapper = mount(VSwatches, {
         props: {
           modelValue: testColors.transparent,
-          swatches: [[testColors.transparent, testColors.red]],
-        },
+          swatches: [[testColors.transparent, testColors.red]]
+        }
       });
 
       await wrapper.vm.$nextTick();
@@ -364,8 +360,8 @@ describe('VSwatches', () => {
       const newColor = testColors.green;
       wrapper = mount(VSwatches, {
         props: {
-          swatches: [[newColor]], // Include test color in swatches
-        },
+          swatches: [[newColor]] // Include test color in swatches
+        }
       });
 
       await wrapper.setProps({ modelValue: newColor });
@@ -379,8 +375,8 @@ describe('VSwatches', () => {
     it('should update UI according to props changes', async () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: [[testColors.red]],
-        },
+          swatches: [[testColors.red]]
+        }
       });
 
       let buttons = wrapper.findAll('.v-btn');
@@ -388,7 +384,7 @@ describe('VSwatches', () => {
 
       // Change swatches
       await wrapper.setProps({
-        swatches: [[testColors.red, testColors.blue, testColors.green]],
+        swatches: [[testColors.red, testColors.blue, testColors.green]]
       });
 
       buttons = wrapper.findAll('.v-btn');
@@ -400,8 +396,8 @@ describe('VSwatches', () => {
     it('should not throw errors with empty swatches array', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: [],
-        },
+          swatches: []
+        }
       });
 
       expect(wrapper.exists()).toBe(true);
@@ -415,8 +411,8 @@ describe('VSwatches', () => {
       expect(() => {
         wrapper = mount(VSwatches, {
           props: {
-            swatches: invalidSwatches,
-          },
+            swatches: invalidSwatches
+          }
         });
       }).not.toThrow();
     });
@@ -424,13 +420,13 @@ describe('VSwatches', () => {
     it('should handle object format swatches correctly', () => {
       const objectSwatches = {
         reds: [testColors.red],
-        blues: [testColors.blue],
+        blues: [testColors.blue]
       };
 
       wrapper = mount(VSwatches, {
         props: {
-          swatches: objectSwatches,
-        },
+          swatches: objectSwatches
+        }
       });
 
       expect(wrapper.exists()).toBe(true);
@@ -438,25 +434,34 @@ describe('VSwatches', () => {
       expect(buttons.length).toBe(2); // 1 + 1 = 2 colors
     });
 
+    it('should render flat swatches in a single row', () => {
+      wrapper = mount(VSwatches, {
+        props: {
+          swatches: [testColors.red, testColors.blue]
+        }
+      });
+
+      expect(wrapper.findAll('.v-swatches > div')).toHaveLength(1);
+      expect(wrapper.findAll('.v-btn')).toHaveLength(2);
+    });
+
     it('should disable buttons with empty color values', () => {
       const swatchesWithEmpty = [
         [testColors.red, '', testColors.blue],
-        [testColors.yellow, undefined, testColors.orange],
+        [testColors.yellow, undefined, testColors.orange]
       ];
 
       wrapper = mount(VSwatches, {
         props: {
-          swatches: swatchesWithEmpty,
-        },
+          swatches: swatchesWithEmpty
+        }
       });
 
       const buttons = wrapper.findAll('.v-btn');
       expect(buttons.length).toBe(6); // All buttons should be rendered
 
       // Check that buttons with empty values are disabled
-      const disabledButtons = buttons.filter(
-        btn => btn.attributes('disabled') !== undefined
-      );
+      const disabledButtons = buttons.filter(btn => btn.attributes('disabled') !== undefined);
       expect(disabledButtons.length).toBe(2); // Empty and undefined buttons
     });
 
@@ -465,8 +470,8 @@ describe('VSwatches', () => {
 
       wrapper = mount(VSwatches, {
         props: {
-          swatches: swatchesWithUndefined,
-        },
+          swatches: swatchesWithUndefined
+        }
       });
 
       const buttons = wrapper.findAll('.v-btn');
@@ -482,8 +487,8 @@ describe('VSwatches', () => {
     it('should set appropriate value attributes on v-item components', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const items = wrapper.findAllComponents({ name: 'VItem' });
@@ -496,8 +501,8 @@ describe('VSwatches', () => {
     it('should set appropriate min-width on buttons', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const button = wrapper.find('.v-btn');
@@ -518,8 +523,8 @@ describe('VSwatches', () => {
     it('should apply special style class for transparent buttons', () => {
       wrapper = mount(VSwatches, {
         props: {
-          swatches: [[testColors.transparent]],
-        },
+          swatches: [[testColors.transparent]]
+        }
       });
 
       const transparentButton = wrapper.find('.bg-transparent');
@@ -533,8 +538,8 @@ describe('VSwatches', () => {
         props: {
           swatches: customSwatches,
           tooltip: true,
-          tooltipLocation: 'bottom',
-        },
+          tooltipLocation: 'bottom'
+        }
       });
 
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
@@ -550,8 +555,8 @@ describe('VSwatches', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: [[testColors.red]],
-          tooltip: true,
-        },
+          tooltip: true
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
@@ -564,8 +569,8 @@ describe('VSwatches', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: customSwatches,
-          tooltip: false,
-        },
+          tooltip: false
+        }
       });
 
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
@@ -582,8 +587,8 @@ describe('VSwatches', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: customSwatches,
-          tooltip: true,
-        },
+          tooltip: true
+        }
       });
 
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
@@ -600,8 +605,8 @@ describe('VSwatches', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: [[testColor]],
-          tooltip: true,
-        },
+          tooltip: true
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
@@ -613,8 +618,8 @@ describe('VSwatches', () => {
       const testWrapper = mount(VSwatches, {
         props: {
           swatches: [['', testColors.red, undefined, undefined]],
-          tooltip: true,
-        },
+          tooltip: true
+        }
       });
 
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
@@ -635,8 +640,8 @@ describe('VSwatches', () => {
         props: {
           swatches: customSwatches,
           tooltip: true,
-          tooltipLocation: 'bottom',
-        },
+          tooltipLocation: 'bottom'
+        }
       });
 
       const tooltips = testWrapper.findAllComponents({ name: 'VTooltip' });
@@ -653,8 +658,8 @@ describe('VSwatches', () => {
         props: {
           swatches: [[testColors.red]],
           tooltip: true,
-          tooltipLocation: 'top',
-        },
+          tooltipLocation: 'top'
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
@@ -667,8 +672,8 @@ describe('VSwatches', () => {
         props: {
           swatches: [[testColors.red]],
           tooltip: true,
-          tooltipLocation: 'bottom',
-        },
+          tooltipLocation: 'bottom'
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
@@ -681,8 +686,8 @@ describe('VSwatches', () => {
         props: {
           swatches: [[testColors.red]],
           tooltip: true,
-          tooltipLocation: 'left',
-        },
+          tooltipLocation: 'left'
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });
@@ -695,8 +700,8 @@ describe('VSwatches', () => {
         props: {
           swatches: [[testColors.red]],
           tooltip: true,
-          tooltipLocation: 'right',
-        },
+          tooltipLocation: 'right'
+        }
       });
 
       const tooltip = testWrapper.findComponent({ name: 'VTooltip' });

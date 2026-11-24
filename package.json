@@ -1,42 +1,56 @@
 {
   "name": "vuetify-swatches",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Color Swatch component for Vuetify3.",
   "keywords": [
-    "vue",
-    "vue3",
-    "vue-components",
-    "color-picker",
     "color-palette",
+    "color-picker",
     "swatches",
+    "vue",
+    "vue-components",
     "vue-plugin",
+    "vue3",
     "vuetify",
     "vuetify3"
   ],
+  "homepage": "https://github.com/logue/vuetify-swatches",
+  "bugs": {
+    "url": "https://github.com/logue/vuetify-swatches/issues"
+  },
   "license": "MIT",
-  "type": "module",
   "author": {
     "name": "Logue",
     "email": "logue@hotmail.co.jp",
     "url": "https://logue.dev/"
   },
-  "homepage": "https://github.com/logue/vuetify-swatches",
   "repository": {
     "type": "git",
     "url": "git@github.com:logue/vuetify-swatches.git"
   },
-  "bugs": {
-    "url": "https://github.com/logue/vuetify-swatches/issues"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/logue"
+    },
+    {
+      "type": "ko-fi",
+      "url": "https://ko-fi.com/logue"
+    }
+  ],
+  "style": "dist/vuetify-swatches.css",
+  "files": [
+    "dist",
+    "src/components/VSwatches.vue"
+  ],
+  "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
-  "jsdelivr": "dist/index.iife.js",
-  "unpkg": "dist/index.iife.js",
-  "types": "dist/index.d.ts",
-  "style": "dist/vuetify-swatches.css",
   "browser": {
     "./sfc": "./src/components/VSwatches.vue"
   },
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.iife.js",
+  "jsdelivr": "dist/index.iife.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -60,99 +74,77 @@
     "./dist/style.css": "./dist/vuetify-swatches.css",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist",
-    "src/components/VSwatches.vue"
-  ],
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
-  },
-  "packageManager": "pnpm@12.4.1",
   "scripts": {
-    "dev": "vite",
-    "clean": "rimraf ./node_modules/.vite",
+    "dev": "vp dev --open",
+    "lint": "run-s lint:*",
+    "lint:check": "vize lint --type-aware",
+    "lint:oxlint": "vp lint --fix",
+    "lint:oxfmt": "vp fmt",
     "build": "run-s build:lib build:presets",
     "build:lib": "run-p type-check build-only",
-    "build:docs": "vite build --mode=docs",
-    "build:presets": "vite build --config vite.config.presets.ts",
-    "build:analyze": "vite build --mode analyze",
-    "build:clean": "rimraf dist",
-    "lint": "run-s lint:*",
-    "lint:oxlint": "oxlint . --fix",
-    "lint:eslint": "eslint . --fix --cache --cache-location ./node_modules/.vite/eslint-cache",
-    "lint:prettier": "prettier \"./**/*.{js,ts,json,css,sass,scss,htm,html,vue,md}\" -w -u",
-    "lint:style": "stylelint \"./**/*.{css,sass,scss,htm,html,vue}\" --fix --cache-location ./node_modules/.vite/stylelint-cache && prettier \"./**/*.{css,sass,scss,htm,html,vue}\" -w -u",
-    "preview": "vite preview",
-    "test:unit": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "build:docs": "vp build --mode=docs",
+    "build:presets": "vp build --config vite.config.presets.ts",
+    "build:analyze": "vp build --mode analyze",
+    "preview": "vp preview",
+    "test": "vp test",
+    "test:run": "vp test run",
+    "test:coverage": "vp test run --coverage",
     "test:e2e": "playwright test",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build"
+    "clean": "rimraf dist",
+    "clean:hard": "rimraf dist node_modules/.tmp node_modules/.vite node_modules/.vite-tmp",
+    "build-only": "vp build",
+    "type-check": "vize check --tsconfig tsconfig.app.json",
+    "skills:install": "npx --no-install skills --version >/dev/null 2>&1 && npx skills experimental_install --yes || echo '\\033[1;33m⚠️  [Warning] skills command not found. Skipped auto-installation of agent skills.\\033[0m'",
+    "skills:update": "npx skills update",
+    "prepare": "vp config && pnpm run skills:install"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.53.2"
+  },
+  "devDependencies": {
+    "@codemirror/lang-vue": "^0.1.3",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",
+    "@eslint/markdown": "^9.0.0",
+    "@mdi/font": "^7.4.47",
+    "@playwright/test": "^1.65.1",
+    "@tsconfig/node-lts": "^26.0.1",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.6",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vitest/coverage-v8": "catalog:",
+    "@vue/test-utils": "^2.6.0",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint-config-vuetify": "^4.7.2",
+    "eslint-plugin-playwright": "^2.12.2",
+    "eslint-plugin-security": "^4.2.1",
+    "eslint-plugin-vuetify": "^2.7.3",
+    "jsdom": "^31.0.1",
+    "npm-run-all2": "^9.1.0",
+    "rimraf": "^6.1.4",
+    "rollup-plugin-visualizer": "^7.3.0",
+    "sass-embedded": "^1.108.2",
+    "taze": "^21.3.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "vite": "catalog:",
+    "vite-plugin-banner": "^0.8.1",
+    "vite-plugin-checker": "^1.1.0",
+    "vite-plugin-dts": "^5.1.2",
+    "vite-plugin-vue-devtools": "^8.2.1",
+    "vite-plugin-vuetify": "^2.1.3",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
+    "vize": "^0.793.0",
+    "vue-codemirror6": "^1.8.2"
   },
   "peerDependencies": {
     "vue": ">=3.5",
     "vuetify": ">=4"
   },
-  "dependencies": {
-    "es-toolkit": "^1.52.0"
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   },
-  "devDependencies": {
-    "@codemirror/lang-vue": "^0.1.3",
-    "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",
-    "@eslint/markdown": "^8.0.3",
-    "@mdi/font": "^7.4.47",
-    "@playwright/test": "^1.63.0",
-    "@tsconfig/node-lts": "^24.0.1",
-    "@types/jsdom": "^30.0.0",
-    "@types/node": "^26.5.1",
-    "@typescript/native": "npm:typescript@^7.0.2",
-    "@vitejs/plugin-vue": "^6.0.9",
-    "@vitest/coverage-v8": "^5.0.0",
-    "@vitest/eslint-plugin": "1.6.27",
-    "@vue/eslint-config-prettier": "^10.2.0",
-    "@vue/eslint-config-typescript": "^14.9.0",
-    "@vue/test-utils": "^2.5.0",
-    "@vue/tsconfig": "^0.9.1",
-    "esbuild": "^0.28.2",
-    "eslint": "^10.10.0",
-    "eslint-import-resolver-custom-alias": "^1.3.2",
-    "eslint-import-resolver-typescript": "^4.4.5",
-    "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-oxlint": "^1.82.0",
-    "eslint-plugin-playwright": "^2.12.0",
-    "eslint-plugin-security": "^4.0.1",
-    "eslint-plugin-vue": "^10.11.0",
-    "eslint-plugin-vuejs-accessibility": "^2.6.0",
-    "eslint-plugin-vuetify": "^2.7.2",
-    "jiti": "^2.7.0",
-    "jsdom": "30.0.1",
-    "npm-run-all2": "^9.0.3",
-    "oxlint": "^1.83.0",
-    "postcss-html": "^2.0.0",
-    "prettier": "^3.9.6",
-    "resize-observer-polyfill": "^1.5.1",
-    "rimraf": "^6.1.3",
-    "rollup-plugin-visualizer": "^7.1.1",
-    "sass-embedded": "^1.104.1",
-    "stylelint": "^17.15.0",
-    "stylelint-config-html": "^2.0.0",
-    "stylelint-config-recommended-scss": "^17.0.1",
-    "stylelint-config-recommended-vue": "^2.0.0",
-    "stylelint-order": "^8.1.1",
-    "stylelint-scss": "^7.2.0",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.70.0",
-    "vite": "^8.3.0",
-    "vite-plugin-banner": "^0.8.1",
-    "vite-plugin-checker": "0.14.5",
-    "vite-plugin-dts": "^5.1.0",
-    "vite-plugin-vue-devtools": "^8.2.1",
-    "vite-plugin-vuetify": "^2.1.3",
-    "vitest": "^5.0.0",
-    "vue-codemirror6": "^1.6.2",
-    "vue-tsc": "^3.3.11"
-  },
+  "packageManager": "pnpm@12.23.0",
   "stackblitz": {
     "startCommand": "pnpm run test:unit"
   }

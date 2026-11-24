@@ -1,41 +1,61 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# AI Agent local directories (DO NOT COMMIT)
+.agent/
+.agents/
+.claude/
+.cursor/
+.windsurf/
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies
+node_modules/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Build / Cache
+.cache/
+.cargo/config.toml
+.data/
+.mf/
+.nitro/
+.nuxt/
+.output/
+.pnpm/crates/
+.rstack/
+!.rstack/hooks/
+.wrangler/
+.vitest/
 
-# Yarn 3
-/.yarn/*
-# !/.yarn/patches
-# !/.yarn/plugins
-!/.yarn/releases
-# !/.yarn/sdks
-# !/.yarn/cache
-*.tsbuildinfo
-
-# Vitest coverage
+# Test Report
 coverage/
+e2e/
+playwright-report/
+reports/
+test-results/
 
-# Special File
-.husky/
-src/Meta.ts
-docs
+# Production / Build output
+dist/
+docs/
+storybook-static/
+target/
+
+# Environment
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# Lockfiles
+*.lock
+!Cargo.lock
+# pnpm-lock.yaml # as you need to commit this file for reproducible builds
+# pnpm-workspace.yaml # as you need to commit this file for reproducible builds
+
+# IDE
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Local
+/local
+.DS_Store
+*.local
+*.log*
+*.seed
+Thumbs.db

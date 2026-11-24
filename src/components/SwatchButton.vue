@@ -2,7 +2,7 @@
 import { VBtn, VIcon, VTooltip } from 'vuetify/components';
 import colors from 'vuetify/util/colors';
 
-import type { SwatchButtonProps } from '@/types/SwatchButtonProps';
+import type { SwatchButtonProps } from '@/types/SwatchButtonProps.d.ts';
 
 const props = withDefaults(defineProps<Partial<SwatchButtonProps>>(), {
   isSelected: false,
@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Partial<SwatchButtonProps>>(), {
   iconSize: '1rem',
   disabled: false,
   border: false,
-  tooltip: false,
+  tooltip: false
 });
 
 const emit = defineEmits<{
@@ -29,26 +29,22 @@ const emit = defineEmits<{
     <template #activator="{ props: tooltipProps }">
       <v-btn
         v-bind="tooltipProps"
+        class="p-0"
+        :class="props.color === colors.shades.transparent ? 'bg-transparent' : ''"
+        :width="props.size"
+        :height="props.size"
         :border="props.border"
-        :class="
-          props.color === colors.shades.transparent ? 'bg-transparent' : ''
-        "
         :color="props.color"
         :disabled="props.disabled"
         :elevation="props.elevation"
-        :height="props.size"
         :variant="props.variant"
-        :width="props.size"
-        class="p-0"
         min-width="auto"
         @click="emit('click')"
       >
         <v-icon
           v-if="props.isSelected"
           :size="props.iconSize"
-          :color="
-            props.color !== colors.shades.transparent ? props.color : undefined
-          "
+          :color="props.color !== colors.shades.transparent ? props.color : undefined"
           :icon="props.icon"
         />
       </v-btn>
@@ -56,9 +52,9 @@ const emit = defineEmits<{
   </v-tooltip>
   <v-btn
     v-else
-    :height="props.size"
-    :width="props.size"
     class="p-0"
+    :width="props.size"
+    :height="props.size"
     min-width="auto"
     variant="text"
     disabled

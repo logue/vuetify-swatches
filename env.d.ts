@@ -1,5 +1,4 @@
 /// <reference types="vite/client" />
-/// <reference types="vuetify" />
 
 interface ImportMetaEnv {
   // see https://vitejs.dev/guide/env-and-mode.html#env-files
@@ -9,6 +8,11 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
+}
+
+declare module '*.vue' {
+  import vue from 'vue';
+  export default vue;
 }
 
 declare const __APP_VERSION__: string;

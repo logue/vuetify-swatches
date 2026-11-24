@@ -14,7 +14,7 @@ export const basicPalette = [
     colors.indigo.base,
     colors.blue.base,
     colors.lightBlue.base,
-    colors.cyan.base,
+    colors.cyan.base
   ],
   [
     colors.teal.base,
@@ -24,7 +24,7 @@ export const basicPalette = [
     colors.yellow.base,
     colors.amber.base,
     colors.orange.base,
-    colors.deepOrange.base,
+    colors.deepOrange.base
   ],
-  [colors.brown.base, colors.blueGrey.base, colors.grey.base],
+  [colors.brown.base, colors.blueGrey.base, colors.grey.base]
 ] as const;

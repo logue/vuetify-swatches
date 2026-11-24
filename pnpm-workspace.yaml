@@ -1,10 +1,55 @@
-allowBuilds:
-  '@parcel/watcher': true
-  esbuild: true
-  unrs-resolver: true
-  vue-demi: true
-overrides:
-  brace-expansion: '>=5.0.9'
+lockfile:
+  format: v13
+
 # Do not enforce minimum release age for dependencies.
 # Version selection is delegated to package.json constraints.
 minimumReleaseAge: 0
+
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  unrs-resolver: true
+
+permissions:
+  taze:
+    skills: true
+
+# If you use rust, comment out bellow:
+# cargo:
+#  enabled: true
+
+overrides:
+  glob: '>=14.0.6'
+  minimatch: '>=11.0.8'
+  katex: '>=0.19.1'
+  # vite plus
+  vite@*: 'catalog:'
+  vitest@*: 'catalog:'
+
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@8.3.8001
+  vitest: 5.1.1
+  vite-plus: 1.8.0
+  '@vitest/coverage-v8': 5.1.1
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: '*'
+    vitest: '*'
+minimumReleaseAgeExclude:
+  - vite-plus
+  - '@voidzero-dev/*'
+  - oxlint
+  - '@oxlint/*'
+  - oxlint-tsgolint
+  - '@oxlint-tsgolint/*'
+  - oxfmt
+  - '@oxfmt/*'
+  - vitest
+  - '@vitest/*'
+
+skills:
+  dirs:
+    - .agents/skills

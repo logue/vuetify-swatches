@@ -1,3 +1,5 @@
+import '@mdi/font/css/materialdesignicons.css';
+
 // Vuetify
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -8,7 +10,7 @@ import 'vuetify/styles';
 const vuetify = createVuetify({
   // https://next.vuetifyjs.com/en/getting-started/installation/
   components,
-  directives,
+  directives
 });
 
 export default vuetify;

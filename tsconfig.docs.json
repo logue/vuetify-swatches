@@ -1,5 +1,4 @@
 {
-  "$schema": "https://schemastore.org/tsconfig.json",
   "extends": "./tsconfig.app.json",
   "include": [
     "./env.d.ts",

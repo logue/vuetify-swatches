@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# post-merge receives a single argument: 1 when the merge was a squash merge.
+# Sync AI Agent skills only when the merge changed skills-lock.json.
+if ! git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null | grep -qx 'skills-lock.json'; then
+  exit 0
+fi
+
+echo "🔄 Vite+ Hooks: Checking AI Agent Skills environment..."
+
+if ! npx --no-install skills --version >/dev/null 2>&1 && ! command -v skills >/dev/null 2>&1; then
+  echo "\033[1;33m⚠️  [Warning] 'skills' package is not installed or available in this project."
+  echo "   AI Agent skills cannot be synchronized automatically."
+  echo "   Please run 'pnpm add -D @vercel-labs/skills' or install it globally to enable this feature.\033[0m"
+  exit 0
+fi
+
+echo "🚀 Syncing AI Agent Skills from skills-lock.json..."
+npx skills experimental_install --yes

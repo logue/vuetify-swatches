@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
 import { defineComponent } from 'vue';
+
+import { describe, it, expect } from 'vite-plus/test';
 
 // Simple VSwatches component test version without Vuetify dependencies
 const VSwatchesTest = defineComponent({
@@ -11,11 +12,11 @@ const VSwatchesTest = defineComponent({
       type: Array,
       default: () => [
         ['#000000', '#FFFFFF', 'transparent'],
-        ['#F44336', '#E91E63', '#9C27B0', '#673AB7'],
-      ],
+        ['#F44336', '#E91E63', '#9C27B0', '#673AB7']
+      ]
     },
     size: { type: String, default: '2rem' },
-    disabled: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false }
   },
   emits: ['update:modelValue'],
   template: `
@@ -39,7 +40,7 @@ const VSwatchesTest = defineComponent({
         </button>
       </div>
     </div>
-  `,
+  `
 });
 
 describe('VSwatches Basic Functionality Tests', () => {
@@ -69,8 +70,8 @@ describe('VSwatches Basic Functionality Tests', () => {
       const testColor = '#F44336';
       const wrapper = mount(VSwatchesTest, {
         props: {
-          modelValue: testColor,
-        },
+          modelValue: testColor
+        }
       });
 
       const selectedButton = wrapper.find(`[value="${testColor}"]`);
@@ -81,13 +82,13 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should display custom swatches correctly', () => {
       const customSwatches = [
         ['#FF0000', '#00FF00', '#0000FF'],
-        ['#FFFF00', '#FF00FF', '#00FFFF'],
+        ['#FFFF00', '#FF00FF', '#00FFFF']
       ];
 
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const buttons = wrapper.findAll('button');
@@ -95,17 +96,15 @@ describe('VSwatches Basic Functionality Tests', () => {
 
       const firstButton = buttons[0]!;
       expect(firstButton.attributes('value')).toBe('#FF0000');
-      expect(firstButton.attributes('style')).toContain(
-        'background-color: rgb(255, 0, 0)'
-      );
+      expect(firstButton.attributes('style')).toContain('background-color: rgb(255, 0, 0)');
     });
 
     it('should apply size property correctly', () => {
       const customSize = '3rem';
       const wrapper = mount(VSwatchesTest, {
         props: {
-          size: customSize,
-        },
+          size: customSize
+        }
       });
 
       const button = wrapper.find('button');
@@ -116,8 +115,8 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should handle disabled property correctly', () => {
       const wrapper = mount(VSwatchesTest, {
         props: {
-          disabled: true,
-        },
+          disabled: true
+        }
       });
 
       const button = wrapper.find('button');
@@ -142,8 +141,8 @@ describe('VSwatches Basic Functionality Tests', () => {
 
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const redButton = wrapper.find('[value="#FF0000"]');
@@ -157,8 +156,8 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should disable click events when disabled', async () => {
       const wrapper = mount(VSwatchesTest, {
         props: {
-          disabled: true,
-        },
+          disabled: true
+        }
       });
 
       const button = wrapper.find('button');
@@ -176,15 +175,13 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should handle transparent color correctly', () => {
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: [['transparent', '#FF0000']],
-        },
+          swatches: [['transparent', '#FF0000']]
+        }
       });
 
       const transparentButton = wrapper.find('[value="transparent"]');
       expect(transparentButton.exists()).toBe(true);
-      expect(transparentButton.attributes('style')).toContain(
-        'background-color: transparent'
-      );
+      expect(transparentButton.attributes('style')).toContain('background-color: transparent');
     });
   });
 
@@ -193,8 +190,8 @@ describe('VSwatches Basic Functionality Tests', () => {
       const newColor = '#00FF00';
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: [['#FF0000', newColor, '#0000FF']],
-        },
+          swatches: [['#FF0000', newColor, '#0000FF']]
+        }
       });
 
       await wrapper.setProps({ modelValue: newColor });
@@ -209,15 +206,15 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should update UI according to props changes', async () => {
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: [['#FF0000']],
-        },
+          swatches: [['#FF0000']]
+        }
       });
 
       let buttons = wrapper.findAll('button');
       expect(buttons.length).toBe(1);
 
       await wrapper.setProps({
-        swatches: [['#FF0000', '#00FF00', '#0000FF']],
+        swatches: [['#FF0000', '#00FF00', '#0000FF']]
       });
 
       buttons = wrapper.findAll('button');
@@ -229,8 +226,8 @@ describe('VSwatches Basic Functionality Tests', () => {
     it('should not throw errors with empty swatches array', () => {
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: [],
-        },
+          swatches: []
+        }
       });
 
       expect(wrapper.exists()).toBe(true);
@@ -244,8 +241,8 @@ describe('VSwatches Basic Functionality Tests', () => {
       expect(() => {
         mount(VSwatchesTest, {
           props: {
-            swatches: invalidSwatches,
-          },
+            swatches: invalidSwatches
+          }
         });
       }).not.toThrow();
     });
@@ -257,8 +254,8 @@ describe('VSwatches Basic Functionality Tests', () => {
 
       const wrapper = mount(VSwatchesTest, {
         props: {
-          swatches: customSwatches,
-        },
+          swatches: customSwatches
+        }
       });
 
       const buttons = wrapper.findAll('button');

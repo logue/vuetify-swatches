@@ -4,10 +4,10 @@ import { ref, type Ref } from 'vue';
 import { vue } from '@codemirror/lang-vue';
 import CodeMirror from 'vue-codemirror6';
 import { useTheme } from 'vuetify';
-
-import { basicPalette, advancedPalette } from '@/presets';
 // eslint-disable-next-line import-x/no-relative-parent-imports -- This is a demo file, and the relative import is acceptable.
 import VSwatches from 'vuetify-swatches';
+
+import { basicPalette, advancedPalette } from '@/presets';
 
 const theme = useTheme();
 
@@ -23,60 +23,21 @@ const color5: Ref<string> = ref('#ffffff');
 const color6: Ref<string> = ref('#ffffff');
 
 const palette = [
-  [
-    '#ffb7b7',
-    '#ffdbb7',
-    '#ffffb7',
-    '#b7ffb7',
-    '#b7ffff',
-    '#b7b7ff',
-    '#ffb7ff',
-    '#ffffff',
-  ],
-  [
-    '#ff5555',
-    '#ffa555',
-    '#ffff55',
-    '#55ff55',
-    '#55ffff',
-    '#5555ff',
-    '#ff55ff',
-    '#aaaaaa',
-  ],
-  [
-    '#ff0000',
-    '#ff7f00',
-    '#ffff00',
-    '#00ff00',
-    '#00ffff',
-    '#0000ff',
-    '#ff00ff',
-    '#555555',
-  ],
-  [
-    '#7f0000',
-    '#7f4c00',
-    '#7f7f00',
-    '#007f00',
-    '#007f7f',
-    '#00007f',
-    '#7f007f',
-    '#000000',
-  ],
+  ['#ffb7b7', '#ffdbb7', '#ffffb7', '#b7ffb7', '#b7ffff', '#b7b7ff', '#ffb7ff', '#ffffff'],
+  ['#ff5555', '#ffa555', '#ffff55', '#55ff55', '#55ffff', '#5555ff', '#ff55ff', '#aaaaaa'],
+  ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff', '#555555'],
+  ['#7f0000', '#7f4c00', '#7f7f00', '#007f00', '#007f7f', '#00007f', '#7f007f', '#000000']
 ];
 </script>
 
 <template>
   <v-app :theme="dark ? 'dark' : 'light'">
     <v-app-bar title="Vuetify3 Swatch Demo">
+      <v-btn icon="mdi-theme-light-dark" variant="plain" @click="dark = !dark" />
       <v-btn
-        icon="mdi-theme-light-dark"
-        variant="plain"
-        @click="dark = !dark"
-      />
-      <v-btn
-        icon="mdi-github"
         href="https://github.com/logue/vuetify-swatches"
+        icon="mdi-github"
+        rel="noopener noreferrer"
         target="_blank"
         variant="plain"
       />
@@ -86,8 +47,8 @@ const palette = [
         <section>
           <h2>Basic</h2>
           <p>
-            The colors available in the Material Design color system are
-            provided as a preset. You can use it by importing
+            The colors available in the Material Design color system are provided as a preset. You
+            can use it by importing
             <v-code tag="code">basicPalette</v-code>
             from
             <v-code tag="code">vuetify-swatches/presets</v-code>
@@ -95,13 +56,7 @@ const palette = [
           </p>
           <v-row>
             <v-col>
-              <code-mirror
-                :dark="dark"
-                :lang="lang"
-                class="mb-3"
-                basic
-                readonly
-              >
+              <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
                 <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -121,11 +76,7 @@ const selected = ref('#ffffff');
               </code-mirror>
             </v-col>
             <v-col>
-              <v-swatches
-                v-model="color1"
-                :swatches="basicPalette"
-                class="mb-3"
-              />
+              <v-swatches v-model="color1" class="mb-3" :swatches="basicPalette" />
               <v-text-field v-model="color1" label="Result" />
             </v-col>
           </v-row>
@@ -141,13 +92,7 @@ const selected = ref('#ffffff');
           </p>
           <v-row>
             <v-col>
-              <code-mirror
-                :dark="dark"
-                :lang="lang"
-                class="mb-3"
-                basic
-                readonly
-              >
+              <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
                 <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -177,8 +122,8 @@ const selected = ref('#ffffff');
         <section>
           <h2>Tooltip Feature</h2>
           <p>
-            You can enable tooltips that show the color code when hovering over
-            each swatch by setting the
+            You can enable tooltips that show the color code when hovering over each swatch by
+            setting the
             <v-code>tag</v-code>
             prop to
             <v-code>tooltip</v-code>
@@ -190,13 +135,7 @@ const selected = ref('#ffffff');
           </p>
           <v-row>
             <v-col>
-              <code-mirror
-                :dark="dark"
-                :lang="lang"
-                class="mb-3"
-                basic
-                readonly
-              >
+              <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
                 <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -222,9 +161,9 @@ const selected = ref('#ffffff');
             <v-col>
               <v-swatches
                 v-model="color6"
+                class="mb-3"
                 :swatches="basicPalette"
                 tooltip-location="top"
-                class="mb-3"
                 tooltip
               />
               <v-text-field v-model="color6" label="Result" />
@@ -235,18 +174,12 @@ const selected = ref('#ffffff');
         <section>
           <h2>Custom Color</h2>
           <p>
-            You can set any color you like by specifying a hex code or RGB value
-            in addition to the base colors of the Material Color system.
+            You can set any color you like by specifying a hex code or RGB value in addition to the
+            base colors of the Material Color system.
           </p>
           <v-row>
             <v-col>
-              <code-mirror
-                :dark="dark"
-                :lang="lang"
-                class="mb-3"
-                basic
-                readonly
-              >
+              <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
                 <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -308,7 +241,7 @@ const palette = [
               </code-mirror>
             </v-col>
             <v-col>
-              <v-swatches v-model="color3" :swatches="palette" class="mb-3" />
+              <v-swatches v-model="color3" class="mb-3" :swatches="palette" />
               <v-text-field v-model="color3" label="Result" />
             </v-col>
           </v-row>
@@ -317,14 +250,11 @@ const palette = [
         <section>
           <h2>With VMenu and advanced palette combination</h2>
           <p>
-            You can display a color palette in a popup in combination with
-            Vuetify's
-            <a href="https://next.vuetifyjs.com/en/components/menus/">
-              Menu Component
-            </a>
+            You can display a color palette in a popup in combination with Vuetify's
+            <a href="https://next.vuetifyjs.com/en/components/menus/"> Menu Component </a>
             .
           </p>
-          <v-alert type="info" class="mb-3" variant="tonal">
+          <v-alert class="mb-3" type="info" variant="tonal">
             From v2, you need wrap
             <v-code>v-card</v-code>
             around
@@ -333,13 +263,7 @@ const palette = [
           </v-alert>
           <v-row>
             <v-col>
-              <code-mirror
-                :dark="dark"
-                :lang="lang"
-                class="mb-3"
-                basic
-                readonly
-              >
+              <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
                 <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -380,15 +304,8 @@ const selected = ref('#ffffff');
             <v-col>
               <v-menu class="mb-3">
                 <template #activator="{ props }">
-                  <v-btn
-                    v-bind="props"
-                    :color="color4"
-                    class="mb-3"
-                    min-width="auto"
-                  >
-                    <v-icon :color="color4" class="inverse">
-                      mdi-menu-down
-                    </v-icon>
+                  <v-btn v-bind="props" class="mb-3" :color="color4" min-width="auto">
+                    <v-icon class="inverse" :color="color4"> mdi-menu-down </v-icon>
                   </v-btn>
                 </template>
                 <v-card title="Select a color">
@@ -408,7 +325,7 @@ const selected = ref('#ffffff');
             <v-code>transpose</v-code>
             .
           </p>
-          <code-mirror :dark="dark" :lang="lang" class="mb-3" basic readonly>
+          <code-mirror class="mb-3" :dark="dark" :lang="lang" basic readonly>
             <pre>
 &lt;script setup&gt;
 import { ref } from 'vue';
@@ -424,18 +341,13 @@ const selected = ref('#ffffff');
 @import 'vuetify-swatches/dist/style.css';
 &lt;/style&gt;</pre>
           </code-mirror>
-          <v-swatches
-            v-model="color5"
-            :swatches="advancedPalette"
-            class="mb-3"
-            transpose
-          />
+          <v-swatches v-model="color5" class="mb-3" :swatches="advancedPalette" transpose />
           <v-text-field v-model="color5" label="Result" />
         </section>
       </v-container>
     </v-main>
     <v-footer elevation="3" app>
-      &copy; 2022-2025 by&thinsp;
+      &copy; 2022-2026 by&thinsp;
       <a href="http://logue.dev/">Logue</a>
       &thinsp; . Licensed under the&thinsp;
       <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>

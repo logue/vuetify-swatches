@@ -1,6 +1,6 @@
 <script lang="ts" setup vapor>
 /** Vuetify Swatches */
-import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
+import { computed } from 'vue';
 
 import { zip } from 'es-toolkit';
 import { VItem, VItemGroup } from 'vuetify/components';
@@ -8,75 +8,67 @@ import colors from 'vuetify/util/colors';
 
 import SwatchButton from './SwatchButton.vue';
 
-import type { VSwatchesProps } from '@/types/VSwatchesProps';
-
-/** Emits */
-const emit = defineEmits<{
-  'update:modelValue': [value: string];
-}>();
+import type { VSwatchesProps } from '@/types/VSwatchesProps.d.ts';
 
 /** Props */
-const props = withDefaults(defineProps<Partial<VSwatchesProps>>(), {
-  modelValue: colors.shades.white,
-  swatches: () => [],
-  size: '2rem',
-  icon: 'mdi-checkbox-marked-circle',
-  iconSize: '1rem',
-  inline: false,
-  disabled: false,
-  border: false,
-  transpose: false,
-  tooltip: false,
+const {
+  swatches = [],
+  size = '2rem',
+  icon = 'mdi-checkbox-marked-circle',
+  iconSize = '1rem',
+  inline = false,
+  variant,
+  disabled = false,
+  rounded,
+  border = false,
+  elevation,
+  transpose = false,
+  tooltip = false,
+  tooltipLocation
+} = defineProps<Partial<Omit<VSwatchesProps, 'modelValue'>>>();
+
+/** Selected Color */
+const selected = defineModel<string>({
+  default: colors.shades.white
 });
 
 /** Normalized swatches structure for rendering */
-const normalizedSwatches: ComputedRef<string[][]> = computed(() => {
-  // Convert to array structure first
-  const baseSwatches: string[][] = Array.isArray(props.swatches)
-    ? props.swatches
-    : Object.values(props.swatches);
+const normalizedSwatches = computed(() => normalizeSwatches(swatches, inline, transpose));
 
-  // Apply inline mode: flatten all colors into a single row
-  if (props.inline) {
-    return [baseSwatches.flat(Infinity) as string[]];
+function normalizeSwatches(
+  swatches: VSwatchesProps['swatches'],
+  inline: boolean,
+  transpose: boolean
+): SwatchRows {
+  const rows = Array.isArray(swatches)
+    ? isSwatchRows(swatches)
+      ? swatches
+      : swatches.length > 0
+        ? [swatches]
+        : []
+    : Object.values(swatches);
+
+  if (inline) {
+    return [rows.flat()];
   }
 
-  // Apply transpose mode: swap rows and columns
-  if (props.transpose) {
-    return zip(...baseSwatches) as string[][];
+  if (transpose) {
+    return zip(...rows);
   }
 
-  // Default: preserve the original structure
-  return baseSwatches;
-});
+  return rows;
+}
 
-/** Selected Color */
-const selected: Ref<string> = ref(colors.shades.white);
+function isSwatchRows(swatches: VSwatchesProps['swatches']): swatches is SwatchRows {
+  return Array.isArray(swatches) && swatches.every(Array.isArray);
+}
 
-watch(
-  () => selected.value,
-  s => emit('update:modelValue', s)
-);
-
-watch(
-  () => props.modelValue,
-  newValue => {
-    if (newValue) {
-      selected.value = newValue;
-    }
-  },
-  { immediate: true }
-);
+type SwatchRows = readonly (readonly (string | undefined)[])[];
 </script>
 
 <template>
-  <v-item-group
-    v-model="selected"
-    :class="{ 'd-inline': props.inline }"
-    class="v-swatches"
-    mandatory
-  >
-    <template v-if="props.inline">
+  <v-item-group v-model="selected" class="v-swatches" :class="{ 'd-inline': inline }" mandatory>
+    <template v-if="inline">
       <v-item
         v-for="color in normalizedSwatches[0]"
         :key="color"
@@ -84,73 +76,71 @@ watch(
         :value="color"
       >
         <swatch-button
-          :border="props.border"
+          :border="border"
           :color="color"
-          :disabled="props.disabled"
-          :elevation="props.elevation"
-          :icon-size="props.iconSize"
-          :icon="props.icon"
+          :disabled="disabled"
+          :elevation="elevation"
+          :icon-size="iconSize"
+          :icon="icon"
           :is-selected="isSelected"
-          :rounded="props.rounded"
-          :size="props.size"
-          :tooltip-location="props.tooltipLocation"
-          :tooltip="props.tooltip"
-          :variant="props.variant"
+          :rounded="rounded"
+          :size="size"
+          :tooltip-location="tooltipLocation"
+          :tooltip="tooltip"
+          :variant="variant"
           @click="toggle"
         />
       </v-item>
     </template>
-    <div v-for="(cols, rows) in normalizedSwatches" v-else :key="rows">
-      <v-item
-        v-for="color in cols"
-        :key="color"
-        v-slot="{ isSelected, toggle }"
-        :value="color"
-      >
-        <swatch-button
-          :border="props.border"
-          :color="color"
-          :disabled="props.disabled"
-          :elevation="props.elevation"
-          :icon-size="props.iconSize"
-          :icon="props.icon"
-          :is-selected="isSelected"
-          :rounded="props.rounded"
-          :size="props.size"
-          :tooltip-location="props.tooltipLocation"
-          :tooltip="props.tooltip"
-          :variant="props.variant"
-          @click="toggle"
-        />
-      </v-item>
-    </div>
+    <template v-else>
+      <div v-for="(cols, rows) in normalizedSwatches" :key="rows">
+        <v-item v-for="color in cols" :key="color" v-slot="{ isSelected, toggle }" :value="color">
+          <swatch-button
+            :border="border"
+            :color="color"
+            :disabled="disabled"
+            :elevation="elevation"
+            :icon-size="iconSize"
+            :icon="icon"
+            :is-selected="isSelected"
+            :rounded="rounded"
+            :size="size"
+            :tooltip-location="tooltipLocation"
+            :tooltip="tooltip"
+            :variant="variant"
+            @click="toggle"
+          />
+        </v-item>
+      </div>
+    </template>
   </v-item-group>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-swatches {
-  .v-btn {
+  :deep(.v-btn) {
     margin: 0.1rem;
+  }
 
-    /** Reverse checkd mark color */
-    .v-icon {
-      filter: invert(100%) grayscale(100%) contrast(100);
-    }
+  /** Reverse checkd mark color */
+  :deep(.v-icon) {
+    filter: invert(100%) grayscale(100%) contrast(100);
+  }
 
-    /** Add Slash */
-    &.bg-transparent {
-      background: linear-gradient(
-        to top left,
-        transparent 0,
-        transparent calc(50% - 0.1rem),
-        rgb(var(--v-theme-error)) 50%,
-        transparent calc(50% + 0.1rem),
-        transparent
-      );
-      .v-icon {
-        filter: none;
-      }
-    }
+  /** Add Slash */
+  :deep(.bg-transparent) {
+    background: linear-gradient(
+      to top left,
+      transparent 0,
+      transparent calc(50% - 0.1rem),
+      rgb(var(--v-theme-error)) 50%,
+      transparent calc(50% + 0.1rem),
+      transparent
+    );
+  }
+
+  :deep(.bg-transparent .v-icon) {
+    filter: none;
   }
 }
 </style>

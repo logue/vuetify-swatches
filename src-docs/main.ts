@@ -4,7 +4,7 @@ import Dev from './DemoPage.vue';
 import vuetify from './plugins/vuetify';
 
 const app = createApp({
-  render: () => h(Dev),
+  render: () => h(Dev)
 });
 app.use(vuetify);
 app.mount('#app');

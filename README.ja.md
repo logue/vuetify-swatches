@@ -35,6 +35,7 @@ pnpm add vuetify-swatches
 ```vue
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
+
 import VSwatches from 'vuetify-swatches';
 import { basicPalette } from 'vuetify-swatches/presets/basic';
 
@@ -56,8 +57,8 @@ const selected: Ref<string> = ref('#ffffff');
 - `advancedPalette`: 色バリエーションが豊富な拡張パレット
 
 ```ts
-import { basicPalette } from 'vuetify-swatches/presets/basic';
 import { advancedPalette } from 'vuetify-swatches/presets/advanced';
+import { basicPalette } from 'vuetify-swatches/presets/basic';
 ```
 
 ## カスタムパレット
@@ -67,49 +68,14 @@ import { advancedPalette } from 'vuetify-swatches/presets/advanced';
 ```vue
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
+
 import VSwatches from 'vuetify-swatches';
 
 const customPalette: Ref<string[][]> = ref([
-  [
-    '#ffb7b7',
-    '#ffdbb7',
-    '#ffffb7',
-    '#b7ffb7',
-    '#b7ffff',
-    '#b7b7ff',
-    '#ffb7ff',
-    '#ffffff',
-  ],
-  [
-    '#ff5555',
-    '#ffa555',
-    '#ffff55',
-    '#55ff55',
-    '#55ffff',
-    '#5555ff',
-    '#ff55ff',
-    '#aaaaaa',
-  ],
-  [
-    '#ff0000',
-    '#ff7f00',
-    '#ffff00',
-    '#00ff00',
-    '#00ffff',
-    '#0000ff',
-    '#ff00ff',
-    '#555555',
-  ],
-  [
-    '#7f0000',
-    '#7f4c00',
-    '#7f7f00',
-    '#007f00',
-    '#007f7f',
-    '#00007f',
-    '#7f007f',
-    '#000000',
-  ],
+  ['#ffb7b7', '#ffdbb7', '#ffffb7', '#b7ffb7', '#b7ffff', '#b7b7ff', '#ffb7ff', '#ffffff'],
+  ['#ff5555', '#ffa555', '#ffff55', '#55ff55', '#55ffff', '#5555ff', '#ff55ff', '#aaaaaa'],
+  ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff', '#555555'],
+  ['#7f0000', '#7f4c00', '#7f7f00', '#007f00', '#007f7f', '#00007f', '#7f007f', '#000000']
 ]);
 
 const selected: Ref<string> = ref('#ffffff');
